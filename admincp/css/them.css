@@ -1,0 +1,82 @@
+/* Đặt style cho toàn bộ body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Đặt style cho tiêu đề */
+.title-them {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Đặt style cho bảng thêm sản phẩm */
+.bang-them {
+  width: 50%; /* Thay đổi độ rộng của bảng ở đây */
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Đặt style cho các tiêu đề cột */
+.bang-them th {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Đặt style cho các ô trong bảng */
+.bang-them td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-weight: bolder;
+}
+
+/* Đặt style cho các input và textarea */
+.bang-them input[type="text"],
+.bang-them input[type="file"],
+.bang-them select,
+.bang-them textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+/* Đặt style cho nút submit */
+.bang-them input[type="submit"] {
+  background-color: #333;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.bang-them input[type="submit"]:hover {
+  background-color: #4caf50;
+}
+
+/* Đặt style cho các tiêu đề cột */
+.bang-them th {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+}

@@ -1,0 +1,82 @@
+.admin-header {
+    background-color: #333; /* Màu nền của header */
+    color: #fff; /* Màu chữ */
+    padding: 15px 20px; /* Khoảng cách bên trong */
+    display: flex; /* Sử dụng Flexbox để căn các phần tử */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+.header-content {
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: space-between; /* Căn các phần tử hai bên */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.header-left .logo {
+    font-size: 24px; /* Kích thước chữ của logo */
+    color: #fff; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    font-weight: bold; /* Đậm chữ */
+}
+
+.header-right {
+    display: flex; /* Sử dụng Flexbox */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+}
+
+.user-info {
+    display: flex; /* Sử dụng Flexbox */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+}
+
+.username {
+    margin-right: 15px; /* Khoảng cách giữa tên người dùng và avatar */
+    font-size: 16px; /* Kích thước chữ của tên người dùng */
+}
+
+.avatar {
+    width: 40px; /* Chiều rộng của avatar */
+    height: 40px; /* Chiều cao của avatar */
+    border-radius: 50%; /* Bo tròn góc để tạo hình tròn */
+    margin-right: 15px; /* Khoảng cách giữa avatar và dropdown */
+}
+
+.dropdown {
+    position: relative; /* Để dropdown-content hiển thị đúng vị trí */
+}
+
+.dropbtn {
+    background: none; /* Không có nền */
+    border: none; /* Không có viền */
+    color: white; /* Màu chữ */
+    font-size: 16px; /* Kích thước chữ */
+    cursor: pointer; /* Đổi con trỏ thành dạng click */
+}
+
+.dropdown-content {
+    display: none; /* Ẩn mặc định */
+    position: absolute; /* Hiển thị trên nội dung khác */
+    right: 0; /* Căn phải */
+    background-color: #f1f1f1; /* Màu nền */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Đổ bóng */
+    z-index: 1; /* Hiển thị trên nội dung khác */
+    min-width: 160px; /* Chiều rộng tối thiểu */
+}
+
+.dropdown-content a {
+    color: black; /* Màu chữ */
+    padding: 12px 16px; /* Khoảng cách bên trong */
+    text-decoration: none; /* Không gạch chân */
+    display: block; /* Hiển thị dạng block */
+    font-size: 14px; /* Kích thước chữ */
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd; /* Màu nền khi hover */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Hiển thị menu khi hover */
+}

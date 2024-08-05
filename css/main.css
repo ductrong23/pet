@@ -1,0 +1,25 @@
+/* =======================MAIN================================ */
+
+#main {
+  border: 1px solid #e7e5f5;
+  height: auto;
+  width: 100%;
+  background-color: white;
+}
+
+/* =======================MAINCONTENT================================ */
+
+.maincontent {
+  /* border: 1px solid #e7e5f5; */
+  height: auto;
+  /* width: 83%; */
+  width: 100%;
+  /* background-color: whitesmoke; */
+  margin-top: 5px;
+  margin-left: 3px;
+  float: right;
+}
+
+.maincontent h3 {
+  margin-left: 40px;
+}

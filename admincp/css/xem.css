@@ -1,0 +1,70 @@
+
+    /* Đặt style cho toàn bộ body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Đặt style cho tiêu đề */
+.xem-don-hang {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Đặt style cho bảng liệt kê sản phẩm */
+.bang-xem-don-hang {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Đặt style cho các tiêu đề cột */
+.bang-xem-don-hang th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Đặt style cho các ô trong bảng */
+.bang-xem-don-hang td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Đặt style cho hình ảnh sản phẩm */
+.bang-xem-don-hang img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Đặt style cho các liên kết trong cột quản lý */
+.bang-xem-don-hang a {
+    color: #007BFF;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.bang-xem-don-hang a:hover {
+    text-decoration: underline;
+}
+
+/* Đặt style cho các ô trạng thái */
+.bang-xem-don-hang .status-active {
+    color: green;
+    font-weight: bold;
+}
+
+.bang-xem-don-hang .status-inactive {
+    color: red;
+    font-weight: bold;
+}

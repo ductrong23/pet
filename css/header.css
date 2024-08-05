@@ -1,0 +1,134 @@
+/* =======================HEADER================================ */
+
+.header {
+  /* height: 120px; */
+  height: 70px;
+  width: 100%;
+  /* background-color: whitesmoke; */
+  /* background: linear-gradient(to right, #e0e0ba , #d0e231);  */
+  background-color: #e0eddc;
+  /*  */
+  display: flex;
+}
+
+.header .logo {
+  height: 120px;
+}
+
+/* =======================TÌM KIẾM================================ */
+
+input.o-tim-kiem {
+  border-radius: 10px;
+  padding: 10px;
+  width: 450px;
+  font-family: "Montserrat", sans-serif;
+  margin-left: 120px;
+  /* margin-top: 22px; */
+  margin-top: 3px;
+  border: 1px solid white;
+}
+
+button.nut-tim-kiem {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bolder;
+  /* margin-left: 10px; */
+  font-family: "Montserrat", sans-serif;
+  border: 1px solid white;
+  background-color: #8ad1ca;
+}
+
+button.nut-tim-kiem:hover {
+  /* background-color: #836fff; */
+  /* background: linear-gradient(to right, #8be290, #54e231); */
+ 
+  color: white;
+  cursor: pointer;
+}
+
+.fa-search{
+  height: calc(90% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+.fa-search:hover {
+  color: #ccec14;
+  scale: 1.06;
+}
+/* =======================MENU================================ */
+
+.list-menu-user-header {
+  /* margin: 3% auto; */
+  margin: 1.2% auto;
+}
+
+.list-menu-user-header > ul > li {
+  display: inline-block;
+  position: relative;
+}
+
+.list-menu-user-header > ul > li > a {
+  display: block;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+
+  font-size: larger;
+  color: black;
+  padding: 0 10px;
+  line-height: 40px;
+
+  height: calc(90% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+.list-menu-user-header > ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  border-radius: 3px;
+  background-color: #e0eddc;
+  text-align: center;
+}
+
+.list-menu-user-header > ul > li > a:hover {
+  color: rgb(255, 30, 0);
+  scale: 1.05;
+}
+
+.list-menu-user-header ul ul {
+  position: absolute;
+  display: none;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  border-radius: 3px;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0 0 1px gray;
+}
+
+.list-menu-user-header ul ul a {
+  display: block;
+  line-height: 30px;
+  color: black;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  /* font-size: larger; */
+  padding: 0px;
+
+  height: calc(90% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+.list-menu-user-header > ul > li:hover > ul {
+  display: block;
+}
+
+.list-menu-user-header ul ul a:hover {
+  background-color: white;
+  color: #123f39;
+  font-weight: bold;
+  scale: 1.06;
+}

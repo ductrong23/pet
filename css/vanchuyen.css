@@ -1,0 +1,84 @@
+.form-group {
+  margin: 10px 0px;
+}
+
+.form-control {
+  width: 98%;
+  padding: 15px;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.form-group label {
+  font-weight: bold;
+  /* font-variant: small-caps; */
+}
+
+.form-control:focus {
+  /* background-color: yellow; */
+  box-shadow: 0 0 3px;
+  border: 1px solid yellow;
+}
+
+.form-button {
+  padding: 8px 30px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  background-color: white;
+  color: orangered;
+  box-shadow: inset 0 0 20px blue;
+}
+
+.form-button:hover {
+  color: blue;
+  box-shadow: inset 0 0 20px orangered;
+}
+
+.form-button:disabled {
+  color: darkgray;
+  box-shadow: inset 0 0 20px gray;
+}
+
+button.form-control-note {
+  padding: 10px;
+  width: 15%;
+  border-radius: 10px;
+  border: 2px solid rgb(179, 97, 97);
+  background-color: rgb(179, 97, 97);
+  font-weight: bolder;
+}
+
+button.form-control-note:hover {
+  background-color: green;
+  color: white;
+  border: 2px solid green;
+}
+
+p.nut-gio-hang {
+  float: left;
+}
+
+p.nut-thong-tin-thanh-toan {
+  float: right;
+}
+
+.thong-tin-van-chuyen {
+  width: 50%;
+  margin: 0 auto;
+}
+
+button.nut-cap-nhat-thong-tin {
+  background-color: #8ad1ca;
+  color: white;
+  padding: 15px;
+  border-radius: 15px;
+  width: 200px;
+  font-size: 15px;
+}
+
+button.nut-cap-nhat-thong-tin:hover {
+  background-color: #123f39;
+}

@@ -1,0 +1,135 @@
+/* ======================LOGO========================== */
+
+.thumbnail {
+  /* width: 100px;
+  height: 50px; */
+  overflow: hidden;
+  /* border: 1px solid #e5e5e5; */
+}
+
+.thumbnail img {
+  width: 50%;
+  height: 50%;
+  transition-duration: 0.3s;
+}
+
+.thumbnail img:hover {
+  transform: scale(1.2);
+}
+
+/* ======================BẢN ĐỒ========================== */
+
+
+
+.our-position__all {
+    text-align: center;
+}
+
+.our-position__all strong {
+    color: rgb(226, 34, 34);
+}
+
+.our-position {
+    margin-top: 10px;
+    width: 50%;
+    margin-left: 2%;
+    height: 300px;
+    border: 3px solid #150f5b;
+    border-radius: 5px;
+}
+
+.our-position__name {
+    margin: 20px 0;
+    font-size: 1.3rem;
+    font-weight: 540;
+}
+
+/* ======================MAIN LIÊN HỆ========================== */
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.left-section,
+.right-section {
+  width: 48%;
+  margin-left: 20px;
+}
+
+
+.right-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.left-section h2{
+ font-family: 'Montserrat', sans-serif;
+}
+
+.left-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-group:hover{
+    box-shadow: 1px lightblue;
+}
+
+.input-group label {
+  width: 40px;
+  text-align: center;
+  /* background-color: #f0f0f0; */
+  background-color: #8ad1cd;
+  padding: 10px 0;
+  border: 1px solid #ccc;
+  border-right: none;
+}
+
+.input-group input,
+.input-group textarea {
+  width: calc(100% - 40px);
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.input-group textarea {
+  height: 80px;
+  resize: none;
+}
+
+button.nut-gui-lien-he {
+  background-color: #8ad1ca;
+  color: white;
+  padding: 15px;
+  border-radius: 15px;
+  width: 200px;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+button.nut-gui-len-he :hover {
+  background-color: #123f39;
+}
+
+
+.right-section .contact-info {
+  margin-top: 10px;
+  font-family: Lato, sans-serif;
+}
+
+.right-section .contact-info p {
+  margin: 5px 0;
+  font-family: Lato, sans-serif;
+}
+
+.fa {
+  margin-right: 5px;
+}

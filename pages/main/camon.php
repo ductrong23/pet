@@ -1,0 +1,1 @@
+<h1>CẢM ƠN BẠN ĐÃ MUA HÀNG</h1>

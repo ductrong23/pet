@@ -1,0 +1,42 @@
+.admin-footer {
+    background-color: #333; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    padding: 15px 20px; /* Khoảng cách bên trong */
+    /* position: fixed; /*Vị trí cố định ở cuối trang */
+    /* bottom: 0; Căn dưới */
+    width: 100%; /* Chiếm toàn bộ chiều ngang */
+    box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+.footer-content {
+    display: flex; /* Sử dụng Flexbox để căn các phần tử */
+      /* Căn đều hai bên */
+    justify-content: space-between;
+    align-items: center; /* Căn giữa theo trục dọc */
+    max-width: 1200px; /* Chiều rộng tối đa của nội dung */
+    margin: 0 auto; /* Căn giữa theo chiều ngang */
+}
+
+.footer-left, .footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-left p, .footer-right p {
+    margin: 0;
+}
+
+.float-right p{
+    float: right;
+}
+
+.footer-right a {
+    color: #00aaff; /* Màu liên kết */
+    text-decoration: none; /* Không gạch chân */
+    margin-left: 5px;
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+}
+
+.footer-right a:hover {
+    color: #fff; /* Màu khi hover */
+}

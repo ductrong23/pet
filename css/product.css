@@ -1,0 +1,245 @@
+/* =======================PRODUCT TRANG CHỦ================================ */
+
+ul.list-product {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+}
+
+ul.list-product li {
+  width: 18%;
+  border: 1px dashed black;
+  margin: 8px;
+  float: left;
+  background-color: #e7e5f5;
+  border-radius: 10px;
+ /* Trans */
+  height: calc(100% / 6 - 2px);
+  transition: .5s;
+  position: relative;
+
+}
+
+/* ADD TRANS */
+ul.list-product li:hover{
+  scale: 1.06;
+  z-index: 2;
+  border: 1px dashed yellow;
+}
+
+ul.list-product li img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+p.title-product {
+  text-align: center;
+  /* color: black; */
+  color:#123F39;
+  font-size: 16px;
+  /* font-weight: bold; */
+  text-decoration: none;
+  height: 80px;
+  margin: 5px;
+  /* font-family: Lato, sans-serif; */
+  font-family: "Montserrat", sans-serif;
+}
+
+ul.list-product li a {
+  text-decoration: none;
+}
+
+p.price-product {
+  color: #836fff;
+  font-weight: bold;
+  text-align: center;
+  font-family: Lato, sans-serif;
+}
+
+.clear {
+  clear: both;
+}
+
+/* =======================PRODUCT CHI TIẾT================================ */
+.wrapper {
+  /* border: 1px solid black; */
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper-chi-tiet {
+  /* border: 1px solid black; */
+  height: auto;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.hinh-anh-san-pham {
+  float: left;
+  width: 50%;
+}
+
+.chi-tiet-san-pham {
+  float: right;
+  width: 50%;
+  font-family: Lato, sans-serif;
+  font-weight: bolder;
+}
+
+.chi-tiet-san-pham h2 {
+  color: #836fff;
+}
+
+input.them-gio-hang {
+  border: 1px solid #836fff;
+  padding: 15px;
+  background-color: white;
+  color: #836fff;
+  border-radius: 30px;
+  font-family: cursive;
+  font-size: medium;
+  width: 150px;
+  font-family: Lato, sans-serif;
+}
+
+input.them-gio-hang:hover {
+  background-color: #836fff;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+input.mua-hang {
+  border: 1px solid #836fff;
+  padding: 15px;
+  background-color: white;
+  color: #836fff;
+  border-radius: 30px;
+  font-family: cursive;
+  font-size: medium;
+  margin-left: 50px;
+  width: 150px;
+  font-family: Lato, sans-serif;
+}
+
+input.mua-hang:hover {
+  background-color: #836fff;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.nut {
+  display: flex;
+  /* margin-left: 10px; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+i.fa.fa-plus.fa-style {
+  color: #836fff;
+}
+i.fa.fa-plus.fa-style:hover {
+  color: green;
+}
+
+i.fa.fa-minus.fa-style {
+  color: #836fff;
+}
+
+.thong-tin-san-pham{
+  font-family: 'Montserrat', sans-serif;
+}
+/* =======================ĐÁNH GIÁ SẢN PHẨM================================ */
+
+.danh-gia p span {
+  color: green;
+  font-weight: bold;
+}
+.danh-gia p {
+  color: tomato;
+}
+.danh-gia-index {
+  display: flex;
+  justify-content: center;
+  color: tomato;
+}
+/* =======================THẺ PHƯƠNG THỨC THANH TOÁN================================ */
+
+
+/* .tags-and-sharing {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+} */
+
+.tags, .sharing, .payment-methods {
+  margin-bottom: 20px;
+
+}
+
+.tags strong, .sharing strong, .payment-methods strong {
+  font-weight: bold;
+  font-family: Lato, sans-serif;
+}
+
+.btn {
+  background-color: #f4f4f4;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn.facebook {
+  background-color: #3b5998;
+}
+
+.btn.google {
+  background-color: #db4437;
+}
+
+.btn.twitter {
+  background-color: #1da1f2;
+}
+
+.btn i {
+  margin-right: 5px;
+}
+
+.payment-methods img {
+  width: 40px;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+/* =======================ICONS================================ */
+
+.icons {
+  justify-items: center;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.icons .fa-heart{
+  color: white;
+  /* border: 1px solid black; */
+}
+
+.icons .fa-heart:hover{
+  color: red;
+}
+
+/* =======================ẢNH CHI TIẾT SẢN PHẨM================================ */

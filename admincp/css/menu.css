@@ -1,0 +1,49 @@
+/* Đặt style cho toàn bộ body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Đặt style cho danh sách menu */
+ul.list-menu-admin {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+  display: flex;
+  justify-content: center; /* Căn giữa các mục trong danh sách */
+}
+
+/* Đặt style cho các mục trong danh sách */
+ul.list-menu-admin li {
+  text-align: center;
+  border-right: 1px solid #444; /* Đường viền giữa các mục */
+}
+
+/* Đặt style cho mục cuối cùng để không có đường viền bên phải */
+ul.list-menu-admin li:last-child {
+  border-right: none;
+}
+
+/* Đặt style cho các liên kết trong danh sách */
+ul.list-menu-admin li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px; /* Khoảng cách giữa các liên kết */
+  transition: background-color 0.3s ease;
+}
+
+/* Đặt style khi di chuột qua các liên kết */
+ul.list-menu-admin li a:hover {
+  background-color: #575757;
+  color: yellow;
+}
+
+/* Đặt style cho các liên kết đang được chọn (nếu cần) */
+ul.list-menu-admin li a.active {
+  background-color: #4caf50;
+  color: white;
+}

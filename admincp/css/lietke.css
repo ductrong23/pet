@@ -1,0 +1,64 @@
+
+    /* Đặt style cho toàn bộ body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Đặt style cho tiêu đề */
+.title-liet-ke {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Đặt style cho bảng liệt kê danh mục sản phẩm */
+.bang-liet-ke {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Đặt style cho các tiêu đề cột */
+.bang-liet-ke th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Đặt style cho các ô trong bảng */
+.bang-liet-ke td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+
+}
+
+/* Đặt style cho các liên kết quản lý */
+.bang-liet-ke a {
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s ease;
+}
+
+/* Đặt style khi di chuột qua các liên kết quản lý */
+.bang-liet-ke a:hover {
+    color: #0056b3;
+}
+
+/* Đặt style cho các hàng chẵn */
+.bang-liet-ke tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Đặt style cho các hàng lẻ */
+.bang-liet-ke tr:nth-child(odd) {
+    background-color: #fff;
+}
+
