@@ -13,6 +13,11 @@ body {
     margin: 20px 0;
     font-size: 24px;
     color: #333;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
 }
 
 /* Đặt style cho bảng liệt kê danh mục sản phẩm */

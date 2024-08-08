@@ -1,135 +1,168 @@
-<!-- <div class="inf-slogan">
-    <h1>PETSTORE</h1>
-    <img class="logo-gioi-thieu" src="images/logo1.png" alt="PetStore">
-    <h2>Mang tình yêu đến với thú cưng</h2>
-</div> -->
-<nav class="dieu-huong">
-    <ul class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.php" title="Về trang chủ">Trang chủ</a>
-        </li>
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <li class="breadcrumb-item">
-            <a href="#" title="Giới thiệu">Giới thiệu</a>
-        </li>
+<div class="gioi-thieu">
+    <div class="doan-dau">
+        <div class="loi-van-1">
+            <h3 class="section-title">WELCOME TO PETSTORE</h3>
+            <p class="section-subtitle">
+                KÍNH CHÀO QUÝ KHÁCH
+            </p>
+            <p class="section-paragraph">Một trong những điều truyền cảm hứng nhất về PetStore là mọi thứ chúng tôi làm để hướng tới sứ mệnh của mình.
+                <br><br>
+                Chúng tôi yêu thú cưng và cam kết cung cấp các sản phẩm, dịch vụ, kết nối và chăm sóc mà khách hàng và thú cưng cần trong mọi giai đoạn của cuộc đời. Niềm đam mê dành cho thú cưng này là một phần lý tưởng đích thực và là động lực trong hoạt động kinh doanh của chúng tôi.
+                <br><br>
+                PetStore là câu chuyện mà rất nhiều người đã nói về chúng tôi là ai và chúng tôi làm gì. Lịch sử của PetStore là một câu chuyện thành công khi chúng tôi là tập hợp những người yêu động vật biết nắm lấy cơ hội đúng lúc cùng với tầm nhìn xa phát triển nâng tầm thành một doanh nghiệp.
+                <br><br>
+                Bắt đầu từ cửa hàng nhỏ đầu tiên tại Hà Nội năm 2011, chúng tôi đã chứng kiến và tạo ra nhiều thay đổi thú vị trong ngành công nghiệp và dịch vụ chăm sóc thú cưng tại Việt Nam.
+            </p>
+            <p class="section-subtitle">
+                TẦM NHÌN CỦA CHÚNG TÔI
+            </p>
+            <ul class="liet-ke-gioi-thieu">
+                <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><span>Chúng tôi tin rằng đó là nhiệm vụ của chúng tôi để đảm bảo sức khỏe và hạnh phúc cho thú cưng. Giúp chúng thật sự hiểu rằng chúng đang được yêu thương và an toàn.</span></li>
+                <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><span>Chúng tôi tin rằng thú cưng sẽ làm cho con người tốt đẹp hơn. Chúng sẽ làm phong phú thêm cho cuộc sống của chúng ta và xây dựng xã hội văn minh, phát triển.</span></li>
+                <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><span>Chúng tôi tin tưởng vào những gì chúng tôi đang làm dựa trên những giá trị tiêu chuẩn trong việc chăm sóc động vật. Chất lượng sản phẩm và chăm sóc khách hàng.</span></li>
+            </ul>
+            <a href="index.php" class="btn-about-us">
+                <span>Khám phá ngay</span>
+            </a>
+        </div>
+        <div class="anh-gioi-thieu-1">
+            <img src="images/anh-gioi-thieu-6.jpg" style="width:90%" alt="PetStore"  title="PetStore">
+        </div>
+    </div>
 
-    </ul>
-</nav>
+    <div class="clear">
+    </div>
+    <div class="doan-sau">
+        <div class="anh-gioi-thieu-2">
+            <img src="images/anh-gioi-thieu-2.jpg" style="width:80%" alt="PetStore" >
+        </div>
+        <div class="loi-van-2">
+            <h3 class="section-title">TIÊU CHUẨN CHẤT LƯỢNG</h3>
+            <p class="section-subtitle">
+                TỪ ĐỘI NGŨ CHUYÊN GIA
+            </p>
+            <p class="section-paragraph">Chất lượng không chỉ là một cam kết, mà là tôn chỉ. Chúng tôi tuân thủ những tiêu chuẩn nghiêm ngặt để đảm bảo mọi sản phẩm đều đáp ứng và vượt qua mong đợi của khách hàng.</p>
+            <p class="section-subtitle">
+                CÂU CHUYỆN CỦA CHÚNG TÔI
+            </p>
+            <p class="section-paragraph">Từ những ngày đầu khởi nghiệp đến bây giờ, chúng tôi đã vượt qua nhiều thách thức và chiến thắng. Câu chuyện của chúng tôi không chỉ là về sản phẩm, mà còn là về những con người và niềm đam mê.</p>
+            <p class="section-subtitle">
+               TƯƠNG LAI ĐỔI MỚI - PHÁT TRIỂN
+            </p>
+            <p class="section-paragraph">Chúng tôi không chỉ dừng lại ở đây. Tương lai của chúng tôi là về sự đổi mới và phát triển không ngừng, với những kế hoạch lớn và cam kết làm mới ngành công nghiệp.</p>
+        </div>
+    </div>
+</div>
 
 <style>
-    /* Định dạng chung cho thanh điều hướng */
-.dieu-huong {
-  padding: 10px 0;
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #e6e6e6;
-}
+    .gioi-thieu {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        width: 90%;
+        margin: 0 auto;
+    }
 
-/* Định dạng cho danh sách breadcrumb */
-.breadcrumb {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
+    .section-title,
+    .section-subtitle,
+    .section-paragraph {
+        color: #123f39;
+        font-family: "Montserrat", sans-serif;
+    }
 
-/* Định dạng cho từng mục breadcrumb */
-.breadcrumb-item {
-  margin: 0;
-}
+    .section-title {
+        font-size: 30px;
+    }
 
-/* Định dạng cho liên kết trong breadcrumb */
-.breadcrumb-item a {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: 500;
-}
+    .section-subtitle {
+        text-decoration: underline;
+        font-weight: bold;
+    }
 
-/* Thêm style cho biểu tượng phân cách */
-.breadcrumb i {
-  margin: 0 10px;
-  color: #6c757d;
-}
+    .section-paragraph {
+        text-align: justify;
+        width: 90%;
+    }
 
-/* Đổi màu khi di chuột qua liên kết */
-.breadcrumb-item a:hover {
-  text-decoration: none;
-  color: #0056b3;
-}
 
-/* Đổi màu cho mục hiện tại (nếu cần) */
-.breadcrumb-item.active a {
-  color: #6c757d;
-  cursor: default;
-  pointer-events: none;
-}
+    .btn-about-us {
+        display: inline-block;
+        background-color: yellow;
+        padding: 12px 25px;
+        animation: fadeInLeft 1.4s ease-out;
+        border-radius: 10px;
+        transition: .5s;
+        background-color: #8ad1ca;
+        color: white;
+    }
+
+    a.btn-about-us {
+        text-decoration: none;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .btn-about-us:hover {
+        color: white;
+        background-color: #123f39;
+    }
+
+    .doan-dau,
+    .doan-sau {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .loi-van-1,
+    .loi-van-2 {
+        width: 70%;
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 1s ease;
+    }
+
+    .anh-gioi-thieu-1,
+    .anh-gioi-thieu-2 {
+        width: 30%;
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 2s ease;
+        margin: 0 auto;
+    }
+
+    /* Add classes to trigger the animations */
+    .gioi-thieu.start .loi-van-1,
+    .gioi-thieu.start .loi-van-2 {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .gioi-thieu.start .anh-gioi-thieu-1,
+    .gioi-thieu.start .anh-gioi-thieu-2 {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .liet-ke-gioi-thieu li{
+        color: #123f39;
+        font-family: "Montserrat", sans-serif;
+        text-align: justify;
+        width: 90%;
+        margin-top: 10px;
+        list-style: none;
+        padding: 5px;
+    }
+
 
 </style>
 
-<div class="products" id="Products">
-    <h1 class="title">VỀ CHÚNG TÔI</h1>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select the introduction section
+        const introSection = document.querySelector(".gioi-thieu");
 
-    <div class="box">
-        <div class="card">
-
-            <div class="small_card">
-                <a href="index.php" title="Trang chủ">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                </a>
-                <a href="index.php?quanly=lienhe" title="Liên hệ chúng tôi">
-                    <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                </a>
-            </div>
-
-            <div class="image">
-                <img src="images/logo1.png">
-            </div>
-
-            <div class="products_text">
-                <h2>PETSTORE</h2>
-                <p>
-                    PetStore là một cửa hàng trực tuyến chuyên cung cấp các sản phẩm và dịch vụ chất lượng cao dành cho thú cưng. Tại PetStore, chúng tôi hiểu rằng thú cưng không chỉ là vật nuôi mà còn là những người bạn thân thiết và thành viên quan trọng trong gia đình bạn.
-                </p>
-                <p>
-                    Chính vì thế, chúng tôi cam kết mang đến những sản phẩm tốt nhất để chăm sóc cho thú cưng của bạn từ thức ăn, đồ chơi, đến các phụ kiện và sản phẩm chăm sóc sức khỏe.
-                </p>
-
-                <div class="products_star">
-                    <i class="fa fa-diamond" aria-hidden="true"></i>
-                </div>
-                <a href="index.php" class="btn">Khám phá ngay</a>
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <div class="small_card">
-                <a href="index.php" title="Trang chủ">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                </a>
-                <a href="index.php?quanly=lienhe" title="Liên hệ chúng tôi">
-                    <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                </a>
-            </div>
-
-            <div class="image">
-                <img src="images/logo4.png" width="100px" height="80px">
-            </div>
-
-            <div class="products_text">
-                <h2>PETSTORE</h2>
-                <p>
-                    Sứ mệnh của PetStore là mang đến sự hài lòng tối đa cho khách hàng thông qua dịch vụ chuyên nghiệp và thân thiện. Chúng tôi luôn lắng nghe và thấu hiểu những mong muốn của khách hàng để không ngừng cải thiện và nâng cao chất lượng dịch vụ.
-                </p>
-                <p>
-                    Hãy để PetStore trở thành đối tác tin cậy của bạn trong việc chăm sóc thú cưng. Chúng tôi luôn sẵn sàng đồng hành cùng bạn trong hành trình mang lại hạnh phúc cho những người bạn bốn chân đáng yêu!
-                </p>
-
-                <div class="products_star">
-                    <i class="fa fa-diamond" aria-hidden="true"></i>
-                </div>
-                <a href="index.php" class="btn">Khám phá ngay</a>
-            </div>
-
-        </div>
+        // Add the 'start' class to trigger the animation when the page loads
+        introSection.classList.add("start");
+    });
+</script>

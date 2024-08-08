@@ -38,10 +38,19 @@ if ($cart_query) {
         //  UPDATE lại số lượng
         $sql_update_soluong = "UPDATE tbl_sanpham SET soluong='" . $soluongcon . "'
          WHERE id_sanpham='$id_sanpham'";
-         mysqli_query($mysqli, $sql_update_soluong);
+        mysqli_query($mysqli, $sql_update_soluong);
     }
-    $tieude = "BẠN ĐÃ ĐẶT HÀNG THÀNH CÔNG";
-    $noidung = 'CẢM ƠN QUÝ KHÁCH';
+    $tieude = "BẠN ĐÃ ĐẶT HÀNG THÀNH CÔNG TẠI PETSTORE";
+    $noidung = '<p> MÃ ĐƠN HÀNG CỦA BẠN: ' . $code_order . '</p>';
+    $noidung .= "<h4> ĐƠN HÀNG ĐÃ ĐẶT BAO GỒM: </h4>";
+    foreach ($_SESSION['cart'] as $key => $val) {
+        $noidung .= "<ul style='border: 1px solid black; margin: 10px;'>
+        <li> Tên sản phẩm:  " . $val['tensanpham'] . "</li>
+        <li> Mã sản phẩm: " . $val['masp'] . "</li>
+        <li>Giá sản phẩm: " . number_format($val['giasp'], 0, ',', '.') . " đ</li>
+        <li> Số lượng: " . $val['soluong'] . "</li>
+        </ul>";
+    }
     $maildathang = $_SESSION['email'];
     $mail = new Mailer();
     $mail->dathangmail($tieude, $noidung, $maildathang);

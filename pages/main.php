@@ -22,6 +22,8 @@
             include("main/gioithieu.php");
         } elseif ($tam == 'lienhe') {
             include("main/lienhe.php");
+        } elseif ($tam == 'danhmuc_sanpham') {
+            include("main/danhmuc_sanpham.php");
         } elseif ($tam == 'tintuc_menu') {
             include("main/tintuc_menu.php");
         } elseif ($tam == 'sanpham') {

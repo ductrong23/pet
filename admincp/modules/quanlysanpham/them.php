@@ -20,6 +20,12 @@
         </tr>
 
         <tr>
+            <td>Giá gốc</td>
+            <td><input type="text" name="giagiam"></td>
+        </tr>
+
+
+        <tr>
             <td>Số lượng</td>
             <td><input type="text" name="soluong"></td>
         </tr>

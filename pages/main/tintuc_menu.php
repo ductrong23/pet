@@ -1,8 +1,23 @@
-<h1>TIN TỨC MỚI NHẤT</h1>
+
+<!-- ĐIỀU HƯỚNG -->
+<nav class="dieu-huong">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.php" title="Về trang chủ">Trang chủ</a>
+        </li>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <li class="breadcrumb-item">
+            <a href="index.php?quanly=tintuc_menu" title="Tin tức">Tin tức</a>
+        </li>
+    </ul>
+</nav>
+
+
+<h1 style="text-align: center; font-weight: bold; margin-top: 20px; margin-bottom: 10px; font-size: 25px; color: #123f39; font-family: Montserrat, sans-serif;">TIN TỨC MỚI NHẤT</h1>
 
 <?php
 
-//  Lấy sản phẩm
+//  Lấy tất cả tin tức ở menu TIN TỨC
 $sql_bv = "SELECT * FROM tbl_tintuc WHERE tinhtrang=1 ORDER BY id DESC";
 $query_bv = mysqli_query($mysqli, $sql_bv);
 

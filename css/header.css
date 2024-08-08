@@ -17,6 +17,11 @@
 
 /* =======================TÌM KIẾM================================ */
 
+.tim-kiem{
+  /* position: relative; */
+}
+
+
 input.o-tim-kiem {
   border-radius: 10px;
   padding: 10px;
@@ -36,6 +41,7 @@ button.nut-tim-kiem {
   font-family: "Montserrat", sans-serif;
   border: 1px solid white;
   background-color: #8ad1ca;
+  /* position: absolute; */
 }
 
 button.nut-tim-kiem:hover {

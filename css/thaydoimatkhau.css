@@ -1,0 +1,65 @@
+.mat-khau {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.title-thay-doi-mat-khau {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: Montserrat, sans-serif;
+}
+
+.thay-doi-mat-khau {
+  width: 50%;
+  margin: 0 auto;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+.thay-doi-mat-khau h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.thay-doi-mat-khau td {
+  padding: 10px;
+  font-size: 1em;
+  color: #666;
+}
+
+.thay-doi-mat-khau .nhap {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.thay-doi-mat-khau .doi-mat-khau {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.thay-doi-mat-khau .doi-mat-khau:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .thay-doi-mat-khau {
+    width: 90%;
+  }
+}

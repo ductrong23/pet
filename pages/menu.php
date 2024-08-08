@@ -15,7 +15,8 @@ if (isset($_GET['dangxuat']) && $_GET['dangxuat'] == 1) {
         <li><a href="index.php?quanly=gioithieu">GIỚI THIỆU</a></li>
         <!--  -->
         <li class="list-menu-con">
-            <a href="index.php">SẢN PHẨM <i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i></a>
+            <!-- <a href="index.php">SẢN PHẨM <i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i></a> -->
+            <a href="index.php?quanly=danhmuc_sanpham">SẢN PHẨM <i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i></a>
             <ul>
                 <?php
                 while ($row_danhmuc = mysqli_fetch_array($query_danhmuc)) {

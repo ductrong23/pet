@@ -1,37 +1,3 @@
-/* .banner-index {
-  width: 80%;
-  height: 60%;
-  display: block;
-  margin: 0 auto;
-  height: calc(90% / 6 - 2px);
-  transition: 0.5s;
-  position: relative;
-}
-
-.banner-index:hover {
-  scale: 1.05;
-} */
-
-/* ========================ZOOM============================ */
-/* .thumbnail {
-  width: 80%;
-  height: 60%;
-  overflow: hidden;
-  border: 1px solid #e5e5e5;
-  display: block;
-  margin: 0 auto;
-  height: calc(90% / 6 - 2px);
-}
-
-.thumbnail img {
-  width: 100%;
-  height: 100%;
-  transition-duration: 0.3s;
-}
-
-.thumbnail img:hover {
-  transform: scale(1.05);
-} */
 
 /* ========================SLIDE============================ */
 .thumbnail {
@@ -50,8 +16,99 @@
   display: block !important;
 }
 
-.title-index{
+.title-index {
   font-size: 32px;
-  color:#123F39;
-  font-family: 'Montserrat', sans-serif;
+  color: #123f39;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ========================ICON============================ */
+
+.list-product li {
+  position: relative;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  transform: translateX(-20px);
+  transition: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.list-product li:hover .icons {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.icons i {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  margin: 2px auto;
+  line-height: 30px;
+  /* border: 2px solid #999999; */
+  transition: 0.2s;
+  background-color: #dfdce2;
+  color: black;
+  text-align: center;
+}
+
+.icons i:hover {
+  /* color: #da7baa;
+  border-color: #da7baa; */
+  background-color: #64d840;
+  color: yellow;
+}
+
+/* ========================NEW============================ */
+
+.new {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  /* width: 30px; */
+  width: 45px;
+  /* Kích thước ảnh giống với icon */
+  height: 30px;
+  margin: -15px;
+}
+
+.new img {
+  width: 100%;
+  height: 100%;
+  /* border-radius: 50%; */
+  /* Tạo viền tròn giống icon */
+  object-fit: cover;
+  /* Đảm bảo hình ảnh không bị biến dạng */
+}
+
+/* ========================CONTAINER_US============================ */
+
+/* Container us */
+.container__us {
+  margin-top: 50px;
+  /* border-top: 1px solid #000;
+    border-bottom: 1px solid #000; */
+  background-color: var(--primary-color);
+}
+
+.container__us-group {
+  display: inline-flex;
+  transition: 1s;
+  background-color: #e0eddc;
+}
+
+.container__us-group-item {
+  margin: 30px 21px;
+  width: 450px;
+  height: 270px;
+  border: 2px solid #000;
+  border-radius: 5px;
 }

@@ -2,9 +2,12 @@
     <div class="step"><span><a href="index.php?quanly=giohang">Giỏ hàng</a></span></div>
     <div class="step-current"><span><a href="index.php?quanly=vanchuyen">Vận chuyển</a></span></div>
     <div class="step"><span><a href="index.php?quanly=thongtinthanhtoan">Thanh toán</a></span></div>
-    <div class="step"><span><a href="index.php?quanly=donhangdadat">Đơn hàng</a></span></div>
+    <!-- <div class="step"><span><a href="index.php?quanly=donhangdadat">Đơn hàng</a></span></div> -->
 
 </div>
+<?php
+$currentStep = 'vanchuyen';
+?>
 
 
 <?php
@@ -39,7 +42,7 @@ if (isset($_POST['themvanchuyen'])) {
 ?>
 
 
-<h1>THÔNG TIN VẬN CHUYỂN</h1>
+<!-- <h1>THÔNG TIN VẬN CHUYỂN</h1> -->
 <div class="thong-tin-van-chuyen">
 
     <form action="" autocomplete="off" method="POST">
@@ -81,7 +84,7 @@ if (isset($_POST['themvanchuyen'])) {
 
         ?>
 
-            <button class="form-control-note" type="submit" name="themvanchuyen">Thêm thông tin vận chuyển </button>
+            <button class="nut-cap-nhat-thong-tin" type="submit" name="themvanchuyen">Thêm thông tin vận chuyển </button>
         <?php
         } elseif ($name != '' && $phone != '') {
         ?>
@@ -96,7 +99,7 @@ if (isset($_POST['themvanchuyen'])) {
 
 <!-- ================================================ -->
 <div class="bang-gio-hang-thanh-toan">
-    <table class="bang-gio-hang" style="width: 100%; text-align:center" border="1" border-collapse:collapse>
+    <table class="bang-gio-hang" style="width: 100%; text-align:center;font-family: Montserrat, sans-serif; font-size:14px" border="1" border-collapse:collapse>
         <tr>
             <!-- <th>ID</th> -->
             <th class="ten-san-pham">Tên sản phẩm</th>
@@ -135,7 +138,7 @@ if (isset($_POST['themvanchuyen'])) {
             ?>
             <tr>
                 <td colspan="8">
-                    <p style="text-align:center">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
+                    <p style="float: right; font-weight:bolder">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
                     <div style="clear:both"></div>
 
                     <?php
@@ -165,6 +168,13 @@ if (isset($_POST['themvanchuyen'])) {
         ?>
     </table>
 </div>
-<style>
 
-</style>
+<br>
+<div class="cua-hang">
+    <a class="quay-lai" href="index.php">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        <span>
+            <h4>QUAY LẠI CỬA HÀNG</h4>
+        </span>
+    </a>
+</div>

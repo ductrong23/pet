@@ -1,9 +1,10 @@
 /* =======================FOOTER================================ */
 
 footer {
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
+  background-color: #eefffd;
   padding: 20px 0;
-  color: #333;
+  color: #123f39;
   font-family: Arial, sans-serif;
 }
 
@@ -35,10 +36,12 @@ footer {
 .footer-middle ul li,
 .footer-bottom p {
   margin: 5px 0;
+  color: #123f39;
+  font-size: 14px;
 }
 
 .footer-contact strong {
-  color: rgb(179, 97, 97);
+  color: #123f39;
   font-weight: bolder;
 }
 
@@ -46,16 +49,16 @@ footer {
   margin: 0 5px;
   text-decoration: none;
   color: #333;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .footer-middle h3,
 .footer-right h3 {
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid #123f39;
   display: inline-block;
   margin-bottom: 10px;
   padding-bottom: 5px;
-  color: rgb(179, 97, 97);
+  color: #123f39;
 }
 
 .footer-middle ul {
@@ -65,12 +68,14 @@ footer {
 
 .footer-middle ul li a {
   text-decoration: none;
-  color: #333;
+  color: #123f39;
+  font-size: 14px;
+
 }
 
 .footer-middle ul li a:hover {
-  color: #836fff;
-  font-weight: bolder;
+  scale: 2.06;
+  
 }
 
 .footer-right form {
@@ -88,16 +93,22 @@ footer {
 
 .footer-right button {
   padding: 8px 12px;
-  background-color: rgb(179, 97, 97);
+  background-color: #123f39;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
+  height: calc(90% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
 }
 
 .footer-right button:hover {
-  background-color: #836fff;
-  color: white;
+  /* background-color: #836fff;
+  color: white; */
+
+  scale: 1.06;
 }
 
 .payment-methods img,
@@ -111,6 +122,7 @@ footer {
   border-top: 1px solid #ddd;
   padding-top: 10px;
   margin-top: 20px;
+
 }
 
 .footer-bottom p {
@@ -120,7 +132,7 @@ footer {
 
 .footer-bottom a {
   text-decoration: none;
-  color: #836fff;
+  color: #123f39;
 }
 
 .footer-bottom a:hover {

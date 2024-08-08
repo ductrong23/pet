@@ -37,7 +37,7 @@
 .list-menu > li > a:hover {
   /* background-color: rgb(221, 221, 208); */
   /* color: rgb(7, 248, 39); */
-  
+  color: #8ad1ca;
   scale: 1.05;
 }
 
@@ -75,7 +75,8 @@
   display: block;
   padding: 15px 20px;
   /* color: white; */
-  color: #292761;
+  /* color: #292761; */
+  color: #123f39;
   text-decoration: none;
   /* font-family: Lato, sans-serif; */
   font-family: 'Montserrat', sans-serif;
@@ -121,7 +122,9 @@
   /* background-color: rgb(179, 97, 97);
   color:white; */
   /* color: rgb(74, 230, 35); */
-  background: linear-gradient(to right, #d4d41b , #d0e231); 
+  /* background: linear-gradient(to right, #d4d41b , #d0e231);  */
+  color: #123f39;
+  background-color: #8ad1ca;
   scale: 1.05;
 }
 

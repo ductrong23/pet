@@ -1,0 +1,52 @@
+
+    /* Định dạng chung cho thanh điều hướng */
+.dieu-huong {
+  padding: 10px 0;
+  /* background-color: #f9f9f9; */
+  background-color: transparent;
+  /* border-bottom: 1px solid #e6e6e6; */
+  
+}
+
+/* Định dạng cho danh sách breadcrumb */
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Định dạng cho từng mục breadcrumb */
+.breadcrumb-item {
+  margin: 0;
+}
+
+/* Định dạng cho liên kết trong breadcrumb */
+.breadcrumb-item a {
+  text-decoration: none;
+  color: gray;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+/* Thêm style cho biểu tượng phân cách */
+.breadcrumb i {
+  margin: 0 10px;
+  color: #6c757d;
+}
+
+/* Đổi màu khi di chuột qua liên kết */
+.breadcrumb-item a:hover {
+  text-decoration: none;
+  color: #123f39;
+  font-weight: bolder;
+}
+
+/* Đổi màu cho mục hiện tại (nếu cần) */
+.breadcrumb-item.active a {
+  color: #6c757d;
+  cursor: default;
+  pointer-events: none;
+}

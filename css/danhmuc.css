@@ -1,0 +1,44 @@
+/* ========================ICON============================ */
+
+.list-product li {
+  position: relative;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  transform: translateX(-20px);
+  transition: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.list-product li:hover .icons {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.icons i {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  margin: 2px auto;
+  line-height: 30px;
+  /* border: 2px solid #999999; */
+  transition: 0.2s;
+  background-color: #dfdce2;
+  color: black;
+  text-align: center;
+}
+
+.icons i:hover {
+  /* color: #da7baa;
+    border-color: #da7baa; */
+  background-color: #64d840;
+}
+

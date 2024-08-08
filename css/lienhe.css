@@ -54,7 +54,7 @@
 .left-section,
 .right-section {
   width: 48%;
-  margin-left: 20px;
+  margin-left: 80px;
 }
 
 
@@ -64,7 +64,14 @@
 }
 
 .left-section h2{
- font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  color: #123f39;
+  font-size: x-large;
+}
+.right-section h2{
+  color: #123f39;
+  font-size: x-large;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .left-section form {
@@ -132,4 +139,8 @@ button.nut-gui-len-he :hover {
 
 .fa {
   margin-right: 5px;
+}
+
+.contact-info li{
+  margin-top: 6px;
 }

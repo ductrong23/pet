@@ -75,8 +75,9 @@ button.nut-cap-nhat-thong-tin {
   color: white;
   padding: 15px;
   border-radius: 15px;
-  width: 200px;
+  width: 215px;
   font-size: 15px;
+  border: none;
 }
 
 button.nut-cap-nhat-thong-tin:hover {

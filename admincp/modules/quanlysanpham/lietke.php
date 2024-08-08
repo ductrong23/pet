@@ -9,6 +9,7 @@ $query_lietke_sp = mysqli_query($mysqli, $sql_lietke_sp);
         <th>Tên sản phẩm</th>
         <th>Mã sản phẩm</th>
         <th>Giá sản phẩm</th>
+        <th>Giá gốc</th>
         <th>Số lượng</th>
         <th>Hình ảnh</th>
         <th>Tóm tắt</th>
@@ -27,6 +28,7 @@ $query_lietke_sp = mysqli_query($mysqli, $sql_lietke_sp);
             <td><?php echo $row['tensanpham'] ?></td>
             <td><?php echo $row['masp'] ?></td>
             <td><?php echo $row['giasp'] ?></td>
+            <td><?php echo $row['giagiam'] ?></td>
             <td><?php echo $row['soluong'] ?></td>
             <td><img src="modules/quanlysanpham/uploads/<?php echo $row['hinhanh'] ?>" width="150px"></td>
             <td><?php echo $row['tomtat'] ?></td>

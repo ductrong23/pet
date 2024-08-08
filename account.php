@@ -14,7 +14,8 @@ if (isset($_POST['dangky'])) {
         $_SESSION['dangky'] = $tenkhachhang;
         $_SESSION['email'] = $email;
         $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
-        header('Location: index.php?quanly=gioithieu');
+        // header('Location: index.php?quanly=gioithieu');
+        header('Location: account.php');
     }
 }
 ?>

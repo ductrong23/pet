@@ -10,9 +10,11 @@
 .bang-gio-hang td {
   /* border: 1px solid white; */
   /* border-bottom: 1px solid white; */
-  border:none;
+  border: none;
   border: 1px solid #e0eddc;
   padding: 8px;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
 }
 
 .bang-gio-hang th {
@@ -22,9 +24,9 @@
   color: black;
 }
 
-.bang-gio-hang tr:nth-child(even) {
+/* .bang-gio-hang tr:nth-child(even) {
   background-color: #f9f9f9;
-}
+} */
 
 .bang-gio-hang tr:hover {
   background-color: #ddd;
@@ -110,24 +112,43 @@ h4 a:hover {
 }
 
 .bang-gio-hang td p a:hover {
-  background-color: #4cae4c;
+  background-color: #123f39;
   text-decoration: none;
 }
 
-
-.bang-gio-hang-thanh-toan{
+.bang-gio-hang-thanh-toan {
   width: 80%;
   margin: 0 auto;
 }
-th.ten-san-pham{
+th.ten-san-pham {
   width: 400px;
 }
 
 /* ================================VẬN CHUYỂN======================================== */
 
 /* ================================QUAY LẠI======================================== */
+
+.cua-hang {
+  text-align: center;
+}
+
 a.quay-lai {
   display: ruby;
   text-decoration: none;
-  color: green;
+  color: #123f39;
+  padding: 7px;
+  border-radius: 20px;
+  border: 1px solid #123f39;
+}
+
+.nam-phai {
+  display: grid;
+  float: right;
+}
+
+.quay-lai:hover {
+  background-color: #123f39;
+  color: white;
+  padding: 7px;
+  border-radius: 20px;
 }

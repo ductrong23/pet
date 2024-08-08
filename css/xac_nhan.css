@@ -1,0 +1,39 @@
+.xac-nhan-don-hang {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+}
+
+.xac-nhan-don-hang .step,
+.xac-nhan-don-hang .step-current {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.xac-nhan-don-hang .step a,
+.xac-nhan-don-hang .step-current a {
+  text-decoration: none;
+  color: #333;
+}
+
+.xac-nhan-don-hang .step-current {
+  background-color: #8ad1ca;
+  color: white;
+}
+
+.xac-nhan-don-hang .step {
+  background-color: #f0f0f0;
+}
+
+.xac-nhan-don-hang .step-complete {
+  background-color: #8ad1ca;
+  color: white;
+}
+
+.xac-nhan-don-hang .step-complete a {
+  color: white;
+}

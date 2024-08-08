@@ -1,0 +1,121 @@
+/* ===============================SẢN PHẨM LIÊN QUAN========================================== */
+/* Nếu có nhiều sản phẩm thành 1 hàng 5 sản phẩm thì có thể sử dụng: 
+- CSS của product cho khung sản phẩm 
+- CSS của index icons cho các icons trong khung
+*/
+
+ul.list-product-lien-quan {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+}
+
+ul.list-product-lien-quan li {
+  width: calc(22% - 5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 2px; */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+
+  border: 1px solid #123f39;
+  /* width: 18%; */
+  /* margin: 8px;
+  float: left; */
+  background-color: #e0eddc;
+  border-radius: 10px;
+  height: 15%;
+
+  /* Trans */
+  height: calc(100% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+/* ADD TRANSITION */
+ul.list-product-lien-quan li:hover {
+  scale: 1.06;
+  z-index: 2;
+  border: 1px solid yellow;
+}
+
+ul.list-product-lien-quan li img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+p.title-product-lien-quan {
+  text-align: center;
+  /* color: black; */
+  color: #123f39;
+  font-size: 16px;
+  /* font-weight: bold; */
+  text-decoration: none;
+  height: 65px;
+  margin: 5px;
+  font-family: "Montserrat", sans-serif;
+}
+
+p.title-product-lien-quan:hover {
+  font-weight: bolder;
+}
+
+ul.list-product-lien-quan li a {
+  text-decoration: none;
+}
+
+p.price-product-lien-quan {
+  /* color: #836fff; */
+  color: #123f39;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.list-product-lien-quan li {
+  position: relative;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  transform: translateX(-20px);
+  transition: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.list-product-lien-quan li:hover .icons {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.icons i {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  margin: 2px auto;
+  line-height: 30px;
+  /* border: 2px solid #999999; */
+  transition: 0.2s;
+  background-color: #dfdce2;
+  color: black;
+  text-align: center;
+}
+
+.icons i:hover {
+  /* color: #da7baa;
+  border-color: #da7baa; */
+  background-color: #64d840;
+  color: yellow;
+}

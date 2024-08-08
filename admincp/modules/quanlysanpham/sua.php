@@ -27,6 +27,11 @@ $query_sua_sp = mysqli_query($mysqli, $sql_sua_sp);
             </tr>
 
             <tr>
+                <td>Giá gốc</td>
+                <td><input type="text" value="<?php echo $row['giasp'] ?>" name="giagiam"></td>
+            </tr>
+
+            <tr>
                 <td>Số lượng</td>
                 <td><input type="text" value="<?php echo $row['soluong'] ?>" name="soluong"></td>
             </tr>
@@ -42,12 +47,12 @@ $query_sua_sp = mysqli_query($mysqli, $sql_sua_sp);
 
             <tr>
                 <td>Tóm tắt</td>
-                <td><textarea rows="10" name="tomtat" style="resize:none"><?php echo $row['tomtat'] ?></textarea></td>
+                <td><textarea rows="10" name="tomtat" id="tomtatsanpham" style="resize:none"><?php echo $row['tomtat'] ?></textarea></td>
             </tr>
 
             <tr>
                 <td>Nội dung</td>
-                <td><textarea rows="10" name="noidung" style="resize:none"><?php echo $row['noidung'] ?></textarea></td>
+                <td><textarea rows="10" name="noidung" id="noidungsanpham" style="resize:none"><?php echo $row['noidung'] ?></textarea></td>
             </tr>
 
             <tr>

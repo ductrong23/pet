@@ -2,13 +2,13 @@
     <div class="footer-container">
         <div class="footer-left">
             <div class="footer-logo">
-                <a href="index.php">
-                    <img src="images/logo1.png" alt="Pet Shop">
+                <a href="index.php" title="PetStore là nhãn hiệu của các sản phẩm thức ăn dành cho thú cưng chó mèo gồm các mặt hàng như hạt, sữa, pate và nhiều sản phẩm khác">
+                    <img src="images/logo1.png" alt="PetStore">
                 </a>
             </div>
-            <p>PetStore là nhãn hiệu của các sản phẩm thức ăn dành cho thú cưng chó mèo gồm các mặt hàng như hạt, sữa, pate và nhiều sản phẩm khác</p>
+            <!--00 <p>PetStore là nhãn hiệu của các sản phẩm thức ăn dành cho thú cưng chó mèo gồm các mặt hàng như hạt, sữa, pate và nhiều sản phẩm khác</p> -->
             <div class="footer-contact">
-                <p><strong>CHĂM SÓC KHÁCH HÀNG</strong></p>
+                <p><strong>LIÊN HỆ HỖ TRỢ</strong></p>
                 <p>0345.584.032</p>
                 <p>kinhdoanh@petstore.vn</p>
             </div>
@@ -30,8 +30,10 @@
         <div class="footer-middle">
             <h3>Chính Sách</h3>
             <ul>
-                <li><a href="#">Chính Sách Đổi Hàng</a></li>
-                <li><a href="#">Chính Sách Vận Chuyển</a></li>
+                <li><a href="#">Chính sách bảo mật</a></li>
+                <li><a href="#">Chính sách vận chuyển</a></li>
+                <li><a href="#">Chính sách đổi trả</a></li>
+                <li><a href="#">Quy định sử dụng</a></li>
             </ul>
         </div>
         <div class="footer-right">

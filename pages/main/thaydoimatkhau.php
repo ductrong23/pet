@@ -1,4 +1,3 @@
-<h1>ĐỔI MẬT KHẨU</h1>
 <?php
 if (isset($_POST['doimatkhau'])) {
     $taikhoan = $_POST['email'];
@@ -16,8 +15,9 @@ if (isset($_POST['doimatkhau'])) {
 }
 ?>
 
+<div class="mat-khau"></div>
 <form action="" method="POST" autocomplete="off">
-    <table border="1" class="table-login" style="text-align:center; border-collapse:collapse">
+    <table class="thay-doi-mat-khau" border="1" class="table-login" style="text-align:center; border-collapse:collapse">
 
         <tr>
             <td colspan="2">
@@ -26,24 +26,34 @@ if (isset($_POST['doimatkhau'])) {
         </tr>
 
         <tr>
-            <td>Tài khoản</td>
-            <td><input type="text" name="email"></td>
+            <td>Email</td>
+            <td><input class="nhap" type="email" name="email"></td>
         </tr>
 
         <tr>
             <td>Mật khẩu cũ</td>
-            <td><input type="password" name="password_cu"></td>
+            <td><input class="nhap" type="password" name="password_cu"></td>
         </tr>
 
         <tr>
             <td>Mật khẩu mới</td>
-            <td><input type="password" name="password_moi"></td>
+            <td><input class="nhap" type="password" name="password_moi"></td>
         </tr>
 
         <tr>
             <td colspan="2">
-                <input type="submit" name="doimatkhau" value="Đổi mật khẩu">
+                <input class="doi-mat-khau" type="submit" name="doimatkhau" value="Đổi mật khẩu">
             </td>
         </tr>
     </table>
 </form>
+</div>
+
+<br>
+<a class="quay-lai" href="index.php">
+    <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+    <span>
+        <h4>QUAY LẠI CỬA HÀNG</h4>
+    </span>
+</a>
+

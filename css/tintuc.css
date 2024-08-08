@@ -19,7 +19,16 @@
   border: 1px solid #ddd;
   padding: 10px;
   box-sizing: border-box;
-  height: 300px; /* Chiều cao cố định cho các khung */
+  height: 350px;
+
+  transition: 0.5s;
+  position: relative;
+}
+
+.list-tin-tuc-moi-nhat li:hover {
+  scale: 1.06;
+  z-index: 2;
+  border: 1px dashed yellow;
 }
 
 .list-tin-tuc-moi-nhat li a {
@@ -57,7 +66,6 @@
 h3 .tin-tuc {
   text-transform: uppercase;
   text-align: center;
-
 }
 .list-tin-tuc {
   list-style: none;
@@ -76,7 +84,17 @@ h3 .tin-tuc {
   margin-top: 50px;
 }
 
-.title-tin-tuc-tom-tat {
+li .title-tin-tuc-tom-tat {
   text-align: center;
   margin: 0 auto;
+}
+
+.khoi-tom-tat {
+  text-align: center;
+}
+
+.khoi-noi-dung{
+  width: 80%;
+  margin: 0 auto;
+  text-align: justify;
 }

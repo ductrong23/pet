@@ -9,7 +9,7 @@ if (isset($_POST['dangnhap'])) {
     $count = mysqli_num_rows($row);
     if ($count > 0) {
         $_SESSION['dangnhap'] = $taikhoan;
-        header("Location:index.php");
+        header("Location:index.php?action=quanlysanpham&query=them");
     } else {
         echo '<script>alert("Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!");</script>';
         header('Location: login.php');

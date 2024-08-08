@@ -1,10 +1,14 @@
-<h1 style="text-align:center; font-family: Montserrat, sans-serif;">THÔNG TIN THANH TOÁN</h1>
+<!-- <h1 style="text-align:center; font-family: Montserrat, sans-serif;">THÔNG TIN THANH TOÁN</h1> -->
 <div class="xac-nhan-don-hang">
     <div class="step"><span><a href="index.php?quanly=giohang">Giỏ hàng</a></span></div>
-    <div class="step-current"><span><a href="index.php?quanly=vanchuyen">Vận chuyển</a></span></div>
-    <div class="step"><span><a href="index.php?quanly=thongtinthanhtoan">Thanh toán</a></span></div>
-    <div class="step"><span><a href="index.php?quanly=xemdonhang">Đơn hàng</a></span></div>
+    <div class="step"><span><a href="index.php?quanly=vanchuyen">Vận chuyển</a></span></div>
+    <div class="step-current"><span><a href="index.php?quanly=thongtinthanhtoan">Thanh toán</a></span></div>
+    <!-- <div class="step"><span><a href="index.php?quanly=xemdonhang">Đơn hàng</a></span></div> -->
 </div>
+
+<?php
+$currentStep ='thongtinthanhtoan';
+?>
 
 <form action="pages/main/xulythanhtoan.php" method="POST">
     <div class="infor-cart">
@@ -35,7 +39,7 @@
         </div>
 
         <div class="bang-gio-hang-thanh-toan">
-            <table class="bang-gio-hang" style="width: 100%; text-align:center" border="1" border-collapse:collapse>
+            <table class="bang-gio-hang" style="width: 100%; text-align:center; font-family: Montserrat, sans-serif; font-size:14px" border="1" border-collapse:collapse>
                 <tr>
                     <!-- <th>ID</th> -->
                     <th class="ten-san-pham">Tên sản phẩm</th>
@@ -74,7 +78,7 @@
                     ?>
                     <tr>
                         <td colspan="8">
-                            <p style="float:left">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
+                            <p style="float:right; font-weight:bolder">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
                             <div style="clear:both"></div>
 
                             <?php
@@ -108,6 +112,15 @@
     <button class="nut-dat-hang" type="submit" name="thanhtoanngay" value="Thanh toán ngay">Đặt hàng</button>
 </form>
 
+<br>
+<div class="cua-hang">
+    <a class="quay-lai" href="index.php">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        <span>
+            <h4>QUAY LẠI CỬA HÀNG</h4>
+        </span>
+    </a>
+</div>
 
 <style>
     button.nut-dat-hang {

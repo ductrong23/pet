@@ -15,11 +15,23 @@
     <link rel="stylesheet" type="text/css" href="css/vanchuyen.css">
     <link rel="stylesheet" type="text/css" href="css/lienhe.css" ver="2">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/gioithieu.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/gioithieu.css"> -->
     <link rel="stylesheet" type="text/css" href="css/thongtinthanhtoan.css">
     <link rel="stylesheet" type="text/css" href="css/tintuc.css">
+    <link rel="stylesheet" type="text/css" href="css/danhmuc.css">
+    <link rel="stylesheet" type="text/css" href="css/dieuhuong.css">
+    <link rel="stylesheet" type="text/css" href="css/xac_nhan.css">
+    <link rel="stylesheet" type="text/css" href="css/thaydoimatkhau.css">
+    <link rel="stylesheet" type="text/css" href="css/sanphamlienquan.css">
+    <link rel="stylesheet" type="text/css" href="css/danhmuc_sanpham.css">
+    <link rel="stylesheet" type="text/css" href="css/timkiem.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     
+
+    <script scr="js/xac_nhan.js"></script>
+    <!-- <script scr="js/index.js"></script> -->
+
+
     <title>PetStore</title>
 </head>
 
