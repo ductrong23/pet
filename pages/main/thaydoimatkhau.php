@@ -50,10 +50,13 @@ if (isset($_POST['doimatkhau'])) {
 </div>
 
 <br>
-<a class="quay-lai" href="index.php">
-    <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-    <span>
-        <h4>QUAY LẠI CỬA HÀNG</h4>
-    </span>
-</a>
-
+<br>
+<br>
+<div class="cua-hang">
+    <a class="quay-lai" href="index.php">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        <span>
+            <h4>TIẾP TỤC MUA HÀNG</h4>
+        </span>
+    </a>
+</div>

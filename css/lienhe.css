@@ -7,7 +7,7 @@
   /* border: 1px solid #e5e5e5; */
 }
 
-.thumbnail img {
+/* .thumbnail img {
   width: 50%;
   height: 50%;
   transition-duration: 0.3s;
@@ -15,33 +15,31 @@
 
 .thumbnail img:hover {
   transform: scale(1.2);
-}
+} */
 
 /* ======================BẢN ĐỒ========================== */
 
-
-
 .our-position__all {
-    text-align: center;
+  text-align: center;
 }
 
 .our-position__all strong {
-    color: rgb(226, 34, 34);
+  color: rgb(226, 34, 34);
 }
 
 .our-position {
-    margin-top: 10px;
-    width: 50%;
-    margin-left: 2%;
-    height: 300px;
-    border: 3px solid #150f5b;
-    border-radius: 5px;
+  margin-top: 10px;
+  width: 50%;
+  margin-left: 2%;
+  height: 300px;
+  border: 3px solid #150f5b;
+  border-radius: 5px;
 }
 
 .our-position__name {
-    margin: 20px 0;
-    font-size: 1.3rem;
-    font-weight: 540;
+  margin: 20px 0;
+  font-size: 1.3rem;
+  font-weight: 540;
 }
 
 /* ======================MAIN LIÊN HỆ========================== */
@@ -57,21 +55,20 @@
   margin-left: 80px;
 }
 
-
 .right-section h2 {
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
-.left-section h2{
-  font-family: 'Montserrat', sans-serif;
+.left-section h2 {
+  font-family: "Montserrat", sans-serif;
   color: #123f39;
   font-size: x-large;
 }
-.right-section h2{
+.right-section h2 {
   color: #123f39;
   font-size: x-large;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .left-section form {
@@ -85,8 +82,8 @@
   margin-bottom: 10px;
 }
 
-.input-group:hover{
-    box-shadow: 1px lightblue;
+.input-group:hover {
+  box-shadow: 1px lightblue;
 }
 
 .input-group label {
@@ -120,12 +117,17 @@ button.nut-gui-lien-he {
   font-size: 15px;
   cursor: pointer;
   border: none;
+  display: block;
+  height: calc(6 - 2px);
+  transition: 0.5s;
+  position: relative;
 }
 
 button.nut-gui-len-he :hover {
   background-color: #123f39;
+  scale: 1.06;
+  color: white;
 }
-
 
 .right-section .contact-info {
   margin-top: 10px;
@@ -141,6 +143,6 @@ button.nut-gui-len-he :hover {
   margin-right: 5px;
 }
 
-.contact-info li{
+.contact-info li {
   margin-top: 6px;
 }

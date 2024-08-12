@@ -13,6 +13,13 @@
 
 .header .logo {
   height: 120px;
+  height: calc(6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+.header .logo:hover{
+  scale: 1.06;
 }
 
 /* =======================TÌM KIẾM================================ */

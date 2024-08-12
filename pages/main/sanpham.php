@@ -1,6 +1,5 @@
 <!-- <h1>CHI TIẾT SẢN PHẨM</h1> -->
 
-
 <?php
 $sql_chitiet = "SELECT * FROM tbl_sanpham, tbl_danhmuc WHERE tbl_sanpham.id_danhmuc=tbl_danhmuc.id_danhmuc AND tbl_sanpham.id_sanpham='$_GET[id]' LIMIT 1";
 $query_chitiet = mysqli_query($mysqli, $sql_chitiet);
@@ -51,12 +50,11 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                     <p><input type="submit" class="them-gio-hang" name="themgiohang" value="Thêm vào giỏ"></p>
                     <!-- <p><input type="submit" class="mua-hang" name="themgiohang" value="Mua ngay"></p> -->
                 </div>
+
+
+
             </div>
 
-            <!-- <hr style="width:45%; font-weight:bolder"> -->
-
-            <!-- ADD -->
-            <!-- <div class="tags-and-sharing"> -->
 
             <div class="sharing">
                 <strong>Chia sẻ:</strong>
@@ -91,6 +89,61 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
 <?php
 }
 ?>
+
+
+<!-- ĐÁNH GIÁ SẢN PHẨM -->
+
+<div class="review-section">
+    <h2>Đánh giá sản phẩm</h2>
+    <div class="rating-summary">
+        <div class="overall-rating">
+            <span class="rating-number">4.9  <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></span>
+            <div class="stars">
+                <div class="filled-stars" style="width: 84%;"></div>
+            </div>
+        </div>
+        <div class="rating-breakdown">
+            <div class="rating-bar">
+                <span>5<i class="fa fa-star" aria-hidden="true"></i></span>
+                <div class="bar">
+                    <div class="filled-bar" style="width: 80%;"></div>
+                </div>
+                <span>80%</span>
+            </div>
+            <div class="rating-bar">
+                <span>4<i class="fa fa-star" aria-hidden="true"></i></span>
+                <div class="bar">
+                    <div class="filled-bar" style="width: 15%;"></div>
+                </div>
+                <span>15%</span>
+            </div>
+            <div class="rating-bar">
+                <span>3<i class="fa fa-star" aria-hidden="true"></i></span>
+                <div class="bar">
+                    <div class="filled-bar" style="width: 3%;"></div>
+                </div>
+                <span>3%</span>
+            </div>
+            <div class="rating-bar">
+                <span>2<i class="fa fa-star" aria-hidden="true"></i></span>
+                <div class="bar">
+                    <div class="filled-bar" style="width: 1%;"></div>
+                </div>
+                <span>1%</span>
+            </div>
+            <div class="rating-bar">
+                <span>1<i class="fa fa-star" aria-hidden="true"></i></span>
+                <div class="bar">
+                    <div class="filled-bar" style="width: 1%;"></div>
+                </div>
+                <span>1%</span>
+            </div>
+        </div>
+    </div>
+
+    <button class="see-more-reviews">Xem 100 đánh giá</button>
+    <button class="write-review">Viết đánh giá</button>
+</div>
 
 
 <!-- SẢN PHẨM LIÊN QUAN -->
@@ -148,6 +201,3 @@ if ($row_chitiet) {
     echo "<p>Không tìm thấy chi tiết sản phẩm.</p>";
 }
 ?>
-
-
-

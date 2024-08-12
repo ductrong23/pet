@@ -22,7 +22,7 @@
         <div class="footer-middle">
             <h3>Chăm Sóc Khách Hàng</h3>
             <ul>
-                <li><a href="#">Liên hệ hỗ trợ</a></li>
+                <li><a href="index.php?quanly=lienhe">Liên hệ hỗ trợ</a></li>
                 <li><a href="#">Hướng dẫn mua hàng</a></li>
                 <li><a href="#">Quan điểm kinh doanh</a></li>
             </ul>

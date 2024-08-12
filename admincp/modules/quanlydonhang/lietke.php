@@ -1,5 +1,15 @@
 <?php
-$sql_lietke_dh = "SELECT * FROM tbl_cart, tbl_dangky WHERE tbl_cart.id_khachhang=tbl_dangky.id_dangky ORDER BY tbl_cart.id_cart DESC";
+// $sql_lietke_dh = "SELECT * FROM tbl_cart, tbl_dangky,
+// WHERE tbl_cart.id_khachhang=tbl_dangky.id_dangky 
+// ORDER BY tbl_cart.id_cart DESC";
+
+$sql_lietke_dh = "SELECT tbl_cart.*, tbl_dangky.tenkhachhang, tbl_dangky.email, 
+                 tbl_dangky.dienthoai, tbl_shipping.address AS diachi_nhanhang
+                 FROM tbl_cart 
+                 INNER JOIN tbl_dangky ON tbl_cart.id_khachhang = tbl_dangky.id_dangky 
+                 INNER JOIN tbl_shipping ON tbl_cart.cart_shipping = tbl_shipping.id_shipping
+                 ORDER BY tbl_cart.id_cart DESC";
+
 $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
 ?>
 <h1 class="title-liet-ke">LIỆT KÊ ĐƠN HÀNG</h1>
@@ -9,8 +19,9 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
         <th>Mã đơn hàng</th>
         <th>Tên khách hàng</th>
         <th>Email</th>
-        <th>Địa chỉ</th>
+        <th>Địa chỉ nhận hàng</th>
         <th>Số điện thoại</th>
+        <th>Ngày đặt hàng</th>
         <th>Tình trạng</th>
         <th>Quản lý</th>
     </tr>
@@ -18,29 +29,76 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
     $i = 0;
     while ($row = mysqli_fetch_array($query_lietke_dh)) {
         $i++;
+        $cart_status = isset($row['cart_status']) ? $row['cart_status'] : 0; // Đặt mặc định là 0 nếu không có giá trị
+
     ?>
         <tr>
             <td><?php echo $i ?></td>
             <td><?php echo $row['code_cart'] ?></td>
             <td><?php echo $row['tenkhachhang'] ?></td>
             <td><?php echo $row['email'] ?></td>
-            <td><?php echo $row['diachi'] ?></td>
+            <!-- <td><?php echo $row['diachi'] ?></td> -->
+            <td><?php echo $row['shipping_address'] ?></td>
             <td><?php echo $row['dienthoai'] ?></td>
+            <td><?php echo $row['cart_date'] ?></td>
             <td>
-                <?php
-                if ($row['cart_status'] == 1) {
-                    echo '<a href="modules/quanlydonhang/xuly.php?code=' . $row['code_cart'] . '">Đơn hàng mới</a>'; //    Đơn hàng mới có giá trị là 1 => Khi click vào sẽ gửi giá trị là 0 => Đã xem
-                } else {
-                    echo 'Đã xem';
-                }
-                ?>
+                <form action="modules/quanlydonhang/xuly.php" method="GET">
+                    <input type="hidden" name="code" value="<?php echo $row['code_cart']; ?>">
+                    <select class="chon-status" name="cart_status">
+                        <option value="0" <?php echo ($cart_status == 0) ? 'selected' : ''; ?>>Đơn hàng mới</option>
+                        <option value="1" <?php echo ($cart_status == 1) ? 'selected' : ''; ?>>Đã xác nhận</option>
+                        <option value="2" <?php echo ($cart_status == 2) ? 'selected' : ''; ?>>Đang vận chuyển</option>
+                        <option value="3" <?php echo ($cart_status == 3) ? 'selected' : ''; ?>>Đang giao hàng</option>
+                        <option value="4" <?php echo ($cart_status == 4) ? 'selected' : ''; ?>>Đã giao hàng</option>
+                        <option value="5" <?php echo ($cart_status == 5) ? 'selected' : ''; ?>>Đã thanh toán</option>
+                    </select>
+                    <button type="submit" class="btn-xac-nhan">Xác nhận</button>
+                </form>
             </td>
             <td>
                 <a href="index.php?action=donhang&query=xemdonhang&code=<?php echo $row['code_cart'] ?>">Xem đơn hàng</a> |
+                <a href="modules/quanlydonhang/indonhang.php?code=<?php echo $row['code_cart'] ?>">In đơn hàng</a> |
+                <!-- <a href="index.php?action=donhang&query=suadonhang&code=<?php echo $row['code_cart'] ?>">Sửa</a> | -->
+                <a href="modules/quanlydonhang/xuly.php?action=delete&code=<?php echo $row['code_cart'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');">Xoá</a>
             </td>
         </tr>
     <?php
     }
     ?>
 </table>
+<br>
 
+<br>
+<br>
+
+<style>
+    input[type="number"] {
+        text-align: center;
+        width: 50px;
+        margin-bottom: 5px;
+    }
+
+    select.chon-status {
+        padding: 7px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+
+    button.btn-xac-nhan {
+        padding: 7px;
+        border-radius: 10px;
+        cursor: pointer;
+        height: calc(6 - 2px);
+        transition: 0.5s;
+        position: relative;
+    }
+
+    button.btn-xac-nhan:hover {
+        scale: 1.06;
+        background-color: #123f39;
+        color: white
+    }
+
+    
+</style>

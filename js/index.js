@@ -7,11 +7,11 @@ setInterval(() => {
   let currentActive = document.querySelector(".active");
   currentActive.classList.remove("active");
   i++;
-  if (i === 4) {
+  if (i === 3) {
     i = 0;
   }
   banner_index[i].classList.add("active");
-}, 2000);
+}, 3000);
 
 
 // ===========================CHUYỂN ĐỘNG CONTAINER US TRANG CHỦ=====================================

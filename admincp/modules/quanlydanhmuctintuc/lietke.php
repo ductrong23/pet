@@ -14,16 +14,15 @@ $query_lietke_danhmucbv = mysqli_query($mysqli, $sql_lietke_danhmucbv);
     while ($row = mysqli_fetch_array($query_lietke_danhmucbv)) {
         $i++;
     ?>
-    <tr>
-        <td><?php echo $i ?></td>
-        <td><?php echo $row['tendanhmuc_baiviet'] ?></td>
-        <td>
-            <a href="modules/quanlydanhmuctintuc/xuly.php?idbaiviet=<?php echo $row['id_baiviet'] ?>">Xoá</a> |
-            <a href="?action=quanlydanhmuctintuc&query=sua&idbaiviet=<?php echo $row['id_baiviet'] ?>">Sửa</a>
-        </td>
-    </tr>
+        <tr>
+            <td><?php echo $i ?></td>
+            <td><?php echo $row['tendanhmuc_baiviet'] ?></td>
+            <td>
+                <a href="?action=quanlydanhmuctintuc&query=sua&idbaiviet=<?php echo $row['id_baiviet'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục tin tức này?');">Sửa</a> |
+                <a href="modules/quanlydanhmuctintuc/xuly.php?idbaiviet=<?php echo $row['id_baiviet'] ?>">Xoá</a>
+            </td>
+        </tr>
     <?php
     }
     ?>
 </table>
-

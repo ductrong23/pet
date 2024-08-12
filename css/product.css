@@ -6,19 +6,24 @@ ul.list-product {
   list-style: none;
   width: 100%; */
 
-
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  
+  /* justify-content: flex-start;
+    gap: 20px; */
+
+    /* justify-content: center; */
 }
 
 ul.list-product li {
   width: calc(20% - 20px);
   display: flex;
   flex-direction: column;
+
   align-items: center;
   /* padding: 2px; */
   box-sizing: border-box;
@@ -61,7 +66,7 @@ p.title-product {
   margin: 5px;
   font-family: "Montserrat", sans-serif;
   animation: fadeInLeft 1.4s ease-out;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 p.title-product:hover {
@@ -141,6 +146,7 @@ p.price-product {
 
 .chi-tiet-san-pham h2 {
   color: #123f39;
+  text-align: unset;
 }
 
 input.them-gio-hang {
@@ -154,7 +160,7 @@ input.them-gio-hang {
   width: 150px;
   font-family: Lato, sans-serif;
   animation: fadeInLeft 1.4s ease-out;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 input.them-gio-hang:hover {
@@ -220,16 +226,6 @@ i.fa.fa-minus.fa-style {
 }
 /* =======================THẺ PHƯƠNG THỨC THANH TOÁN================================ */
 
-/* .tags-and-sharing {
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
-} */
-
 .tags,
 .sharing,
 .payment-methods {
@@ -259,18 +255,39 @@ i.fa.fa-minus.fa-style {
 
 .btn.facebook {
   background-color: #3b5998;
+  height: calc(90% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+.btn.facebook:hover {
+  scale: 1.06;
 }
 
 .btn.google {
   background-color: #db4437;
+  height: calc(90% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+.btn.google:hover {
+  scale: 1.06;
 }
 
 .btn.twitter {
   background-color: #1da1f2;
+  height: calc(90% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+.btn.twitter:hover {
+  scale: 1.06;
 }
 
 .btn i {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .payment-methods img {
@@ -281,7 +298,137 @@ i.fa.fa-minus.fa-style {
 
 /* =======================ICONS================================ */
 
-/* =======================ẢNH CHI TIẾT SẢN PHẨM================================ */
+/* =======================ĐÁNH GIÁ SẢN PHẨM================================ */
+
+.review-section {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #123f39;
+  text-align: center;
+}
+
+.rating-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.overall-rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating-number {
+  font-size: 36px;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #f90;
+}
+
+.stars {
+  position: relative;
+  width: 80px;
+  height: 16px;
+  background: url("stars-bg.png") repeat-x;
+}
+
+.filled-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: url("stars-filled.png") repeat-x;
+}
+
+.rating-count {
+  margin-left: 10px;
+}
+
+.rating-breakdown {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.bar {
+  flex: 1;
+  height: 10px;
+  background-color: #ddd;
+  margin: 0 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.filled-bar {
+  height: 100%;
+  background-color: #f90;
+}
+
+.review {
+  display: flex;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.review-content {
+  flex: 2;
+  margin-left: 20px;
+}
+
+.review-text {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.review-info {
+  font-size: 12px;
+  color: #888;
+}
+
+.review-info span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.see-more-reviews,
+.write-review {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid #123f39;
+  background-color: white;
+  color: #123f39;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  animation: fadeInLeft 1.4s ease-out;
+  transition: 0.5s;
+
+}
+
+button:hover {
+  background-color: #123f39;
+  color: white;
+  scale: 1.06;
+}
 
 /* =======================TIÊU ĐỀ SẢN PHẨM LIÊN QUAN================================ */
 .title-lienquan {

@@ -24,6 +24,13 @@ footer {
 
 .footer-logo img {
   max-width: 150px;
+  height: calc(100% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+}
+
+.footer-logo img:hover{
+  scale: 1.6;
 }
 
 .footer-contact,
@@ -70,12 +77,15 @@ footer {
   text-decoration: none;
   color: #123f39;
   font-size: 14px;
-
+  height: calc( 6 - 2px);
+  transition: 0.15s;
+  position: relative;
+  display: block;
 }
 
 .footer-middle ul li a:hover {
-  scale: 2.06;
-  
+  scale: 1.2;
+  z-index: 2;
 }
 
 .footer-right form {

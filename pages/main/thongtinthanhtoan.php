@@ -66,9 +66,9 @@ $currentStep ='thongtinthanhtoan';
                             <td><?php echo $cart_item['masp'] ?></td>
                             <td><?php echo number_format($cart_item['giasp'], 0, ',', '.') . " đ" ?></td>
                             <td>
-                                <a href="pages/main/themgiohang.php?cong=<?php echo $cart_item['id'] ?>"><i class="fa fa-plus fa-style" aria-hidden="true"></i></a>
+                                <!-- <a href="pages/main/themgiohang.php?cong=<?php echo $cart_item['id'] ?>"><i class="fa fa-plus fa-style" aria-hidden="true"></i></a> -->
                                 <?php echo $cart_item['soluong'] ?>
-                                <a href="pages/main/themgiohang.php?tru=<?php echo $cart_item['id'] ?>"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a>
+                                <!-- <a href="pages/main/themgiohang.php?tru=<?php echo $cart_item['id'] ?>"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a> -->
                             </td>
                             <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
 
@@ -105,7 +105,7 @@ $currentStep ='thongtinthanhtoan';
         <input type="radio" name="payment" id="tienmat" value="Tiền mặt" checked>Tiền mặt
         <input type="radio" name="payment" id="chuyenkhoan" value="Chuyển khoản">Chuyển khoản
         <input type="radio" name="payment" id="chuyenkhoan" value="MOMO">MOMO
-        <input type="radio" name="payment" id="chuyenkhoan" value="PayPal">PayPal<span></span>
+        <input type="radio" name="payment" id="chuyenkhoan" value="PayPal">PayPal
         <input type="radio" name="payment" id="chuyenkhoan" value="VNPay">VNPay
     </div>
     <br>
@@ -132,6 +132,8 @@ $currentStep ='thongtinthanhtoan';
         font-size: 15px;
         display: block;
         margin: 0 auto;
+        border: none;
+        animation: fadeInLeft 1.9s ease-out;
     }
 
     button.nut-dat-hang:hover {

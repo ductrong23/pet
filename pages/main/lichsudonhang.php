@@ -16,8 +16,9 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
             <th>Mã đơn hàng</th>
             <th>Tên khách hàng</th>
             <th>Email</th>
-            <th>Địa chỉ</th>
+            <th>Địa chỉ nhận hàng</th>
             <th>Số điện thoại</th>
+            <th>Ngày đặt hàng</th>
             <!-- <th>Tình trạng</th> -->
             <th>Quản lý</th>
         </tr>
@@ -31,8 +32,9 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 <td><?php echo $row['code_cart'] ?></td>
                 <td><?php echo $row['tenkhachhang'] ?></td>
                 <td><?php echo $row['email'] ?></td>
-                <td><?php echo $row['diachi'] ?></td>
+                <td><?php echo $row['shipping_address'] ?></td>
                 <td><?php echo $row['dienthoai'] ?></td>
+                <td><?php echo $row['cart_date'] ?></td>
                 <!-- <td>
                 <?php
                 if ($row['cart_status'] == 1) {
@@ -43,7 +45,7 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 ?>
             </td> -->
                 <td>
-                    <a href="index.php?quanly=xemdonhang&code=<?php echo $row['code_cart'] ?>">Xem đơn hàng</a> |
+                    <a href="index.php?quanly=xemdonhang&code=<?php echo $row['code_cart'] ?>">Xem đơn hàng</a> 
                 </td>
             </tr>
         <?php

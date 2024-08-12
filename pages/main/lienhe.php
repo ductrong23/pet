@@ -63,9 +63,14 @@ while ($dong = mysqli_fetch_array($query_lh)) {
         </form>
     </div>
     <div class="right-section">
-        <h2>PetStore</h2>
+        <h2  style="text-decoration: underline; float: left">PetStore</h2>
+        <div class="clear"></div>
         <div class="contact-info">
-            <p><i class="fa fa-phone" aria-hidden="true"></i> <strong>Điện thoại: 0345 584 032</strong></p>
+            <br>
+            <p><i class="fa fa-phone" aria-hidden="true"></i> <strong>Điện thoại:</strong> 0345 584 032 / 0352 331 659</p>
+            <br>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i><strong>Email:</strong> kinhdoanh@petstore.vn</p>
+            <br>
             <p><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Địa chỉ:</strong></p>
             <ul>
                 <li>Thành phố Quảng Ngãi, tỉnh Quảng Ngãi</li>

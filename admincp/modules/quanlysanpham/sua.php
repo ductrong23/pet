@@ -28,7 +28,12 @@ $query_sua_sp = mysqli_query($mysqli, $sql_sua_sp);
 
             <tr>
                 <td>Giá gốc</td>
-                <td><input type="text" value="<?php echo $row['giasp'] ?>" name="giagiam"></td>
+                <td><input type="text" value="<?php echo $row['giagiam'] ?>" name="giagiam"></td>
+            </tr>
+
+            <tr>
+                <td>Sale</td>
+                <td><input type="text" value="<?php echo $row['phantram'] ?>" name="phantram"></td>
             </tr>
 
             <tr>

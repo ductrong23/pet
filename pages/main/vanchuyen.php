@@ -5,9 +5,6 @@
     <!-- <div class="step"><span><a href="index.php?quanly=donhangdadat">Đơn hàng</a></span></div> -->
 
 </div>
-<?php
-$currentStep = 'vanchuyen';
-?>
 
 
 <?php
@@ -40,6 +37,7 @@ if (isset($_POST['themvanchuyen'])) {
     }
 }
 ?>
+
 
 
 <!-- <h1>THÔNG TIN VẬN CHUYỂN</h1> -->
@@ -96,6 +94,7 @@ if (isset($_POST['themvanchuyen'])) {
     </form>
 
 </div>
+
 
 <!-- ================================================ -->
 <div class="bang-gio-hang-thanh-toan">

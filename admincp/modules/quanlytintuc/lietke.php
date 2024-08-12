@@ -35,8 +35,9 @@ $query_lietke_bv = mysqli_query($mysqli, $sql_lietke_bv);
                 }
                 ?></td>
             <td>
-                <a href="modules/quanlytintuc/xuly.php?idbaiviet=<?php echo $row['id'] ?>">Xoá</a> |
-                <a href="?action=quanlytintuc&query=sua&idbaiviet=<?php echo $row['id'] ?>">Sửa</a>
+            <a href="?action=quanlytintuc&query=sua&idbaiviet=<?php echo $row['id'] ?>">Sửa</a> |
+                <a href="modules/quanlytintuc/xuly.php?idbaiviet=<?php echo $row['id'] ?>"  onclick="return confirm('Bạn có chắc chắn muốn xóa tin tức này?');">Xoá</a>
+
             </td>
         </tr>
     <?php

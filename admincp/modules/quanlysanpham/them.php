@@ -24,6 +24,10 @@
             <td><input type="text" name="giagiam"></td>
         </tr>
 
+        <tr>
+            <td>Sale</td>
+            <td><input type="text" name="phamtram"></td>
+        </tr>
 
         <tr>
             <td>Số lượng</td>

@@ -1,7 +1,6 @@
-
 /* ========================SLIDE============================ */
 .thumbnail {
-  width: 90%;
+  width: 95%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -94,8 +93,6 @@
 /* Container us */
 .container__us {
   margin-top: 50px;
-  /* border-top: 1px solid #000;
-    border-bottom: 1px solid #000; */
   background-color: var(--primary-color);
 }
 
@@ -111,4 +108,47 @@
   height: 270px;
   border: 2px solid #000;
   border-radius: 5px;
+}
+
+/* ========================CHÍNH SÁCH============================ */
+
+.chinh-sach {
+
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #e0eddc ;
+}
+
+.chinh-sach .dich-vu-1,
+.chinh-sach .dich-vu-2,
+.chinh-sach .dich-vu-3,
+.chinh-sach .dich-vu-4 {
+  flex: 1;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.chinh-sach img {
+  max-width: 100px;
+  height: auto;
+  height: calc(100% / 6 - 2px);
+  transition: 0.5s;
+  position: relative;
+  cursor: pointer;
+}
+
+.chinh-sach img:hover{
+  scale: 1.3;
+}
+
+.chinh-sach p {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #123f39;
+  font-family: "Montserrat", sans-serif;
 }

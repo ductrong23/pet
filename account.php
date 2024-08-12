@@ -33,28 +33,31 @@ if (isset($_POST['dangky'])) {
 <!-- ĐĂNG NHẬP -->
 <?php
 
-        if (isset($_POST['dangnhap'])) {
-            $email = $_POST['email'];
-            $matkhau = md5($_POST['password']);
-            $sql = "SELECT * FROM tbl_dangky WHERE email='" . $email . "' AND matkhau='" . $matkhau . "' LIMIT 1";
-            $row = mysqli_query($mysqli, $sql);
-            $count = mysqli_num_rows($row);
-            if ($count > 0) {
-                $row_data = mysqli_fetch_array($row);
-                $_SESSION['dangky'] = $row_data['tenkhachhang'];
-                $_SESSION['email'] = $row_data['email'];
-                $_SESSION['id_khachhang'] = $row_data['id_dangky'];
-                // header('Location: index.php?quanly=giohang');
-                header('Location: index.php?quanly=gioithieu');
-            } else {
-                echo '<h3>Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!</h3>';
-            }
-        }
+if (isset($_POST['dangnhap'])) {
+    $email = $_POST['email'];
+    $matkhau = md5($_POST['password']);
+    $sql = "SELECT * FROM tbl_dangky WHERE email='" . $email . "' AND matkhau='" . $matkhau . "' LIMIT 1";
+    $row = mysqli_query($mysqli, $sql);
+    $count = mysqli_num_rows($row);
+    if ($count > 0) {
+        $row_data = mysqli_fetch_array($row);
+        $_SESSION['dangky'] = $row_data['tenkhachhang'];
+        $_SESSION['email'] = $row_data['email'];
+        $_SESSION['id_khachhang'] = $row_data['id_dangky'];
 
-        ?>
+        // header('Location: index.php?quanly=giohang');
+        header('Location: index.php?quanly=gioithieu');
+    } else {
+        echo '<h3>Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!</h3>';
+    }
+}
+
+
+
+?>
 <div class="container" id="container">
     <div class="form-container sign-in">
-        <form  method="POST" autocomplete="off" >
+        <form method="POST" autocomplete="off">
             <h1 class="form-heading">Đăng nhập</h1>
             <p class="form-desc container-p">Cùng nhau mua sắm trực tuyến tại <strong>PETSTORE</strong> ❤️</p>
             <div class="form-group">
@@ -91,7 +94,7 @@ if (isset($_POST['dangky'])) {
 
 
     <div class="form-container sign-up">
-        <form action="" method="POST" autocomplete="off" >
+        <form action="" method="POST" autocomplete="off">
             <h1 class="form-heading">Đăng ký</h1>
             <p class="form-desc container-p">Cùng nhau mua sắm trực tuyến tại <strong>PETSTORE</strong> ❤️</p>
             <div class="form-group-double">
@@ -237,6 +240,7 @@ if (isset($_POST['dangky'])) {
         });
     });
 </script>
+
 </body>
 
 </html>

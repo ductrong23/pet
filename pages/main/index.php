@@ -1,6 +1,8 @@
 <?php
 //  Lấy sản phẩm
-$sql_pro = "SELECT * FROM tbl_sanpham, tbl_danhmuc WHERE tbl_sanpham.id_danhmuc=tbl_danhmuc.id_danhmuc ORDER BY tbl_sanpham.id_sanpham DESC LIMIT 15";
+$sql_pro = "SELECT * FROM tbl_sanpham, tbl_danhmuc 
+WHERE tbl_sanpham.id_danhmuc=tbl_danhmuc.id_danhmuc 
+ORDER BY tbl_sanpham.id_sanpham DESC LIMIT 25";
 $query_pro = mysqli_query($mysqli, $sql_pro);
 
 ?>
@@ -9,11 +11,33 @@ $query_pro = mysqli_query($mysqli, $sql_pro);
 <!-- BANNER -->
 
 <div class="thumbnail">
-    <img class="banner_index active" src="images/slide.webp" alt="Banner PetStore">
-    <img class="banner_index " src="images/slide1.webp" alt="Banner PetStore">
+    <!-- <img class="banner_index active" src="images/slide.webp" alt="Banner PetStore"> -->
+    <img class="banner_index active " src="images/slide1.webp" alt="Banner PetStore">
     <img class="banner_index" src="images/slide2.webp" alt="Banner PetStore">
     <img class="banner_index" src="images/slide3.webp" alt="Banner PetStore">
 </div>
+
+<!-- CHÍNH SÁCH -->
+
+<div class="chinh-sach">
+    <div class="dich-vu-1">
+        <img src="images/image_service1.webp" alt="PetStore Service">
+        <p>HÀNG HOÁ CHẤT LƯỢNG</p>
+    </div>
+    <div class="dich-vu-2">
+        <img src="images/image_service2.webp" alt="PetStore Service">
+        <p>MIỄN PHÍ VẬN CHUYỂN</p>
+    </div>
+    <div class="dich-vu-3">
+        <img src="images/image_service3.webp" alt="PetStore Service">
+        <p>TƯ VẤN NHIỆT TÌNH</p>
+    </div>
+    <div class="dich-vu-4">
+        <img src="images/image_service4.webp" alt="PetStore Service">
+        <p>GIÁ CẢ HỢP LÝ</p>
+    </div>
+</div>
+
 
 <!-- SẢN PHẨM MỚI NHẤT -->
 <h3 class="title-index">SẢN PHẨM MỚI NHẤT</h3>
@@ -44,7 +68,7 @@ $query_pro = mysqli_query($mysqli, $sql_pro);
                 <p class="old-price-product">
                     <span>
                         <label><?php echo number_format($row['giagiam'], 0, ',', '.') . ' đ' ?></label>
-                        <small>-15%</small>
+                        <small><?php echo $row['phantram']?>%</small>
                     </span>
                 </p>
                 <!-- <p style="text-align:center; color:brown; font-weight:bolder"><?php echo $row['tendanhmuc'] ?></p> -->
@@ -58,6 +82,7 @@ $query_pro = mysqli_query($mysqli, $sql_pro);
                 <!-- Biểu tượng giỏ hàng -->
                 <a href="pages/main/themgiohang.php?idsanpham=<?php echo $row['id_sanpham']; ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a>
             </div>
+
             <div class="new">
                 <img src="images/new2.png" alt="">
             </div>
@@ -84,3 +109,4 @@ $query_pro = mysqli_query($mysqli, $sql_pro);
         <img src="images/pet2.jpg" alt="" class="container__us-group-item">
     </div>
 </div>
+

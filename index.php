@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/vanchuyen.css">
     <link rel="stylesheet" type="text/css" href="css/lienhe.css" ver="2">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <!-- <link rel="stylesheet" type="text/css" href="css/gioithieu.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/gioithieu.css" ver="1">
     <link rel="stylesheet" type="text/css" href="css/thongtinthanhtoan.css">
     <link rel="stylesheet" type="text/css" href="css/tintuc.css">
     <link rel="stylesheet" type="text/css" href="css/danhmuc.css">
@@ -29,6 +29,7 @@
     
 
     <script scr="js/xac_nhan.js"></script>
+    
     <!-- <script scr="js/index.js"></script> -->
 
 

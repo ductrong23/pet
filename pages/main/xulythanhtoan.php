@@ -3,6 +3,9 @@
 session_start();
 include "../../admincp/config/config.php";
 require "../../mail/sendmail.php";
+require "../../carbon/autoload.php";
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 $id_khachhang = $_SESSION['id_khachhang'];
 $code_order = rand(0, 9999);
@@ -13,10 +16,14 @@ $id_dangky = $_SESSION['id_khachhang'];
 $sql_get_vanchuyen = mysqli_query($mysqli, "SELECT * FROM tbl_shipping WHERE id_dangky='$id_dangky' LIMIT 1");
 $row_get_vanchuyen = mysqli_fetch_array($sql_get_vanchuyen);
 $id_shipping = $row_get_vanchuyen['id_shipping'];
+// =====
+$shipping_address=$row_get_vanchuyen['address'];
+// =====
+$now=Carbon::now('Asia/Ho_Chi_Minh');
 
 //  INSERT và database
-$insert_cart = "INSERT INTO tbl_cart(id_khachhang, code_cart, cart_status, cart_payment, cart_shipping) 
-VALUE('" . $id_khachhang . "', '" . $code_order . "', 1,'" . $cart_payment . "','" . $id_shipping . "')";
+$insert_cart = "INSERT INTO tbl_cart(id_khachhang, code_cart, cart_status, cart_payment, cart_shipping, shipping_address, cart_date) 
+VALUE('" . $id_khachhang . "', '" . $code_order . "', 0,'" . $cart_payment . "','" . $id_shipping . "', '" . $shipping_address . "', '".$now."')";
 $cart_query = mysqli_query($mysqli, $insert_cart);
 
 if ($cart_query) {
@@ -47,7 +54,7 @@ if ($cart_query) {
         $noidung .= "<ul style='border: 1px solid black; margin: 10px;'>
         <li> Tên sản phẩm:  " . $val['tensanpham'] . "</li>
         <li> Mã sản phẩm: " . $val['masp'] . "</li>
-        <li>Giá sản phẩm: " . number_format($val['giasp'], 0, ',', '.') . " đ</li>
+        <li> Giá sản phẩm: " . number_format($val['giasp'], 0, ',', '.') . " đ</li>
         <li> Số lượng: " . $val['soluong'] . "</li>
         </ul>";
     }

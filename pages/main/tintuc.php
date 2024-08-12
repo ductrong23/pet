@@ -47,9 +47,20 @@ $row_bv_title = mysqli_fetch_array($query_bv);
     }
     ?>
 </ul>
-<div class="sharing" style="margin-left: 30px">
+
+<div class="sharing-tin-tuc" style="margin-left: 30px">
     <strong>Chia sẻ:</strong>
     <button class="btn facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i>Thích</button>
     <button class="btn google"><i class="fa fa-google" aria-hidden="true"></i> Google</button>
     <button class="btn twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</button>
+</div>
+
+<br>
+<div class="cua-hang">
+    <a class="quay-lai" href="index.php">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        <span>
+            <h4>QUAY LẠI CỬA HÀNG</h4>
+        </span>
+    </a>
 </div>

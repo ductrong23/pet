@@ -56,6 +56,7 @@
                         } else {
                             echo "<span class='cart-count'>0</span>";
                         }
+
                         ?>
                     </a>
                 </li>
@@ -65,20 +66,23 @@
 </div>
 
 
+
+
+
 <style>
-  .cart-count {
-    width: 14px;
-    height: 14px;
-    text-align: center;
-    line-height: 14px;
-    position: absolute;
-    top: 4px;
-    left: 33px;
-    background: #fff;
-    color: #123F39;
-    font-size: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    border-radius: 50%;
-}
+    .cart-count {
+        width: 14px;
+        height: 14px;
+        text-align: center;
+        line-height: 14px;
+        position: absolute;
+        top: 4px;
+        left: 33px;
+        background: #fff;
+        color: #123F39;
+        font-size: 10px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        border-radius: 50%;
+    }
 </style>

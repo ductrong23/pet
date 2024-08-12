@@ -24,6 +24,7 @@
 <?php
 if (isset($_SESSION['cart'])) {
 }
+
 ?>
 
 
@@ -59,7 +60,7 @@ if (isset($_SESSION['cart'])) {
                     <a href="pages/main/themgiohang.php?tru=<?php echo $cart_item['id'] ?>"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a>
                 </td>
                 <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
-                <td><a href="pages/main/themgiohang.php?xoa=<?php echo $cart_item['id'] ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                <td><a href="pages/main/themgiohang.php?xoa=<?php echo $cart_item['id'] ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td> 
             </tr>
         <?php
         }
@@ -67,8 +68,8 @@ if (isset($_SESSION['cart'])) {
         <tr>
             <td colspan="8">
                 <div class="nam-phai">
-                <p style="font-weight:bolder">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
-                <p ><a href="pages/main/themgiohang.php?xoatatca=1">Xoá tất cả</a></p>
+                    <p style="font-weight:bolder">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
+                    <p><a href="pages/main/themgiohang.php?xoatatca=1">Xoá tất cả</a></p>
                 </div>
                 <div style="clear:both"></div>
 
@@ -92,6 +93,8 @@ if (isset($_SESSION['cart'])) {
         <tr>
             <td colspan="8">Hiện tại giỏ hàng trống</td>
         </tr>
+        <br>
+        <br>
 
     <?php
     }
@@ -103,7 +106,7 @@ if (isset($_SESSION['cart'])) {
     <a class="quay-lai" href="index.php">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         <span>
-            <h4>TIẾP TỤC MUA HÀNG</h4>
+            <h4>QUAY LẠI CỬA HÀNG</h4>
         </span>
     </a>
 </div>

@@ -1,3 +1,4 @@
+<title>Cảm ơn | PetStore</title>
 <div class="cam-on">
 
     <div class="anh-cam-on">
@@ -23,7 +24,7 @@ ORDER BY tbl_sanpham.id_sanpham DESC LIMIT 5";
 $query_goiy = mysqli_query($mysqli, $sql_goiy);
 
 ?>
-<h3 class="title-lienquan">DÀNH CHO BẠN</h3>
+<h3 class="title-lienquan">GỢI Ý CHO BẠN</h3>
 <ul class="list-product">
     <?php
     while ($row_goiy = mysqli_fetch_array($query_goiy)) {

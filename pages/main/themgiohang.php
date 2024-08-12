@@ -1,10 +1,11 @@
-// themgiohang.php
 <h1>giỏ hàng</h1>
 <?php
 session_start();
 include("../../admincp/config/config.php");
 
-function themSanPhamVaoGio($id, $soluong = 1) {
+
+function themSanPhamVaoGio($id, $soluong = 1)
+{
     global $mysqli;
     $sql = "SELECT * FROM tbl_sanpham WHERE id_sanpham='" . $id . "' LIMIT 1";
     $query = mysqli_query($mysqli, $sql);
@@ -33,12 +34,36 @@ function themSanPhamVaoGio($id, $soluong = 1) {
     }
 }
 
-if (isset($_POST['themgiohang']) || isset($_GET['idsanpham'])) {
+
+//  CẢ ICON GIỎ HÀNG - THÊM GIỎ HÀNG => ĐIỀU HƯỚNG VỀ GIỎ HÀNG 
+
+// if (isset($_POST['themgiohang']) || isset($_GET['idsanpham'])) {
+//     $id = isset($_POST['idsanpham']) ? $_POST['idsanpham'] : $_GET['idsanpham'];
+//     themSanPhamVaoGio($id);
+//     header('Location: ../../index.php?quanly=giohang');
+//     exit();
+// }
+
+
+//  NÚT THÊM GIỎ HÀNG => ĐIỀU HƯỚNG VỀ GIỎ HÀNG
+
+if (isset($_POST['themgiohang'])) {
     $id = isset($_POST['idsanpham']) ? $_POST['idsanpham'] : $_GET['idsanpham'];
     themSanPhamVaoGio($id);
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }
+
+//  ICON GIỎ HÀNG => VẪN Ở TRANG INDEX
+
+if (isset($_GET['idsanpham'])) {
+    $id = isset($_POST['idsanpham']) ? $_POST['idsanpham'] : $_GET['idsanpham'];
+    themSanPhamVaoGio($id);
+    header('Location: ../../index.php');
+    exit();
+}
+
+
 
 //  Thêm số lượng sản phẩm trong giỏ hàng
 if (isset($_GET['cong'])) {
@@ -100,5 +125,3 @@ if (isset($_GET['xoatatca']) && $_GET['xoatatca'] == 1) {
     exit();
 }
 ?>
-
-

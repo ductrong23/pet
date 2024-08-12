@@ -23,6 +23,8 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
             <th>Đơn giá</th>
             <th>Thành tiền</th>
             <th>Hình thức thanh toán</th>
+            <th>Tình trạng</th>
+
         </tr>
         <?php
         $i = 0;
@@ -41,6 +43,23 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 <td><?php echo number_format($row['giasp'], 0, ',', '.') . " đ" ?></td>
                 <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
                 <td><?php echo $row['cart_payment'] ?></td>
+                <td>
+                    <?php
+                    if ($row['cart_status'] == 0) {
+                        echo 'Đơn hàng mới';
+                    } elseif ($row['cart_status'] == 1) {
+                        echo 'Đã xác nhận';
+                    } elseif ($row['cart_status'] == 2) {
+                        echo 'Đang vận chuyển';
+                    } elseif ($row['cart_status'] == 3) {
+                        echo 'Đang giao hàng';
+                    } elseif ($row['cart_status'] == 4) {
+                        echo 'Đã giao hàng';
+                    } elseif ($row['cart_status'] == 5) {
+                        echo 'Đã thanh toán';
+                    }
+                    ?>
+                </td>
             </tr>
         <?php
         }
