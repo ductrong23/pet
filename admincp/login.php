@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include "config/config.php";
@@ -9,6 +10,7 @@ if (isset($_POST['dangnhap'])) {
     $count = mysqli_num_rows($row);
     if ($count > 0) {
         $_SESSION['dangnhap'] = $taikhoan;
+        // $_SESSION['last_login_time'] = time(); // Lưu lại thời gian đăng nhập cuối
         header("Location:index.php?action=quanlydonhang&query=lietke");
     } else {
         echo '<script>alert("Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!");</script>';

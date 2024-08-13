@@ -8,7 +8,7 @@
             </div>
             <!--00 <p>PetStore là nhãn hiệu của các sản phẩm thức ăn dành cho thú cưng chó mèo gồm các mặt hàng như hạt, sữa, pate và nhiều sản phẩm khác</p> -->
             <div class="footer-contact">
-                <p><strong>LIÊN HỆ HỖ TRỢ</strong></p>
+                <!-- <p><strong>LIÊN HỆ HỖ TRỢ</strong></p> -->
                 <p>0345.584.032</p>
                 <p>kinhdoanh@petstore.vn</p>
             </div>
@@ -24,6 +24,7 @@
             <ul>
                 <li><a href="index.php?quanly=lienhe">Liên hệ hỗ trợ</a></li>
                 <li><a href="#">Hướng dẫn mua hàng</a></li>
+                <li><a href="#">Hướng dẫn thanh toán</a></li>
                 <li><a href="#">Quan điểm kinh doanh</a></li>
             </ul>
         </div>
@@ -38,10 +39,12 @@
         </div>
         <div class="footer-right">
             <h3>Đăng Ký Nhận Tin</h3>
+
             <form>
                 <input type="email" placeholder="Email của bạn">
                 <button type="submit">Đăng ký</button>
             </form>
+            <br>
             <div class="payment-methods">
                 <img src="images/paypal.png" alt="Payment Method">
                 <img src="images/apple_pay.png" alt="Payment Method">

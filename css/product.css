@@ -110,6 +110,7 @@ p.price-product {
   padding: 1px 2px 2px 2px;
   margin-left: 7px;
   font-size: 14px;
+  font-weight: bolder;
 }
 
 .clear {
@@ -213,7 +214,7 @@ i.fa.fa-minus.fa-style {
 /* =======================ĐÁNH GIÁ SẢN PHẨM================================ */
 
 .danh-gia p span {
-  color: green;
+  color: #123f39;
   font-weight: bold;
 }
 .danh-gia p {
@@ -236,7 +237,7 @@ i.fa.fa-minus.fa-style {
 .sharing strong,
 .payment-methods strong {
   font-weight: bold;
-  font-family: Lato, sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .btn {
@@ -363,6 +364,10 @@ h2 {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+}
+
+.rating-bar span {
+  font-family:  "Montserrat", sans-serif ;
 }
 
 .bar {

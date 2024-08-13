@@ -18,6 +18,7 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
         <th>ID</th>
         <th>Mã đơn hàng</th>
         <th>Tên khách hàng</th>
+        <th>Tên người nhận</th>
         <th>Email</th>
         <th>Địa chỉ nhận hàng</th>
         <th>Số điện thoại</th>
@@ -36,6 +37,7 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
             <td><?php echo $i ?></td>
             <td><?php echo $row['code_cart'] ?></td>
             <td><?php echo $row['tenkhachhang'] ?></td>
+             <td><?php echo $row['namedathang'] ?></td>
             <td><?php echo $row['email'] ?></td>
             <!-- <td><?php echo $row['diachi'] ?></td> -->
             <td><?php echo $row['shipping_address'] ?></td>

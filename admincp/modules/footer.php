@@ -5,7 +5,7 @@
             <p>&copy; 2024 Bản quyền thuộc về PetStore</p>
         </div>
         <div class="footer-right">
-            <p>Powered by <a href="#">DUCTRONG.PHAM</a></p>
+            <p>Powered by <a href="#">DUCTRONG.PHAM & NHUNGOC.TRANHUYNH</a></p>
         </div>
     </div>
 </footer>

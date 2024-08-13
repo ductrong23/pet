@@ -20,10 +20,12 @@ $id_shipping = $row_get_vanchuyen['id_shipping'];
 $shipping_address=$row_get_vanchuyen['address'];
 // =====
 $now=Carbon::now('Asia/Ho_Chi_Minh');
+// =====
+$namedathang=$row_get_vanchuyen['name'];
 
 //  INSERT và database
-$insert_cart = "INSERT INTO tbl_cart(id_khachhang, code_cart, cart_status, cart_payment, cart_shipping, shipping_address, cart_date) 
-VALUE('" . $id_khachhang . "', '" . $code_order . "', 0,'" . $cart_payment . "','" . $id_shipping . "', '" . $shipping_address . "', '".$now."')";
+$insert_cart = "INSERT INTO tbl_cart(id_khachhang, code_cart, cart_status, cart_payment, cart_shipping, shipping_address, cart_date, namedathang) 
+VALUE('" . $id_khachhang . "', '" . $code_order . "', 0,'" . $cart_payment . "','" . $id_shipping . "', '" . $shipping_address . "', '".$now."', '".$namedathang."')";
 $cart_query = mysqli_query($mysqli, $insert_cart);
 
 if ($cart_query) {

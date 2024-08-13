@@ -42,10 +42,11 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                         <span>(100 đánh giá)</span>
                     </p>
                 </div>
-                <p>Mã sản phẩm: <?php echo $row_chitiet['masp'] ?></p>
-                <p>Giá: <?php echo number_format($row_chitiet['giasp'], 0, ',', '.') . ' đ' ?></p>
+                <p>Mã sản phẩm: <span style="color: green"><?php echo $row_chitiet['masp'] ?></p></span>
+                <p>Giá: <span style="color:green"><?php echo number_format($row_chitiet['giasp'], 0, ',', '.') . ' đ' ?></span></p>
                 <!-- <p>Số lượng sản phẩm: <?php echo $row_chitiet['soluong'] ?></p> -->
-                <p>Danh mục sản phẩm: <?php echo $row_chitiet['tendanhmuc'] ?></p>
+                <p>Danh mục sản phẩm: <span style="color:green"><?php echo $row_chitiet['tendanhmuc'] ?></span></p>
+                <p>Số lượng sản phẩm: <span style="color:green"><?php echo $row_chitiet['soluong'] ?></span></p>
                 <div class="nut">
                     <p><input type="submit" class="them-gio-hang" name="themgiohang" value="Thêm vào giỏ"></p>
                     <!-- <p><input type="submit" class="mua-hang" name="themgiohang" value="Mua ngay"></p> -->
