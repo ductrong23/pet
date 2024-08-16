@@ -41,7 +41,13 @@
     }
     elseif ($tam == 'quanlysanpham' && $query == 'timkiem') {
         include("modules/quanlysanpham/lietke.php");
-    } else {
+    }
+    // OFF
+    elseif ($tam == 'quanlydonhangoff' && $query == 'lietke') {
+        include("modules/quanlydonhangoff/lietke.php");
+    } elseif ($tam == 'donhang' && $query == 'xemdonhangoff') {
+        include("modules/quanlydonhangoff/xemdonhang.php");
+    }  else {
         include("modules/dashboard.php");
     }
     ?>

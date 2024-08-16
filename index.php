@@ -26,10 +26,10 @@
     <link rel="stylesheet" type="text/css" href="css/danhmuc_sanpham.css">
     <link rel="stylesheet" type="text/css" href="css/timkiem.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    
+
 
     <script scr="js/xac_nhan.js"></script>
-    
+
     <!-- <script scr="js/index.js"></script> -->
 
 
@@ -44,11 +44,18 @@
         // unset($_SESSION['dangky']);
         // session_destroy();
         include "admincp/config/config.php";
-        include "pages/header.php";
         ?>
 
+        <div>
+            <?php
+            include "pages/header.php";
+            ?>
+
+            <?php
+            include "pages/menu.php";
+            ?>
+        </div>
         <?php
-        include "pages/menu.php";
         include "pages/main.php";
         ?>
 
@@ -61,8 +68,8 @@
 
 
     </div>
+
+    
 </body>
 
 </html>
-
-

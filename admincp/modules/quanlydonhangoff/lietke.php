@@ -1,25 +1,18 @@
 <?php
-// $sql_lietke_dh = "SELECT * FROM tbl_cart, tbl_dangky,
-// WHERE tbl_cart.id_khachhang=tbl_dangky.id_dangky 
-// ORDER BY tbl_cart.id_cart DESC";
-
-$sql_lietke_dh = "SELECT tbl_cart.*, tbl_dangky.tenkhachhang, tbl_dangky.email, 
-                 tbl_dangky.dienthoai, tbl_shipping.address AS diachi_nhanhang
-                 FROM tbl_cart 
-                 INNER JOIN tbl_dangky ON tbl_cart.id_khachhang = tbl_dangky.id_dangky 
-                 INNER JOIN tbl_shipping ON tbl_cart.cart_shipping = tbl_shipping.id_shipping
-                 ORDER BY tbl_cart.id_cart DESC";
+// Truy vấn để lấy thông tin đơn hàng từ bảng tbl_cartoff và thông tin người nhận từ bảng tbl_shippingoff
+$sql_lietke_dh = "SELECT tbl_cartoff.*, tbl_shippingoff.name AS name, tbl_shippingoff.phone, tbl_shippingoff.address AS shipping_address
+                 FROM tbl_cartoff
+                 INNER JOIN tbl_shippingoff ON tbl_cartoff.cart_shipping = tbl_shippingoff.id_shippingoff
+                 ORDER BY tbl_cartoff.id_cartoff DESC";
 
 $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
 ?>
-<h1 class="title-liet-ke">LIỆT KÊ ĐƠN HÀNG</h1>
+<h1 class="title-liet-ke">LIỆT KÊ ĐƠN HÀNG KHÔNG ĐĂNG NHẬP</h1>
 <table class="bang-liet-ke" style="width:100%" border="1" style="border-collapse:collapse">
     <tr>
         <th>ID</th>
         <th>Mã đơn hàng</th>
-        <th>Tên khách hàng</th>
         <th>Tên người nhận</th>
-        <th>Email</th>
         <th>Địa chỉ nhận hàng</th>
         <th>Số điện thoại</th>
         <th>Ngày đặt hàng</th>
@@ -36,15 +29,12 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
         <tr>
             <td><?php echo $i ?></td>
             <td><?php echo $row['code_cart'] ?></td>
-            <td><?php echo $row['tenkhachhang'] ?></td>
-             <td><?php echo $row['namedathang'] ?></td>
-            <td><?php echo $row['email'] ?></td>
-            <!-- <td><?php echo $row['diachi'] ?></td> -->
+            <td><?php echo $row['name'] ?></td>
             <td><?php echo $row['shipping_address'] ?></td>
-            <td><?php echo $row['dienthoai'] ?></td>
+            <td><?php echo $row['phone'] ?></td>
             <td><?php echo $row['cart_date'] ?></td>
             <td>
-                <form action="modules/quanlydonhang/xuly.php" method="GET">
+                <form action="modules/quanlydonhangoff/xuly.php" method="GET">
                     <input type="hidden" name="code" value="<?php echo $row['code_cart']; ?>">
                     <select class="chon-status" name="cart_status">
                         <option value="0" <?php echo ($cart_status == 0) ? 'selected' : ''; ?>>Đơn hàng mới</option>
@@ -58,10 +48,9 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 </form>
             </td>
             <td>
-                <a href="index.php?action=donhang&query=xemdonhang&code=<?php echo $row['code_cart'] ?>"><i class="fa fa-eye" aria-hidden="true"></i></a> |
-                <a href="modules/quanlydonhang/indonhang.php?code=<?php echo $row['code_cart'] ?>"><i class="fa fa-print" aria-hidden="true"></i></a> |
-                <!-- <a href="index.php?action=donhang&query=suadonhang&code=<?php echo $row['code_cart'] ?>">Sửa</a> | -->
-                <a href="modules/quanlydonhang/xuly.php?action=delete&code=<?php echo $row['code_cart'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                <a href="index.php?action=donhang&query=xemdonhangoff&code=<?php echo $row['code_cart'] ?>"><i class="fa fa-eye" aria-hidden="true"></i></a> |
+                <a href="modules/quanlydonhangoff/indonhang.php?code=<?php echo $row['code_cart'] ?>"><i class="fa fa-print" aria-hidden="true"></i></a> |
+                <a href="modules/quanlydonhangoff/xuly.php?action=delete&code=<?php echo $row['code_cart'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </td>
         </tr>
     <?php
@@ -70,11 +59,8 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
 </table>
 <br>
 
-<br>
-<br>
-
 <style>
-    input[type="number"] {
+     input[type="number"] {
         text-align: center;
         width: 50px;
         margin-bottom: 5px;
@@ -101,6 +87,4 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
         background-color: #123f39;
         color: white
     }
-
-    
 </style>

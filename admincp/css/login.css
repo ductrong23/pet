@@ -75,3 +75,12 @@ body {
   font-weight: bold;
   color: #333;
 }
+
+
+/* THÔNG BÁO LỖI */
+.form-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 5px;
+  display: none; /* Ẩn thông báo lỗi mặc định */
+}

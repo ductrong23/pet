@@ -54,8 +54,20 @@
             include("main/xemdonhang.php");
         } elseif ($tam == 'lichsudonhang') {
             include("main/lichsudonhang.php");
-        }  elseif ($tam == 'xemdonhang') {
+        } elseif ($tam == 'xemdonhang') {
             include("main/xemdonhang.php");
+        }
+        // MUA OFF
+        elseif ($tam == 'vanchuyenoff') {
+            include("main/vanchuyenoff.php");
+        } elseif ($tam == 'thongtinthanhtoanoff') {
+            include("main/thongtinthanhtoanoff.php");
+        } elseif ($tam == 'lichsudonhangoff') {
+            include("main/lichsudonhangoff.php");
+        } elseif ($tam == 'xemdonhangoff') {
+            include("main/xemdonhangoff.php");
+        }elseif ($tam == 'camonoff') {
+            include("main/camonoff.php");
         } else {
             include("main/index.php");
         }

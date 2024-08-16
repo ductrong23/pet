@@ -5,7 +5,15 @@
   /* background: linear-gradient(to right, #dce4b8 , #14d014); */
   background-color: white;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 7px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e7e5f5;
+
+  
+  position: fixed;
+   top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 .list-menu {

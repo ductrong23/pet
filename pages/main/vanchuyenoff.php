@@ -1,63 +1,53 @@
-<div class="xac-nhan-don-hang">
-    <div class="step"><span><a href="index.php?quanly=giohang">Giỏ hàng</a></span></div>
-    <div class="step-current"><span><a href="index.php?quanly=vanchuyen">Vận chuyển</a></span></div>
-    <div class="step"><span><a href="index.php?quanly=thongtinthanhtoan">Thanh toán</a></span></div>
-    <!-- <div class="step"><span><a href="index.php?quanly=donhangdadat">Đơn hàng</a></span></div> -->
-
-</div>
-
-
 <?php
-if (isset($_POST['themvanchuyen'])) {
-    //  Nếu chưa từng mua hàng thì sẽ tạo mới thông tin
+if (isset($_POST['themvanchuyen']) || isset($_POST['capnhatvanchuyen'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $note = $_POST['note'];
-    $id_dangky = $_SESSION['id_khachhang'];
-    $sql_them_vanchuyen = mysqli_query($mysqli, "INSERT INTO tbl_shipping(name, phone, address, note, id_dangky) VALUES('$name','$phone','$address','$note','$id_dangky')");
-    if ($sql_them_vanchuyen) {
-        echo '<script>alert("Thêm thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán ")</script>';
-    } else {
-        echo '<script>alert("Thêm thông tin vận chuyển thất bại ")</script>';
-    }
-} elseif (isset($_POST['capnhatvanchuyen'])) {
-    //  Nếu đã từng mua hàng thì hiện ra những thông tin người dùng trước đó và thay đổi nếu cần
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $note = $_POST['note'];
-    $id_dangky = $_SESSION['id_khachhang'];
-    $sql_update_vanchuyen = mysqli_query($mysqli, "UPDATE tbl_shipping SET name='$name', phone='$phone', address='$address', note='$note', id_dangky='$id_dangky'
-    WHERE id_dangky='$id_dangky'");
-    if ($sql_update_vanchuyen) {
-        echo '<script>alert("Cập nhật thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán ")</script>';
-    } else {
-        echo '<script>alert("Cập nhật thông tin vận chuyển thất bại ")</script>';
+
+    if (isset($_POST['themvanchuyen'])) {
+        // Nếu thêm mới thông tin vận chuyển
+        $sql_them_vanchuyen = mysqli_query($mysqli, "INSERT INTO tbl_shippingoff(name, phone, address, note) VALUES('$name','$phone','$address','$note')");
+        if ($sql_them_vanchuyen) {
+            $_SESSION['shippingoff_id'] = mysqli_insert_id($mysqli);
+            echo '<script>alert("Thêm thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán")</script>';
+        } else {
+            echo '<script>alert("Thêm thông tin vận chuyển thất bại")</script>';
+        }
+    } elseif (isset($_POST['capnhatvanchuyen']) && isset($_SESSION['shippingoff_id'])) {
+        // Nếu cập nhật thông tin vận chuyển
+        $shippingoff_id = $_SESSION['shippingoff_id'];
+        $sql_update_vanchuyen = mysqli_query($mysqli, "UPDATE tbl_shippingoff SET name='$name', phone='$phone', address='$address', note='$note' WHERE id_shippingoff='$shippingoff_id'");
+        if ($sql_update_vanchuyen) {
+            echo '<script>alert("Cập nhật thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán")</script>';
+        } else {
+            echo '<script>alert("Cập nhật thông tin vận chuyển thất bại")</script>';
+        }
     }
 }
 ?>
 
-<!-- <h1>THÔNG TIN VẬN CHUYỂN</h1> -->
+<!-- Hiển thị thông tin đã thêm -->
 <div class="thong-tin-van-chuyen">
     <form id="form-shipping" action="" autocomplete="off" method="POST">
         <?php
-        $id_dangky = $_SESSION['id_khachhang'];
-        $sql_get_vanchuyen = mysqli_query($mysqli, "SELECT * FROM tbl_shipping WHERE id_dangky='$id_dangky' LIMIT 1");
-        $count = mysqli_num_rows($sql_get_vanchuyen);
-        if ($count > 0) {
+        if (isset($_SESSION['shippingoff_id'])) {
+            $shippingoff_id = $_SESSION['shippingoff_id'];
+            $sql_get_vanchuyen = mysqli_query($mysqli, "SELECT * FROM tbl_shippingoff WHERE id_shippingoff='$shippingoff_id' LIMIT 1");
             $row_get_vanchuyen = mysqli_fetch_array($sql_get_vanchuyen);
             $name = $row_get_vanchuyen['name'];
             $phone = $row_get_vanchuyen['phone'];
             $address = $row_get_vanchuyen['address'];
             $note = $row_get_vanchuyen['note'];
         } else {
+            // Nếu không có session 'shippingoff_id', gán các biến rỗng
             $name = '';
             $phone = '';
             $address = '';
             $note = '';
         }
         ?>
+
         <br><br>
         <div class="form-group">
             <label class="form-label">Họ và tên</label>
@@ -82,15 +72,14 @@ if (isset($_POST['themvanchuyen'])) {
 
         <?php
         if ($name == '' && $phone == '') {
-
+            // Nút thêm thông tin vận chuyển khi thông tin chưa tồn tại
         ?>
-
-            <button class="nut-cap-nhat-thong-tin" type="submit" name="themvanchuyen">Thêm thông tin vận chuyển </button>
+            <button class="nut-cap-nhat-thong-tin" type="submit" name="themvanchuyen">Thêm thông tin vận chuyển</button>
         <?php
         } elseif ($name != '' && $phone != '') {
+            // Nút cập nhật thông tin vận chuyển khi thông tin đã tồn tại
         ?>
-            <button class="nut-cap-nhat-thong-tin" type="submit" name="capnhatvanchuyen">Cập nhật thông tin vận chuyển </button>
-
+            <button class="nut-cap-nhat-thong-tin" type="submit" name="capnhatvanchuyen">Cập nhật thông tin vận chuyển</button>
         <?php
         }
         ?>
@@ -128,9 +117,9 @@ if (isset($_POST['themvanchuyen'])) {
                     <td><?php echo $cart_item['masp'] ?></td>
                     <td><?php echo number_format($cart_item['giasp'], 0, ',', '.') . " đ" ?></td>
                     <td>
-                        <a href="pages/main/themgiohang.php?cong=<?php echo $cart_item['id'] ?>"><i class="fa fa-plus fa-style" aria-hidden="true"></i></a>
+                        <a href="pages/main/themgiohangoff.php?cong=<?php echo $cart_item['id'] ?>"><i class="fa fa-plus fa-style" aria-hidden="true"></i></a>
                         <?php echo $cart_item['soluong'] ?>
-                        <a href="pages/main/themgiohang.php?tru=<?php echo $cart_item['id'] ?>"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a>
+                        <a href="pages/main/themgiohangoff.php?tru=<?php echo $cart_item['id'] ?>"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a>
                     </td>
                     <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
 
@@ -138,28 +127,26 @@ if (isset($_POST['themvanchuyen'])) {
             <?php
             }
             ?>
+            <!-- <tr>
+                <td colspan="8">
+                    <p style="float: right; font-weight:bolder">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
+                    <div style="clear:both"></div>
+                    <p class="nut-gio-hang"><a href="index.php?quanly=giohang"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Giỏ hàng</a></p>
+                    <p class="nut-thong-tin-thanh-toan" id="thongtinthanhtoan"><a  href="index.php?quanly=thongtinthanhtoanoff" >Thông tin thanh toán <i class="fa fa-hand-o-right" aria-hidden="true"></i></a></p>
+
+                </td>
+            </tr> -->
             <tr>
                 <td colspan="8">
                     <p style="float: right; font-weight:bolder">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
                     <div style="clear:both"></div>
-
-                    <?php
-                    if (isset($_SESSION['dangky'])) {
-                    ?>
-                        <!-- <p><a href="pages/main/thanhtoan.php">Đặt hàng</a></p> -->
-                        <p class="nut-gio-hang"><a href="index.php?quanly=giohang"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Giỏ hàng</a></p>
-                        <p class="nut-thong-tin-thanh-toan" id="thontinthanhtoan">
-                            <a href="javascript:void(0);" id="thongtinthanhtoan-link">Thông tin thanh toán <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
-                        </p>
-                    <?php
-                    } else {
-                    ?>
-                        <p><a href="index.php?quanly=dangky">Đăng ký đặt hàng</a></p>
-                    <?php
-                    }
-                    ?>
+                    <p class="nut-gio-hang"><a href="index.php?quanly=giohang"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Giỏ hàng</a></p>
+                    <p class="nut-thong-tin-thanh-toan" id="thontinthanhtoan">
+                        <a href="javascript:void(0);" id="thongtinthanhtoan-link">Thông tin thanh toán <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
+                    </p>
                 </td>
             </tr>
+
         <?php
         } else {
         ?>
@@ -182,3 +169,4 @@ if (isset($_POST['themvanchuyen'])) {
         </span>
     </a>
 </div>
+

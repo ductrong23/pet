@@ -2,7 +2,7 @@
 <?php
 
 //  Lấy sản phẩm
-$sql_bv = "SELECT * FROM tbl_tintuc WHERE tbl_tintuc.id_danhmuc='$_GET[id]' ORDER BY id DESC";
+$sql_bv = "SELECT * FROM tbl_tintuc WHERE tbl_tintuc.id_danhmuc='$_GET[id]' AND tinhtrang=1 ORDER BY id DESC";
 $query_bv = mysqli_query($mysqli, $sql_bv);
 
 //  Lấy tên danh mục

@@ -6,6 +6,59 @@ body {
   padding: 0;
 }
 
+.list-menu-admin {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+.list-menu-admin > li {
+  position: relative;
+}
+
+.list-menu-admin > li > a {
+  display: block;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #333;
+}
+
+.list-menu-admin > li > a:hover {
+  background-color: #575757;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #444;
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.submenu li a {
+  display: block;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  background-color: #444;
+}
+
+.submenu li a:hover {
+  background-color: #575757;
+}
+
+.list-menu-admin > li:hover .submenu {
+  display: block;
+}
+
 /* Đặt style cho danh sách menu */
 ul.list-menu-admin {
   list-style: none;

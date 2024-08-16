@@ -12,6 +12,12 @@
     </ul>
 </nav>
 
+<?php
+include_once __DIR__ . '/../../cart_functions.php';
+
+
+?>
+
 <div class="xac-nhan-don-hang">
     <div class="step-current"><span><a href="index.php?quanly=giohang">Giỏ hàng</a></span></div>
     <div class="step"><span><a href="index.php?quanly=vanchuyen">Vận chuyển</a></span></div>
@@ -23,10 +29,13 @@
 
 <?php
 if (isset($_SESSION['cart'])) {
+    // }
+    // if (isset($_SESSION['id_khachhang'])) {
+    //     $loadedCart = loadUserCart($_SESSION['id_khachhang']);
+    //     error_log("Loaded cart for user " . $_SESSION['id_khachhang'] . ": " . print_r($loadedCart, true));
+    //     $_SESSION['cart'] = $loadedCart;
 }
-
 ?>
-
 
 <table class="bang-gio-hang" style="width: 95%; text-align:center; margin: 0 auto; font-family: Montserrat, sans-serif; font-size:14px" border="1" border-collapse:collapse>
     <tr>
@@ -40,7 +49,8 @@ if (isset($_SESSION['cart'])) {
         <th>Quản lý</th>
     </tr>
     <?php
-    if (isset($_SESSION['cart'])) {
+    // if (isset($_SESSION['cart'])) {
+    if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         $i = 0;
         $tongtien = 0;
         foreach ($_SESSION['cart'] as $cart_item) {
@@ -60,7 +70,7 @@ if (isset($_SESSION['cart'])) {
                     <a href="pages/main/themgiohang.php?tru=<?php echo $cart_item['id'] ?>"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a>
                 </td>
                 <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
-                <td><a href="pages/main/themgiohang.php?xoa=<?php echo $cart_item['id'] ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td> 
+                <td><a href="pages/main/themgiohang.php?xoa=<?php echo $cart_item['id'] ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
             </tr>
         <?php
         }
@@ -81,15 +91,25 @@ if (isset($_SESSION['cart'])) {
                 <?php
                 } else {
                 ?>
-                    <p class=""><a href="account.php">Đăng nhập để đặt hàng</a></p>
+                    <p class=""><a href="account.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>">Đăng nhập để đặt hàng</a></p>
+                    <p><a href="index.php?quanly=vanchuyenoff">Mua mà không cần tài khoản<i class="fa fa-hand-o-right" aria-hidden="true"></i></a></p>
+                    <!-- <form method="POST" action="account.php">
+                        <input type="hidden" name="redirect" value="giohang">
+                        <p><a href="#" onclick="this.closest('form').submit(); return false;">Đăng nhập để đặt hàng</a></p>
+                    </form> -->
+
                 <?php
                 }
                 ?>
+
             </td>
         </tr>
     <?php
     } else {
+
     ?>
+
+
         <tr>
             <td colspan="8">Hiện tại giỏ hàng trống</td>
         </tr>

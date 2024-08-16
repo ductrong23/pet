@@ -4,8 +4,11 @@ session_start();
 include "../../admincp/config/config.php";
 require "../../mail/sendmail.php";
 require "../../carbon/autoload.php";
+
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+
+include "../../cart_functions.php";  // Thêm dòng này
 
 $id_khachhang = $_SESSION['id_khachhang'];
 $code_order = rand(0, 9999);
@@ -17,15 +20,15 @@ $sql_get_vanchuyen = mysqli_query($mysqli, "SELECT * FROM tbl_shipping WHERE id_
 $row_get_vanchuyen = mysqli_fetch_array($sql_get_vanchuyen);
 $id_shipping = $row_get_vanchuyen['id_shipping'];
 // =====
-$shipping_address=$row_get_vanchuyen['address'];
+$shipping_address = $row_get_vanchuyen['address'];
 // =====
-$now=Carbon::now('Asia/Ho_Chi_Minh');
+$now = Carbon::now('Asia/Ho_Chi_Minh');
 // =====
-$namedathang=$row_get_vanchuyen['name'];
+$namedathang = $row_get_vanchuyen['name'];
 
-//  INSERT và database
+//  INSERT vào database
 $insert_cart = "INSERT INTO tbl_cart(id_khachhang, code_cart, cart_status, cart_payment, cart_shipping, shipping_address, cart_date, namedathang) 
-VALUE('" . $id_khachhang . "', '" . $code_order . "', 0,'" . $cart_payment . "','" . $id_shipping . "', '" . $shipping_address . "', '".$now."', '".$namedathang."')";
+VALUE('" . $id_khachhang . "', '" . $code_order . "', 0,'" . $cart_payment . "','" . $id_shipping . "', '" . $shipping_address . "', '" . $now . "', '" . $namedathang . "')";
 $cart_query = mysqli_query($mysqli, $insert_cart);
 
 if ($cart_query) {
@@ -49,6 +52,9 @@ if ($cart_query) {
          WHERE id_sanpham='$id_sanpham'";
         mysqli_query($mysqli, $sql_update_soluong);
     }
+
+
+
     $tieude = "BẠN ĐÃ ĐẶT HÀNG THÀNH CÔNG TẠI PETSTORE";
     $noidung = '<p> MÃ ĐƠN HÀNG CỦA BẠN: ' . $code_order . '</p>';
     $noidung .= "<h4> ĐƠN HÀNG ĐÃ ĐẶT BAO GỒM: </h4>";
@@ -64,6 +70,8 @@ if ($cart_query) {
     $mail = new Mailer();
     $mail->dathangmail($tieude, $noidung, $maildathang);
 }
+// Lưu giỏ hàng trống vào cơ sở dữ liệu
+saveUserCart($id_khachhang, array());
 unset($_SESSION['cart']); //    Xoá giỏ hàng khi đã mua
 header('Location: ../../index.php?quanly=camon');
 ?>

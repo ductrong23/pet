@@ -1,7 +1,11 @@
 <!-- <h1>CHI TIẾT SẢN PHẨM</h1> -->
 
 <?php
-$sql_chitiet = "SELECT * FROM tbl_sanpham, tbl_danhmuc WHERE tbl_sanpham.id_danhmuc=tbl_danhmuc.id_danhmuc AND tbl_sanpham.id_sanpham='$_GET[id]' LIMIT 1";
+$sql_chitiet = "SELECT * FROM tbl_sanpham, tbl_danhmuc 
+WHERE tbl_sanpham.id_danhmuc=tbl_danhmuc.id_danhmuc 
+AND tbl_sanpham.id_sanpham='$_GET[id]'
+AND tbl_sanpham.tinhtrang = 1 
+ LIMIT 1";
 $query_chitiet = mysqli_query($mysqli, $sql_chitiet);
 
 while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
@@ -49,7 +53,7 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                 <p>Số lượng sản phẩm: <span style="color:green"><?php echo $row_chitiet['soluong'] ?></span></p>
                 <div class="nut">
                     <p><input type="submit" class="them-gio-hang" name="themgiohang" value="Thêm vào giỏ"></p>
-                    <!-- <p><input type="submit" class="mua-hang" name="themgiohang" value="Mua ngay"></p> -->
+                    <!-- <p><input type="submit" class="them-gio-hang" name="muangay" value="Mua ngay"></p> -->
                 </div>
 
 
@@ -151,7 +155,9 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
 <?php
 $sql_chitiet = "SELECT * FROM tbl_sanpham, tbl_danhmuc 
                 WHERE tbl_sanpham.id_danhmuc=tbl_danhmuc.id_danhmuc 
-                AND tbl_sanpham.id_sanpham='$_GET[id]' LIMIT 1";
+                AND tbl_sanpham.id_sanpham='$_GET[id]'
+                AND tbl_sanpham.tinhtrang = 1 
+                 LIMIT 1";
 $query_chitiet = mysqli_query($mysqli, $sql_chitiet);
 
 $row_chitiet = mysqli_fetch_array($query_chitiet);
@@ -164,6 +170,7 @@ if ($row_chitiet) {
     $sql_lienquan = "SELECT * FROM tbl_sanpham 
                      WHERE id_danhmuc='$id_danhmuc_hientai' 
                      AND id_sanpham != '$_GET[id]' 
+                     AND tbl_sanpham.tinhtrang = 1 
                      ORDER BY id_sanpham DESC LIMIT 5";
     $query_lienquan = mysqli_query($mysqli, $sql_lienquan);
 ?>
@@ -199,6 +206,6 @@ if ($row_chitiet) {
     </ul>
 <?php
 } else {
-    echo "<p>Không tìm thấy chi tiết sản phẩm.</p>";
+    echo "<p >Không tìm thấy chi tiết sản phẩm.</p>";
 }
 ?>

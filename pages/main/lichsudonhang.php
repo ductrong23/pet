@@ -1,11 +1,37 @@
 <?php
-$id_khachhang = $_SESSION['id_khachhang'];
-$sql_lietke_dh = "SELECT * FROM tbl_cart, tbl_dangky 
+// Kiểm tra xem biến $_SESSION['id_khachhang'] có tồn tại không
+if (isset($_SESSION['id_khachhang'])) {
+    $id_khachhang = $_SESSION['id_khachhang'];
+
+    // Thực hiện truy vấn SQL nếu biến id_khachhang tồn tại
+    $id_khachhang = $_SESSION['id_khachhang'];
+    $sql_lietke_dh = "SELECT * FROM tbl_cart, tbl_dangky 
+    WHERE tbl_cart.id_khachhang=tbl_dangky.id_dangky
+    AND tbl_cart.id_khachhang='$id_khachhang' 
+    ORDER BY tbl_cart.id_cart DESC";
+    $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
+} else {
+    // Hiển thị thông báo nếu biến id_khachhang không tồn tại
+    echo '<p style="color: red; text-align: center; font-size: 18px;">
+    Bạn cần đăng nhập để xem lịch sử đơn hàng nếu đã mua hàng bằng tài khoản đăng nhập.<br>
+    Hoặc<br>
+    Bạn có thể xem lịch sử đơn hàng không dùng tài khoản đối với những đơn đã mua bằng phương thức không dùng tài khoản
+    <span><i><a href="index.php?quanly=lichsudonhangoff">Tại đây</a></i></span>
+    </p>';
+    exit;
+}
+?>
+
+
+
+<!-- <?php
+        $id_khachhang = $_SESSION['id_khachhang'];
+        $sql_lietke_dh = "SELECT * FROM tbl_cart, tbl_dangky 
 WHERE tbl_cart.id_khachhang=tbl_dangky.id_dangky
 AND tbl_cart.id_khachhang='$id_khachhang' 
 ORDER BY tbl_cart.id_cart DESC";
-$query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
-?>
+        $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
+        ?> -->
 
 
 <h1 class="title-liet-ke" style="text-align:center; font-size: 32px; color: #123f39; font-family: Montserrat, sans-serif;">ĐƠN HÀNG ĐÃ MUA</h1>
@@ -21,7 +47,7 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
             <th>Số điện thoại</th>
             <th>Ngày đặt hàng</th>
             <!-- <th>Tình trạng</th> -->
-            <th>Quản lý</th>
+            <th></th>
         </tr>
         <?php
         $i = 0;
@@ -47,7 +73,7 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 ?>
             </td> -->
                 <td>
-                    <a href="index.php?quanly=xemdonhang&code=<?php echo $row['code_cart'] ?>">Xem đơn hàng</a> 
+                    <a href="index.php?quanly=xemdonhang&code=<?php echo $row['code_cart'] ?>">Xem đơn hàng</a>
                 </td>
             </tr>
         <?php

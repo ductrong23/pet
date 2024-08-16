@@ -1,7 +1,10 @@
 <?php
 
 //  Lấy sản phẩm
-$sql_pro = "SELECT * FROM tbl_sanpham WHERE tbl_sanpham.id_danhmuc='$_GET[id]' ORDER BY id_sanpham DESC";
+$sql_pro = "SELECT * FROM tbl_sanpham 
+WHERE tbl_sanpham.id_danhmuc='$_GET[id]' 
+AND tbl_sanpham.tinhtrang = 1 
+ORDER BY id_sanpham DESC";
 $query_pro = mysqli_query($mysqli, $sql_pro);
 
 //  Lấy tên danh mục

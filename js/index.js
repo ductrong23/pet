@@ -11,7 +11,7 @@ setInterval(() => {
     i = 0;
   }
   banner_index[i].classList.add("active");
-}, 3000);
+}, 2500);
 
 
 // ===========================CHUYỂN ĐỘNG CONTAINER US TRANG CHỦ=====================================

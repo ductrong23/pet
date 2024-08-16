@@ -14,7 +14,7 @@ while ($row_danhmuc = mysqli_fetch_array($query_danhmuc)) {
     echo "<h3 class='title-danh-muc-tat-ca'>DANH MỤC SẢN PHẨM: " . $tendanhmuc . "</h3>";
 
     // Lấy các sản phẩm thuộc danh mục
-    $sql_pro = "SELECT * FROM tbl_sanpham WHERE id_danhmuc='$id_danhmuc' ORDER BY id_sanpham DESC";
+    $sql_pro = "SELECT * FROM tbl_sanpham WHERE id_danhmuc='$id_danhmuc' AND tbl_sanpham.tinhtrang = 1  ORDER BY id_sanpham DESC";
     $query_pro = mysqli_query($mysqli, $sql_pro);
 
     // Hiển thị sản phẩm trong danh mục

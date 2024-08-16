@@ -1,11 +1,13 @@
 /* =======================MAIN================================ */
 
 #main {
-  border: 1px solid #e7e5f5;
+  /* border: 1px solid #e7e5f5; */
   height: auto;
   width: 100%;
   background-color: white;
   /* margin-left: 25px; */
+  margin-top: 130px;
+
 }
 
 /* =======================MAINCONTENT================================ */
@@ -16,10 +18,12 @@
   /* width: 83%; */
   width: 100%;
   /* background-color: whitesmoke; */
-  margin-top: 5px;
+  margin-top: 70px;
   margin-left: 3px;
-  float: right;
+  /* float: right; */
+  margin: 0px auto;
 }
+
 
 .maincontent h3 {
   margin-left: 40px;

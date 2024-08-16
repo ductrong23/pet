@@ -61,8 +61,8 @@ $query_timkiem_sp = mysqli_query($mysqli, $sql_timkiem_sp);
             <td><?php echo ($row['tinhtrang'] == 1) ? 'Kích hoạt' : 'Ẩn'; ?></td>
             <td><?php echo $row['tendanhmuc'] ?></td>
             <td>
-                <a href="?action=quanlysanpham&query=sua&idsanpham=<?php echo $row['id_sanpham'] ?>">Sửa</a> |
-                <a href="modules/quanlysanpham/xuly.php?idsanpham=<?php echo $row['id_sanpham'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xoá</a>
+                <a href="?action=quanlysanpham&query=sua&idsanpham=<?php echo $row['id_sanpham'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                <a href="modules/quanlysanpham/xuly.php?idsanpham=<?php echo $row['id_sanpham'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </td>
         </tr>
     <?php

@@ -9,6 +9,11 @@
   background-color: #e0eddc;
   /*  */
   display: flex;
+
+  position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .header .logo {

@@ -1,3 +1,26 @@
+<?php
+include_once "cart_functions.php";
+
+if (isset($_GET['dangxuat']) && $_GET['dangxuat'] == 1) {
+
+    if (isset($_SESSION['id_khachhang'])) {
+        if (empty($_SESSION['cart'])) {
+            $_SESSION['cart'] = array();
+        }
+        saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
+    }
+    
+    unset($_SESSION['dangky']);
+    unset($_SESSION['cart']);
+    unset($_SESSION['email']);
+    unset($_SESSION['id_khachhang']);
+    header('Location: index.php');
+    exit();
+}
+
+?>
+
+
 <!-- HEADER-->
 <div class="container">
     <div class="header">
@@ -22,7 +45,8 @@
             <ul>
                 <li>
                     <!-- <a href="index.php?quanly=dangky"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i></a> -->
-                    <a href="account.php"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i></a>
+                    <a href="account.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>"><i class="fa fa-user log-in-icon" aria-hidden="true"></i><i class="fa fa-chevron-down log-in-icon" aria-hidden="true" width="5px" height="5px"></i></a>
+                    <!-- <i class="fa fa-user log-in-icon" aria-hidden="true"></i><i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i> -->
                     <ul>
                         <?php
                         if (isset($_SESSION['dangky'])) {
@@ -33,12 +57,14 @@
                         } else {
                         ?>
                             <!-- <li><a href="index.php?quanly=dangky">Đăng ký</a></li> -->
-                            <li><a href="account.php">Đăng nhập</a></li>
+                            <!-- <li><a href="account.php">Đăng nhập</a></li> -->
+                            <li><a href="account.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>">Đăng nhập</a></li>
 
                         <?php
                         }
                         ?>
                         <li><a href="index.php?quanly=lichsudonhang">Lịch sử đơn hàng</a></li>
+                        <li><a href="index.php?quanly=lichsudonhangoff">Lịch sử đơn hàng không dùng tài khoản</a></li>
                     </ul>
                 </li>
 

@@ -1,6 +1,8 @@
+<!-- ĐĂNG KÝ -->
 <?php
 session_start();
 include "admincp/config/config.php";
+include_once "cart_functions.php";
 
 if (isset($_POST['dangky'])) {
     $tenkhachhang = $_POST['hovaten'];
@@ -8,17 +10,172 @@ if (isset($_POST['dangky'])) {
     $dienthoai = $_POST['dienthoai'];
     $matkhau = md5($_POST['matkhau']);
     $diachi = $_POST['diachi'];
-    $sql_dangky = mysqli_query($mysqli, "INSERT INTO tbl_dangky(tenkhachhang, email, diachi, matkhau, dienthoai) VALUE('" . $tenkhachhang . "','" . $email . "','" . $diachi . "','" . $matkhau . "','" . $dienthoai . "')");
-    if ($sql_dangky) {
-        echo '<p style="color: green">Đăng ký thành công<p>';
-        $_SESSION['dangky'] = $tenkhachhang;
-        $_SESSION['email'] = $email;
-        $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
-        // header('Location: index.php?quanly=gioithieu');
-        header('Location: account.php');
+
+    // $sql_dangky = mysqli_query($mysqli, "INSERT INTO tbl_dangky(tenkhachhang, email, diachi, matkhau, dienthoai) 
+    // VALUE('" . $tenkhachhang . "','" . $email . "','" . $diachi . "','" . $matkhau . "','" . $dienthoai . "')");
+    // if ($sql_dangky) {
+    //     echo '<script>alert("Đăng ký tài khoản thành công");</script>';
+
+    //     $_SESSION['dangky'] = $tenkhachhang;
+    //     $_SESSION['email'] = $email;
+    //     $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
+
+    // =============================
+    if (isset($_POST['dangky'])) {
+        $tenkhachhang = $_POST['hovaten'];
+        $email = $_POST['email'];
+        $dienthoai = $_POST['dienthoai'];
+        $matkhau = md5($_POST['matkhau']);
+        $diachi = $_POST['diachi'];
+
+        // Xóa ký tự đặc biệt để tránh SQL Injection
+        $tenkhachhang = mysqli_real_escape_string($mysqli, $tenkhachhang);
+        $email = mysqli_real_escape_string($mysqli, $email);
+        $dienthoai = mysqli_real_escape_string($mysqli, $dienthoai);
+        $matkhau = mysqli_real_escape_string($mysqli, $matkhau);
+        $diachi = mysqli_real_escape_string($mysqli, $diachi);
+
+        // Kiểm tra xem email đã tồn tại chưa
+        $sql_check_email = "SELECT * FROM tbl_dangky WHERE email = '$email'";
+        $result_check = mysqli_query($mysqli, $sql_check_email);
+
+        if (mysqli_num_rows($result_check) > 0) {
+            // Nếu email đã tồn tại
+            echo '<script>alert("Email đã được sử dụng. Vui lòng chọn email khác.");</script>';
+        } else {
+            // Nếu email chưa tồn tại, thực hiện đăng ký
+            $sql_dangky = "INSERT INTO tbl_dangky (tenkhachhang, email, diachi, matkhau, dienthoai) 
+                           VALUES ('$tenkhachhang', '$email', '$diachi', '$matkhau', '$dienthoai')";
+            $result_dangky = mysqli_query($mysqli, $sql_dangky);
+
+            if ($result_dangky) {
+                echo '<script>alert("Đăng ký tài khoản thành công");</script>';
+
+                $_SESSION['dangky'] = $tenkhachhang;
+                $_SESSION['email'] = $email;
+                $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
+
+                // Khởi tạo giỏ hàng trống cho người dùng mới
+                $_SESSION['cart'] = array();
+                saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
+
+                // Lấy giá trị của redirect_url từ GET (nếu có)
+                $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : 'index.php?quanly=dangnhap';
+
+                // Chuyển hướng đến trang đăng nhập với redirect_url
+                header('Location: account.php?redirect_url=' . urlencode($redirect_url));
+                exit();
+            } else {
+                echo '<script>alert("Đăng ký tài khoản không thành công. Vui lòng thử lại.");</script>';
+            }
+        }
+
+        // Đóng kết nối
+        mysqli_free_result($result_check);
+    }
+    //   ====================================== 
+
+
+    // Kiểm tra xem email đã tồn tại chưa
+    $sql_check_email = "SELECT * FROM tbl_dangky WHERE email = ?";
+    $stmt_check = $mysqli->prepare($sql_check_email);
+    $stmt_check->bind_param('s', $email);
+    $stmt_check->execute();
+    $stmt_check->store_result();
+
+    if ($stmt_check->num_rows > 0) {
+        // Nếu email đã tồn tại
+        echo '<script>alert("Email đã được sử dụng. Vui lòng chọn email khác.");</script>';
+    } else {
+        // Nếu email chưa tồn tại, thực hiện đăng ký
+        $sql_dangky = "INSERT INTO tbl_dangky (tenkhachhang, email, diachi, matkhau, dienthoai) 
+                       VALUES (?, ?, ?, ?, ?)";
+        $stmt_dangky = $mysqli->prepare($sql_dangky);
+        $stmt_dangky->bind_param('sssss', $tenkhachhang, $email, $diachi, $matkhau, $dienthoai);
+
+        if ($stmt_dangky->execute()) {
+            echo '<script>alert("Đăng ký tài khoản thành công");</script>';
+
+            $_SESSION['dangky'] = $tenkhachhang;
+            $_SESSION['email'] = $email;
+            $_SESSION['id_khachhang'] = $mysqli->insert_id;
+
+
+            // Khởi tạo giỏ hàng trống cho người dùng mới
+            $_SESSION['cart'] = array();
+            saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
+
+            // header('Location: index.php?quanly=dangnhap');
+            // exit();
+
+
+            // Lấy giá trị của redirect_url từ GET (nếu có)
+            $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : 'index.php?quanly=dangnhap';
+
+            // Chuyển hướng đến trang đăng nhập với redirect_url
+            header('Location: account.php?redirect_url=' . urlencode($redirect_url));
+            exit();
+        }
     }
 }
 ?>
+
+
+<!-- ĐĂNG NHẬP -->
+<?php
+if (isset($_POST['dangnhap'])) {
+    $email = $_POST['email'];
+    $matkhau = md5($_POST['password']);
+    $sql = "SELECT * FROM tbl_dangky 
+    WHERE email='" . $email . "' 
+    AND matkhau='" . $matkhau . "' LIMIT 1";
+    $row = mysqli_query($mysqli, $sql);
+    $count = mysqli_num_rows($row);
+    if ($count > 0) {
+        $row_data = mysqli_fetch_array($row);
+        $_SESSION['dangky'] = $row_data['tenkhachhang'];
+        $_SESSION['email'] = $row_data['email'];
+        $_SESSION['id_khachhang'] = $row_data['id_dangky'];
+
+        // Gọi hàm loadUserCart khi người dùng đăng nhập
+        if (isset($_SESSION['id_khachhang'])) {
+            $userId = $_SESSION['id_khachhang'];
+            $savedCart = loadUserCart($userId);
+            if (!empty($savedCart)) {
+                $_SESSION['cart'] = $savedCart;
+            } else {
+                $_SESSION['cart'] = array(); // Khởi tạo giỏ hàng nếu không có dữ liệu
+            }
+        }
+
+        // Kiểm tra và sử dụng URL redirect
+        if (!empty($_POST['redirect_url'])) {
+            // Lấy giá trị của redirect_url từ POST
+            $redirect_url = $_POST['redirect_url'];
+            // Tách đường dẫn và query string từ URL
+            $parsed_url = parse_url($redirect_url);
+            // Loại bỏ phần tiền tố "/project/" nếu có
+            $path = $parsed_url['path'];
+            if (strpos($path, '/project/') === 0) {
+                $path = substr($path, strlen('/project/'));
+            }
+            // Ghép lại đường dẫn và query string
+            $path_and_query = $path . (isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '');
+            // Điều hướng đến đường dẫn mới
+            header("Location: " . $path_and_query);
+            exit();
+        }
+
+        // Mặc định điều hướng đến trang giới thiệu
+        header('Location: index.php?quanly=gioithieu');
+        exit();
+    } else {
+        echo '<script>alert("Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!");</script>';
+    }
+}
+
+?>
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -28,53 +185,31 @@ if (isset($_POST['dangky'])) {
 <title>PetStore - Đăng nhập | Đăng ký</title>
 
 
-
-
-<!-- ĐĂNG NHẬP -->
-<?php
-
-if (isset($_POST['dangnhap'])) {
-    $email = $_POST['email'];
-    $matkhau = md5($_POST['password']);
-    $sql = "SELECT * FROM tbl_dangky WHERE email='" . $email . "' AND matkhau='" . $matkhau . "' LIMIT 1";
-    $row = mysqli_query($mysqli, $sql);
-    $count = mysqli_num_rows($row);
-    if ($count > 0) {
-        $row_data = mysqli_fetch_array($row);
-        $_SESSION['dangky'] = $row_data['tenkhachhang'];
-        $_SESSION['email'] = $row_data['email'];
-        $_SESSION['id_khachhang'] = $row_data['id_dangky'];
-
-        // header('Location: index.php?quanly=giohang');
-        header('Location: index.php?quanly=gioithieu');
-    } else {
-        echo '<h3>Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!</h3>';
-    }
-}
-
-
-
-?>
 <div class="container" id="container">
     <div class="form-container sign-in">
-        <form method="POST" autocomplete="off">
+        <form method="POST" autocomplete="off" id="form-login">
+            <!-- <input type="hidden" name="redirect_url" value="<?php echo isset($_GET['redirect_url']) ? htmlspecialchars($_GET['redirect_url']) : ''; ?>"> -->
+
             <h1 class="form-heading">Đăng nhập</h1>
+
             <p class="form-desc container-p">Cùng nhau mua sắm trực tuyến tại <strong>PETSTORE</strong> ❤️</p>
             <div class="form-group">
                 <label class="form-label">Email</label>
-                <input name="email" type="email" id="username" placeholder="Ví dụ: abc@gmail.com" class="form-control">
+                <input name="email" type="email" id="email-login" placeholder="Ví dụ: abc@gmail.com" class="form-control">
                 <span class="form-message"></span>
             </div>
             <div class="form-group">
                 <label class="form-label">Mật khẩu</label>
-                <input name="password" type="password" id="password" placeholder="Nhập mật khẩu tại đây" class="form-control">
-                <i class="fa-solid fa-eye-slash hide-icon"></i>
+                <input name="password" type="password" id="password-login" placeholder="Nhập mật khẩu tại đây" class="form-control">
                 <span class="form-message"></span>
+                <i class="fa-solid fa-eye-slash hide-icon"></i>
             </div>
             <div class="remember-forgot">
                 <label for=""><input type="checkbox"> Lưu mật khẩu</label>
                 <a href="#" class="">Quên mật khẩu?</a>
             </div>
+
+            <input type="hidden" name="redirect_url" value="<?php echo isset($_POST['redirect_url']) ? htmlspecialchars($_POST['redirect_url']) : (isset($_GET['redirect_url']) ? htmlspecialchars($_GET['redirect_url']) : ''); ?>">
 
             <button type="submit" name="dangnhap" class="form-submit">ĐĂNG NHẬP</button>
 
@@ -92,10 +227,10 @@ if (isset($_POST['dangnhap'])) {
         </form>
     </div>
 
-
     <div class="form-container sign-up">
-        <form action="" method="POST" autocomplete="off">
+        <form action="" method="POST" autocomplete="off" id="form-register">
             <h1 class="form-heading">Đăng ký</h1>
+
             <p class="form-desc container-p">Cùng nhau mua sắm trực tuyến tại <strong>PETSTORE</strong> ❤️</p>
             <div class="form-group-double">
                 <div class="grid wide">
@@ -110,7 +245,7 @@ if (isset($_POST['dangnhap'])) {
                         <div class="col l-6">
                             <div class="form-group">
                                 <label class="form-label">Email</label>
-                                <input name="email" type="text" id="email" placeholder="Nhập email tại đây" class="form-control">
+                                <input name="email" type="text" id="email-register" placeholder="Nhập email tại đây" class="form-control">
                                 <span class="form-message"></span>
                             </div>
                         </div>
@@ -145,19 +280,19 @@ if (isset($_POST['dangnhap'])) {
                         <div class="col l-6">
                             <div class="form-group">
                                 <label class="form-label">Mật khẩu</label>
-                                <input name="matkhau" type="password" id="password" placeholder="Nhập mật khẩu" class="form-control">
-                                <i class="fa-solid fa-eye-slash hide-icon"></i>
+                                <input name="matkhau" type="password" id="password-register" placeholder="Nhập mật khẩu" class="form-control">
                                 <span class="form-message"></span>
+                                <i class="fa-solid fa-eye-slash hide-icon"></i>
                             </div>
                         </div>
-                        <!-- <div class="col l-6">
+                        <div class="col l-6">
                             <div class="form-group">
                                 <label class="form-label">Nhập lại mật khẩu</label>
                                 <input type="password" id="password_confirmation" placeholder="Nhập lại mật khẩu" class="form-control">
-                                <i class="fa-solid fa-eye-slash hide-icon confirm"></i>
                                 <span class="form-message"></span>
+                                <i class="fa-solid fa-eye-slash hide-icon confirm"></i>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,66 +316,148 @@ if (isset($_POST['dangnhap'])) {
     </div>
 </div>
 
-<script src="js/account.js"></script>
-<script src="js/validator.js"></script>
-<script>
-    const textareaElement = document.getElementById('note');
-    const numberCharacterElement = document.getElementById('number-character');
-    textareaElement.addEventListener('input', function() {
-        handleChangeTextArea(this);
-    });
-    const handleChangeTextArea = (textarea) => {
-        let characters = textarea.value.length;
-        numberCharacterElement.innerHTML = `${characters}/200`
-    }
-</script>
+<!-- Chuyển động giữa register và login -->
+<!-- Ẩn Hiện eye -->
+<script src="js/kiemtraaccount.js"></script>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mong muốn của chúng ta
-        Validator({
-            form: '#form-1',
-            formGroupSelector: '.form-group',
-            errorSelector: '.form-message',
-            rules: [
-                Validator.isRequired('#username', '(*) Tên đăng nhập không được để trống'),
-                Validator.isRequired('#password', '(*) Mật khẩu không được để trống'),
-            ],
-            // onSubmit: function(data) {
-            //     // Call API
-            //     console.log(data);
-            // }
-        });
+        // Xử lý form đăng nhập
+        const formLogin = document.getElementById('form-login');
+        if (formLogin) {
+            formLogin.addEventListener('submit', function(event) {
+                const email = document.getElementById('email-login').value.trim();
+                const password = document.getElementById('password-login').value.trim();
+                let isValid = true;
 
-        Validator({
-            form: '#form-2',
-            formGroupSelector: '.form-group',
-            errorSelector: '.form-message',
-            rules: [
-                Validator.isRequired('#fullname', '(*) Họ và tên không được để trống'),
-                Validator.isRequired('#email', '(*) Email không được để trống'),
-                Validator.isEmail('#email', '(*) Email không đúng định dạng'),
-                Validator.isRequired("#nationality", "Vui lòng chọn quốc tịch"),
-                Validator.isRequired('#phone-number', '(*) Số điện thoại không được để trống'),
-                Validator.isPhoneNumber('#phone-number', '(*) Số điện thoại không đúng định dạng'),
-                Validator.isRequired('#address', '(*) Địa chỉ không được để trống'),
-                Validator.isRequired('input[name="gender"]', '(*) Chọn giới tính'),
-                Validator.isRequired('input[name="hobbies[]"]', '(*) Vui lòng chọn sở thích'),
-                Validator.isRequired('#password', '(*) Mật khẩu không được để trống'),
-                Validator.isPassword('#password'),
-                Validator.isRequired('#password_confirmation', '(*) Mật khẩu nhập lại không được trống'),
-                Validator.isConfirmed('#password_confirmation', function() {
-                    return document.querySelector('#form-2 #password').value;
-                }, 'Mật khẩu nhập lại không chính xác'),
-                Validator.maxLength('#note', 200),
-            ],
-            // onSubmit: function(data) {
-            //     // Call API
-            //     console.log(data);
-            // }
+                clearErrors(formLogin);
+
+                if (email === '') {
+                    showError('email-login', '(*)Vui lòng nhập email.');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showError('email-login', '(*)Email không hợp lệ.');
+                    isValid = false;
+                }
+
+                if (password === '') {
+                    showError('password-login', '(*)Vui lòng nhập mật khẩu.');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        }
+
+        // Xử lý form đăng ký
+        const formRegister = document.getElementById('form-register');
+        if (formRegister) {
+            formRegister.addEventListener('submit', function(event) {
+                const fullname = document.getElementById('fullname').value.trim();
+                const email = document.getElementById('email-register').value.trim();
+                const phoneNumber = document.getElementById('phone-number').value.trim();
+                const address = document.getElementById('address').value.trim();
+                const password = document.getElementById('password-register').value.trim();
+                const passwordConfirm = document.getElementById('password_confirmation').value.trim();
+                let isValid = true;
+
+                clearErrors(formRegister);
+
+                if (fullname === '') {
+                    showError('fullname', '(*)Vui lòng nhập họ và tên.');
+                    isValid = false;
+                } else if (fullname.length < 8) {
+                    showError('fullname', '(*)Họ và tên phải có ít nhất 8 ký tự.');
+                    isValid = false;
+                }
+
+
+                if (email === '') {
+                    showError('email-register', '(*)Vui lòng nhập email.');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showError('email-register', '(*)Email không hợp lệ.');
+                    isValid = false;
+                }
+
+                if (phoneNumber === '') {
+                    showError('phone-number', '(*)Vui lòng nhập số điện thoại.');
+                    isValid = false;
+                } else if (!isValidPhoneNumber(phoneNumber)) {
+                    showError('phone-number', '(*)Số điện thoại không hợp lệ. Phải bắt đầu bằng số 0 và có đủ 10 số.');
+                    isValid = false;
+                }
+
+                if (address === '') {
+                    showError('address', '(*)Vui lòng nhập địa chỉ.');
+                    isValid = false;
+                } else if (address.length < 6) {
+                    showError('address', '(*)Địa chỉ phải có ít nhất 6 ký tự.');
+                    isValid = false;
+                }
+
+                if (password === '') {
+                    showError('password-register', '(*)Vui lòng nhập mật khẩu.');
+                    isValid = false;
+                } else if (!isValidPassword(password)) {
+                    showError('password-register', '(*)Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ số, ký tự đặc biệt và chữ in hoa.');
+                    isValid = false;
+                }
+
+                if (passwordConfirm === '') {
+                    showError('password_confirmation', '(*)Vui lòng nhập lại mật khẩu.');
+                    isValid = false;
+                } else if (password !== passwordConfirm) {
+                    showError('password_confirmation', '(*)Mật khẩu không khớp.');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+
+            // Thêm sự kiện input để xóa lỗi khi người dùng nhập thông tin
+        const inputs = formRegister.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                clearError(this.id);
+            });
         });
+        }
+
+        function showError(inputId, message) {
+            const errorElement = document.querySelector(`#${inputId} + .form-message`);
+            console.log(inputId, errorElement, message);
+            if (errorElement) {
+                errorElement.textContent = message;
+            }
+        }
+
+        function clearErrors(form) {
+            const errorMessages = form.querySelectorAll('.form-message');
+            errorMessages.forEach(element => {
+                element.textContent = '';
+            });
+        }
+
+        function isValidEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function isValidPhoneNumber(phoneNumber) {
+            const re = /^0\d{9}$/;
+            return re.test(phoneNumber);
+        }
+
+        function isValidPassword(password) {
+            // Ít nhất 8 ký tự, có chữ số, ký tự đặc biệt, và chữ in hoa
+            const re = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+            return re.test(password);
+        }
     });
 </script>
-
-</body>
-
-</html>

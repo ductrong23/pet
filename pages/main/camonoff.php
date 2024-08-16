@@ -8,7 +8,7 @@
     <div class="loi-cam-on">
         <h1>Cảm ơn bạn đã mua hàng tại PetStore!</h1>
         <p>Đơn hàng của bạn đã được xác nhận và sẽ sớm được xử lý.</p>
-        <p>Bạn có thể xem lại đơn hàng đã đặt <span><i><a href="index.php?quanly=lichsudonhang">Tại đây</a></i></span></p> 
+        <p>Bạn có thể xem lại đơn hàng đã đặt <span><i><a href="index.php?quanly=lichsudonhangoff">Tại đây</a></i></span></p> 
         <p>Nếu bạn có bất kỳ câu hỏi nào, xin vui lòng liên hệ với chúng tôi <span><i><a href="index.php?quanly=lienhe">Tại đây</a></i></span></p>
     </div>
 

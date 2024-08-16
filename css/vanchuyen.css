@@ -77,11 +77,20 @@ button.nut-cap-nhat-thong-tin {
   color: white;
   padding: 15px;
   border-radius: 15px;
-  width: 215px;
+  width: 235px;
   font-size: 15px;
   border: none;
 }
 
 button.nut-cap-nhat-thong-tin:hover {
   background-color: #123f39;
+}
+
+
+/* Thông báo lỗi */
+.form-message {
+  color: red;
+  font-size: 15px;
+  margin-top: 5px;
+  font-style: italic;
 }

@@ -2,16 +2,9 @@
 <?php
 session_start();
 include("../../admincp/config/config.php");
-include "../../cart_functions.php";
 
 function themSanPhamVaoGio($id, $soluong = 1)
 {
-
-    // Đảm bảo $_SESSION['cart'] được khởi tạo
-    if (empty($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
-    }
-
     global $mysqli;
     $sql = "SELECT * FROM tbl_sanpham WHERE id_sanpham='" . $id . "' LIMIT 1";
     $query = mysqli_query($mysqli, $sql);
@@ -40,12 +33,6 @@ function themSanPhamVaoGio($id, $soluong = 1)
             $_SESSION['cart'] = $new_product;
         }
     }
-
-    //  LƯU SẢN PHẨM ĐƯỢC THÊM VÀO GIỎ HÀNG
-    if (isset($_SESSION['id_khachhang'])) {
-        $userId = $_SESSION['id_khachhang'];
-        saveUserCart($userId, $_SESSION['cart']);
-    }
 }
 
 
@@ -60,35 +47,30 @@ function themSanPhamVaoGio($id, $soluong = 1)
 
 
 //  NÚT THÊM GIỎ HÀNG => ĐIỀU HƯỚNG VỀ GIỎ HÀNG
+
 if (isset($_POST['themgiohang'])) {
     $id = isset($_POST['idsanpham']) ? $_POST['idsanpham'] : $_GET['idsanpham'];
     themSanPhamVaoGio($id);
+
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }
 
 //  ICON GIỎ HÀNG => VẪN Ở TRANG INDEX
+
 if (isset($_GET['idsanpham'])) {
     $id = isset($_POST['idsanpham']) ? $_POST['idsanpham'] : $_GET['idsanpham'];
     themSanPhamVaoGio($id);
+
     header('Location: ../../index.php');
     exit();
 }
 
-// //  NÚT MUA NGAY => ĐIỀU HƯỚNG VỀ THÔNG TIN VẬN CHUYỂN
-// if (isset($_POST['muangay'])) {
-//     $id = isset($_POST['idsanpham']) ? $_POST['idsanpham'] : $_GET['idsanpham'];
-//     themSanPhamVaoGio($id);
-//     header('Location: ../../index.php?quanly=vanchuyenoff');
-//     exit();
-// }
+
 
 //  Thêm số lượng sản phẩm trong giỏ hàng
 if (isset($_GET['cong'])) {
     $id = $_GET['cong'];
-
-    $product = array(); // Khởi tạo mảng rỗng
-
     foreach ($_SESSION['cart'] as $cart_item) {
         if ($cart_item['id'] != $id) {
             // $product = [];
@@ -104,11 +86,6 @@ if (isset($_GET['cong'])) {
     }
     $_SESSION['cart'] = $product;
 
-
-    if (isset($_SESSION['id_khachhang'])) {
-        saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
-        // error_log("Saved cart after adding product: " . print_r($_SESSION['cart'], true));
-    }
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }
@@ -116,9 +93,6 @@ if (isset($_GET['cong'])) {
 //  Trừ số lượng sản phẩm trong giỏ hàng
 if (isset($_GET['tru'])) {
     $id = $_GET['tru'];
-
-    $product = array(); // Khởi tạo mảng rỗng
-
     foreach ($_SESSION['cart'] as $cart_item) {
         if ($cart_item['id'] != $id) {
             // $product = [];
@@ -134,10 +108,6 @@ if (isset($_GET['tru'])) {
     }
     $_SESSION['cart'] = $product;
 
-    if (isset($_SESSION['id_khachhang'])) {
-        saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
-        // error_log("Saved cart after adding product: " . print_r($_SESSION['cart'], true));
-    }
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }
@@ -145,9 +115,6 @@ if (isset($_GET['tru'])) {
 //  Xoá sản phẩm trong giỏ hàng
 if (isset($_SESSION['cart']) && isset($_GET['xoa'])) {
     $id = $_GET['xoa'];
-
-    $product = array(); // Khởi tạo mảng rỗng
-
     foreach ($_SESSION['cart'] as $cart_item) {
         if ($cart_item['id'] != $id) {
             // $product = [];
@@ -155,24 +122,14 @@ if (isset($_SESSION['cart']) && isset($_GET['xoa'])) {
         }
     }
     $_SESSION['cart'] = $product;
-
-    if (isset($_SESSION['id_khachhang'])) {
-        saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
-        // error_log("Saved cart after adding product: " . print_r($_SESSION['cart'], true));
-    }
-
+ 
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }
 
 //  Xoá tất cả sản phẩm trong giỏ hàng
 if (isset($_GET['xoatatca']) && $_GET['xoatatca'] == 1) {
-
-    if (isset($_SESSION['id_khachhang'])) {
-        saveUserCart($_SESSION['id_khachhang'], array()); // Save an empty cart
-    }
     unset($_SESSION['cart']);
-
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }
