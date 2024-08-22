@@ -12,13 +12,10 @@ if (isset($_SESSION['id_khachhang'])) {
     $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
 } else {
     // Hiển thị thông báo nếu biến id_khachhang không tồn tại
-    echo '<p style="color: red; text-align: center; font-size: 18px;">
-    Bạn cần đăng nhập để xem lịch sử đơn hàng nếu đã mua hàng bằng tài khoản đăng nhập.<br>
-    Hoặc<br>
-    Bạn có thể xem lịch sử đơn hàng không dùng tài khoản đối với những đơn đã mua bằng phương thức không dùng tài khoản
-    <span><i><a href="index.php?quanly=lichsudonhangoff">Tại đây</a></i></span>
+    echo '<p style="text-align:center; color: #123f39; font-family: Montserrat, sans-serif;">
+   Bạn không có quyền xem lịch sử đơn hàng (TK) này nếu chưa đăng nhập. Hãy xem lịch sử đơn hàng dành cho bạn <span><i><a href="index.php?quanly=lichsudonhangoff">Tại đây</a></i></span>.
     </p>';
-    exit;
+    exit();
 }
 ?>
 

@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 include "../../admincp/config/config.php";
@@ -11,6 +9,32 @@ use Carbon\CarbonInterval;
 
 $code_order = rand(0, 9999);
 $cart_payment = $_POST['payment'];
+
+// Kiểm tra thời gian hết hạn trước khi thực hiện mua hàng
+function kiemTraMuaNgayHetHan()
+{
+    if (isset($_SESSION['muangay_time'])) {
+        $hienTai = time();
+        $thoiGianTao = $_SESSION['muangay_time'];
+        $thoiHan = 90; // 90 giây
+
+        if (($hienTai - $thoiGianTao) > $thoiHan) {
+            unset($_SESSION['muangay']);
+            unset($_SESSION['muangay_time']);
+            return false;
+        }
+    }
+    return true;
+}
+
+// Kiểm tra trạng thái mua ngay
+if (!kiemTraMuaNgayHetHan()) {
+    // Thông báo hết thời gian
+    echo '<script>alert("Thời gian mua hàng đã hết, vui lòng thêm sản phẩm lại.")</script>';
+    header('Location: ../../index.php');
+    exit();
+}
+
 
 // Lấy ID thông tin vận chuyển từ session
 if (isset($_SESSION['shippingoff_id'])) {
@@ -29,8 +53,13 @@ if (isset($_SESSION['shippingoff_id'])) {
     $cart_query = mysqli_query($mysqli, $insert_cart);
 
     if ($cart_query) {
+
+        // Xác định giỏ hàng để xử lý
+        $cart_to_process = isset($_SESSION['muangay']) ? $_SESSION['muangay'] : $_SESSION['cart'];
+
         // Thêm giỏ hàng chi tiết vào bảng `tbl_cart_detailsoff`
-        foreach ($_SESSION['cart'] as $key => $value) {
+        // foreach ($_SESSION['cart'] as $key => $value) {
+        foreach ($cart_to_process as $key => $value) {
             $id_sanpham = $value['id'];
             $soluong = $value['soluong']; // Số lượng sản phẩm mua
             $insert_order_details = "INSERT INTO tbl_cart_detailsoff(id_sanpham, code_cart, soluongmua) 
@@ -67,9 +96,20 @@ if (isset($_SESSION['shippingoff_id'])) {
         // $mail = new Mailer();
         // $mail->dathangmail($tieude, $noidung, $maildathang);
 
+
+        // Kiểm tra nguồn gốc đặt hàng và thực hiện unset tương ứng
+        if (isset($_SESSION['muangay'])) {
+            unset($_SESSION['muangay']);
+            unset($_SESSION['shippingoff_id']);
+        } else {
+            unset($_SESSION['cart']); // Xóa giỏ hàng khi đã mua từ giỏ hàng
+            unset($_SESSION['shippingoff_id']);
+        }
+
         // Xóa giỏ hàng sau khi đặt hàng thành công
-        unset($_SESSION['cart']);
-        unset($_SESSION['shippingoff_id']);
+        // unset($_SESSION['cart']);
+        // unset($_SESSION['shippingoff_id']);
+
         header('Location: ../../index.php?quanly=camonoff');
     } else {
         echo '<script>alert("Đặt hàng không thành công. Vui lòng thử lại.")</script>';
@@ -78,4 +118,3 @@ if (isset($_SESSION['shippingoff_id'])) {
     echo '<script>alert("Không tìm thấy thông tin vận chuyển. Vui lòng thử lại.")</script>';
     header('Location: ../../index.php?quanly=vanchuyenoff');
 }
-?>

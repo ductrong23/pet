@@ -15,6 +15,7 @@
 .form-group label {
   font-weight: bold;
   /* font-variant: small-caps; */
+  font-family: Montserrat, sans-serif;
 }
 
 .form-control:focus {
@@ -86,11 +87,24 @@ button.nut-cap-nhat-thong-tin:hover {
   background-color: #123f39;
 }
 
-
 /* Thông báo lỗi */
 .form-message {
   color: red;
   font-size: 15px;
   margin-top: 5px;
   font-style: italic;
+}
+
+/* ĐẾM NGƯỢC */
+#countdown {
+  position: fixed; /* Đặt phần tử ở vị trí cố định */
+  top: 130px;
+  right: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 24px;
+  font-weight: bold;
 }

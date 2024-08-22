@@ -68,7 +68,9 @@
             include("main/xemdonhangoff.php");
         }elseif ($tam == 'camonoff') {
             include("main/camonoff.php");
-        } else {
+        }
+      
+        else {
             include("main/index.php");
         }
         ?>

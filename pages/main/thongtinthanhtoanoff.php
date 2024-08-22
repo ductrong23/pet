@@ -10,6 +10,52 @@
 $currentStep = 'thongtinthanhtoan';
 ?>
 
+<?php
+// Kiểm tra thời gian hết hạn trước khi thực hiện mua hàng
+function kiemTraMuaNgayHetHan()
+{
+    if (isset($_SESSION['muangay_time'])) {
+        $hienTai = time();
+        $thoiGianTao = $_SESSION['muangay_time'];
+        $thoiHan = 90;
+
+        if (($hienTai - $thoiGianTao) > $thoiHan) {
+            unset($_SESSION['muangay']);
+            unset($_SESSION['muangay_time']);
+            return false;
+        }
+    }
+    return true;
+}
+if (isset($_SESSION['muangay'])) {
+    // Nếu tồn tại session['muangay'], kiểm tra thời gian hết hạn và tính thời gian còn lại
+    if (kiemTraMuaNgayHetHan()) {
+        $cart_to_display = $_SESSION['muangay'];
+        $timeNow = time();
+        $timeStart = $_SESSION['muangay_time'];
+        $timeLimit = 90; // Thay đổi thời gian nếu cần
+        $timeRemaining = $timeLimit - ($timeNow - $timeStart);
+        if ($timeRemaining <= 0) {
+            $timeRemaining = 0;
+        }
+    } else {
+        $cart_to_display = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+        // echo '<script>alert("Thời gian mua hàng đã hết, vui lòng thêm sản phẩm lại.")</script>';
+        // header('Location: ../../index.php');
+        // exit();
+    }
+} else {
+    $cart_to_display = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+    $timeRemaining = 0; // Không hiển thị đếm ngược nếu không có session['muangay']
+}
+?>
+
+<?php if (isset($_SESSION['muangay'])): ?>
+    <div id="countdown" data-time-remaining="<?php echo $timeRemaining; ?>" style="font-size: 24px; font-weight: bold;"></div>
+    <script src="js/dongho.js"></script>
+<?php endif; ?>
+
+
 <form action="pages/main/xulythanhtoanoff.php" method="POST">
     <div class="infor-cart">
         <div class="thong-tin-thanh-toan">
@@ -60,10 +106,12 @@ $currentStep = 'thongtinthanhtoan';
                     <th>Thành tiền</th>
                 </tr>
                 <?php
-                if (isset($_SESSION['cart'])) {
+                // if (isset($_SESSION['cart'])) {
+                if (isset($cart_to_display)) {
                     $i = 0;
                     $tongtien = 0;
-                    foreach ($_SESSION['cart'] as $cart_item) {
+                    // foreach ($_SESSION['cart'] as $cart_item) {
+                    foreach ($cart_to_display as $cart_item) {
                         $thanhtien = $cart_item['giasp'] * $cart_item['soluong'];
                         $tongtien += $thanhtien;
                         $i++;

@@ -33,7 +33,10 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
         <div class="hinh-anh-san-pham">
             <img src="admincp/modules/quanlysanpham/uploads/<?php echo $row_chitiet['hinhanh'] ?>" alt="" width="100%">
         </div>
-        <form method="POST" action="pages/main/themgiohang.php?idsanpham=<?php echo $row_chitiet['id_sanpham'] ?>">
+        <!-- <form method="POST" action="pages/main/themgiohang.php?idsanpham=<?php echo $row_chitiet['id_sanpham'] ?>&action=muangay"> -->
+
+        <form method="POST" action="pages/main/themgiohang.php">
+            <input type="hidden" name="idsanpham" value="<?php echo $row_chitiet['id_sanpham'] ?>">
             <div class="chi-tiet-san-pham">
                 <h2><?php echo $row_chitiet['tensanpham'] ?></h2>
                 <div class="danh-gia">
@@ -53,9 +56,8 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                 <p>Số lượng sản phẩm: <span style="color:green"><?php echo $row_chitiet['soluong'] ?></span></p>
                 <div class="nut">
                     <p><input type="submit" class="them-gio-hang" name="themgiohang" value="Thêm vào giỏ"></p>
-                    <!-- <p><input type="submit" class="them-gio-hang" name="muangay" value="Mua ngay"></p> -->
+                    <p><input type="submit" class="mua-hang" name="muangay" value="Mua ngay"></p>
                 </div>
-
 
 
             </div>
@@ -102,7 +104,7 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
     <h2>Đánh giá sản phẩm</h2>
     <div class="rating-summary">
         <div class="overall-rating">
-            <span class="rating-number">4.9  <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></span>
+            <span class="rating-number">4.9 <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></span>
             <div class="stars">
                 <div class="filled-stars" style="width: 84%;"></div>
             </div>

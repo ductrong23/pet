@@ -1,4 +1,11 @@
 <?php
+
+// Kiểm tra xem người dùng đã đăng nhập chưa
+if (isset($_SESSION['id_khachhang'])) {
+    echo "<p style='text-align:center; color: #123f39; font-family: Montserrat, sans-serif;'>
+    Bạn không có quyền xem lịch sử đơn hàng (NoTK) này. Hãy xem lịch sử đơn hàng của bạn <span><i><a href='index.php?quanly=lichsudonhang'>Tại đây</a></i></span>.</p>";
+    exit; // Dừng thực hiện mã tiếp theo nếu người dùng đã đăng nhập
+}
 // Xử lý tìm kiếm đơn hàng
 if (isset($_POST['timkiem'])) {
     $sodienthoai = $_POST['phone'];
@@ -73,7 +80,7 @@ if (isset($query_order)) {
         </div>
 <?php
     } else {
-        echo "<p>Không tìm thấy đơn hàng nào với số điện thoại này.</p>";
+        echo "<p style='text-align:center; color: #123f39; font-family: Montserrat, sans-serif;' >Không tìm thấy đơn hàng nào với số điện thoại này.</p>";
     }
 }
 ?>

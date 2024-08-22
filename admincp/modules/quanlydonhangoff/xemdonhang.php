@@ -25,6 +25,7 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
             <th>Đơn giá</th>
             <th>Thành tiền</th>
             <th>Hình thức thanh toán</th>
+            <th>Quản lý</th>
         </tr>
         <?php
         $i = 0;
@@ -45,12 +46,21 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 <td><?php echo number_format($row['giasp'], 0, ',', '.') . " đ" ?></td>
                 <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
                 <td><?php echo $row['cart_payment'] ?></td>
+                <td>
+                <a href="modules/quanlydonhangoff/xuly.php?action=delete_product
+                &code=<?php echo $row['code_cart'] ?>
+                &id_cart_detailsoff=<?php echo $row['id_cart_detailsoff'] ?>
+                &id_sanpham=<?php echo $row['id_sanpham'] ?>
+                &soluongmua=<?php echo $row['soluongmua'] ?>"
+                    onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi đơn hàng?');"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+            </td>
             </tr>
         <?php
         }
         ?>
         <tr>
-            <td colspan="7">
+            <td colspan="8">
                 <p style="float: right; font-weight: bolder">Tổng tiền: <?php echo number_format($tongtien, 0, ',', '.') . " đ" ?></p>
             </td>
         </tr>

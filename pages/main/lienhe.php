@@ -32,6 +32,7 @@ while ($dong = mysqli_fetch_array($query_lh)) {
 
 <div>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.2872163456905!2d106.61554297416001!3d10.86574548928853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752b2a11844fb9%3A0xbed3d5f0a6d6e0fe!2zVHLGsOG7nW5nIMSQ4bqhaSBI4buNYyBHaWFvIFRow7RuZyBW4bqtbiBU4bqjaSBUaMOgbmggUGjhu5EgSOG7kyBDaMOtIE1pbmggKFVUSCkgLSBDxqEgc-G7nyAz!5e0!3m2!1svi!2s!4v1722768580222!5m2!1svi!2s" width="100%" height="500px" style="border:0; " allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d21785.60522898571!2d108.86420365367958!3d15.148055199794358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1723953064692!5m2!1svi!2s" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
 </div>
 <div style="text-align: center; margin-top: 10px; font-family: Montserrat, sans-serif;"><strong>70 Tô Ký - Tân Chánh Hiệp - Quận 12</strong></div>
 
@@ -63,7 +64,7 @@ while ($dong = mysqli_fetch_array($query_lh)) {
         </form>
     </div>
     <div class="right-section">
-        <h2  style="text-decoration: underline; float: left">PetStore</h2>
+        <h2 style="text-decoration: underline; float: left">PetStore</h2>
         <div class="clear"></div>
         <div class="contact-info">
             <br>

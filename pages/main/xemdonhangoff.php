@@ -20,7 +20,7 @@ if (isset($_GET['code'])) {
     if (mysqli_num_rows($query_xem_don_hang) > 0) {
 ?>
         <div class="bang-xem-don-hang">
-            <table class="bang-gio-hang" style="width:100%" border="1" style="border-collapse:collapse; font-family: Montserrat, sans-serif;">
+            <table class="bang-gio-hang" style="width:90%; margin: 0 auto" border="1" style="border-collapse:collapse; font-family: Montserrat, sans-serif;">
                 <tr>
                     <th>Mã đơn hàng</th>
                     <th>Tên sản phẩm</th>

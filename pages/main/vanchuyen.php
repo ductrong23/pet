@@ -1,11 +1,60 @@
 <div class="xac-nhan-don-hang">
     <div class="step"><span><a href="index.php?quanly=giohang">Giỏ hàng</a></span></div>
     <div class="step-current"><span><a href="index.php?quanly=vanchuyen">Vận chuyển</a></span></div>
-    <div class="step"><span><a href="index.php?quanly=thongtinthanhtoan">Thanh toán</a></span></div>
+    <div class="step"><span><a href="javascript:void(0);" id="link-nav">Thanh toán</a></span></div>
     <!-- <div class="step"><span><a href="index.php?quanly=donhangdadat">Đơn hàng</a></span></div> -->
 
 </div>
 
+<?php
+// Kiểm tra thời gian hết hạn trước khi thực hiện mua hàng
+function kiemTraMuaNgayHetHan()
+{
+    if (isset($_SESSION['muangay_time'])) {
+        $hienTai = time();
+        $thoiGianTao = $_SESSION['muangay_time'];
+        $thoiHan = 90;
+
+        if (($hienTai - $thoiGianTao) > $thoiHan) {
+            unset($_SESSION['muangay']);
+            unset($_SESSION['muangay_time']);
+            return false;
+        }
+    }
+    return true;
+}
+
+
+if (isset($_SESSION['muangay'])) {
+    // Nếu tồn tại session['muangay'], kiểm tra thời gian hết hạn và tính thời gian còn lại
+    if (kiemTraMuaNgayHetHan()) {
+        $cart_to_display = $_SESSION['muangay'];
+        $timeNow = time();
+        $timeStart = $_SESSION['muangay_time'];
+        $timeLimit = 90; // Thay đổi thời gian nếu cần
+        $timeRemaining = $timeLimit - ($timeNow - $timeStart);
+        if ($timeRemaining <= 0) {
+            $timeRemaining = 0;
+        }
+    } else {
+        $cart_to_display = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+        // echo '<script>
+        // alert("Thời gian mua hàng đã hết, vui lòng thêm sản phẩm lại.")
+        // window.location.href = "index.php";
+        // </script>';
+        // exit();
+    }
+} else {
+    $cart_to_display = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+    $timeRemaining = 0; // Không hiển thị đếm ngược nếu không có session['muangay']
+}
+
+?>
+
+<?php if (isset($_SESSION['muangay'])): ?>
+    <div id="countdown" data-time-remaining="<?php echo $timeRemaining; ?>"></div>
+    <script src="js/dongho.js"></script>
+<?php endif; ?>
 
 <?php
 if (isset($_POST['themvanchuyen'])) {
@@ -58,7 +107,6 @@ if (isset($_POST['themvanchuyen'])) {
             $note = '';
         }
         ?>
-        <br><br>
         <div class="form-group">
             <label class="form-label">Họ và tên</label>
             <input type="text" id="name" name="name" placeholder="Nhập tên người nhận tại đây" value="<?php echo $name ?>" class="form-control">
@@ -98,6 +146,7 @@ if (isset($_POST['themvanchuyen'])) {
 </div>
 
 <script src="js/vanchuyen.js"></script>
+<script src="js/checkvanchuyen.js"></script>
 
 <!-- ================================================ -->
 <div class="bang-gio-hang-thanh-toan">
@@ -112,10 +161,12 @@ if (isset($_POST['themvanchuyen'])) {
             <th>Thành tiền</th>
         </tr>
         <?php
-        if (isset($_SESSION['cart'])) {
+        // if (isset($_SESSION['cart'])) {
+        if (isset($cart_to_display)) {
             $i = 0;
             $tongtien = 0;
-            foreach ($_SESSION['cart'] as $cart_item) {
+            // foreach ($_SESSION['cart'] as $cart_item) {
+            foreach ($cart_to_display as $cart_item) {
                 $thanhtien = $cart_item['giasp'] * $cart_item['soluong'];
                 $tongtien += $thanhtien;
                 $i++;
@@ -127,10 +178,15 @@ if (isset($_POST['themvanchuyen'])) {
 
                     <td><?php echo $cart_item['masp'] ?></td>
                     <td><?php echo number_format($cart_item['giasp'], 0, ',', '.') . " đ" ?></td>
-                    <td>
+                    <!-- <td>
                         <a href="pages/main/themgiohang.php?cong=<?php echo $cart_item['id'] ?>"><i class="fa fa-plus fa-style" aria-hidden="true"></i></a>
                         <?php echo $cart_item['soluong'] ?>
                         <a href="pages/main/themgiohang.php?tru=<?php echo $cart_item['id'] ?>"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a>
+                    </td> -->
+                    <td>
+                        <a href="pages/main/themgiohang.php?cong=<?php echo $cart_item['id']; ?>&redirect=vanchuyen"><i class="fa fa-plus fa-style" aria-hidden="true"></i></a>
+                        <?php echo $cart_item['soluong'] ?>
+                        <a href="pages/main/themgiohang.php?tru=<?php echo $cart_item['id']; ?>&redirect=vanchuyen"><i class="fa fa-minus fa-style" aria-hidden="true"></i></a>
                     </td>
                     <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
 
@@ -148,13 +204,13 @@ if (isset($_POST['themvanchuyen'])) {
                     ?>
                         <!-- <p><a href="pages/main/thanhtoan.php">Đặt hàng</a></p> -->
                         <p class="nut-gio-hang"><a href="index.php?quanly=giohang"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Giỏ hàng</a></p>
-                        <p class="nut-thong-tin-thanh-toan" id="thontinthanhtoan">
-                            <a href="javascript:void(0);" id="thongtinthanhtoan-link">Thông tin thanh toán <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
+                        <p class="nut-thong-tin-thanh-toan" id="thongtinthanhtoan">
+                            <a href="javascript:void(0);" id="link-duoi">Thông tin thanh toán <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
                         </p>
                     <?php
                     } else {
                     ?>
-                        <p><a href="index.php?quanly=dangky">Đăng ký đặt hàng</a></p>
+                        <p><a href="index.php?quanly=vanchuyenoff">Mua ngay<i class="fa fa-hand-o-right" aria-hidden="true"></i></a></p>
                     <?php
                     }
                     ?>

@@ -9,11 +9,12 @@ if (isset($_GET['dangxuat']) && $_GET['dangxuat'] == 1) {
         }
         saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
     }
-    
+
     unset($_SESSION['dangky']);
     unset($_SESSION['cart']);
     unset($_SESSION['email']);
     unset($_SESSION['id_khachhang']);
+    unset($_SESSION['muangay']);
     header('Location: index.php');
     exit();
 }
@@ -45,7 +46,13 @@ if (isset($_GET['dangxuat']) && $_GET['dangxuat'] == 1) {
             <ul>
                 <li>
                     <!-- <a href="index.php?quanly=dangky"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i></a> -->
-                    <a href="account.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>"><i class="fa fa-user log-in-icon" aria-hidden="true"></i><i class="fa fa-chevron-down log-in-icon" aria-hidden="true" width="5px" height="5px"></i></a>
+                    <a href="account.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>"><i class="fa fa-user log-in-icon" aria-hidden="true" style="font-size: x-large; color: #123f39"></i><span>
+                            <span><?php
+                                    if (isset($_SESSION['dangky'])) {
+                                        echo $_SESSION['dangky'];
+                                    }
+                                    ?>
+                            </span><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
                     <!-- <i class="fa fa-user log-in-icon" aria-hidden="true"></i><i class="fa fa-chevron-down" aria-hidden="true" width="5px" height="5px"></i> -->
                     <ul>
                         <?php
@@ -63,15 +70,15 @@ if (isset($_GET['dangxuat']) && $_GET['dangxuat'] == 1) {
                         <?php
                         }
                         ?>
-                        <li><a href="index.php?quanly=lichsudonhang">Lịch sử đơn hàng</a></li>
-                        <li><a href="index.php?quanly=lichsudonhangoff">Lịch sử đơn hàng không dùng tài khoản</a></li>
+                        <li><a href="index.php?quanly=lichsudonhang">Lịch sử đơn hàng (TK)</a></li>
+                        <li><a href="index.php?quanly=lichsudonhangoff">Lịch sử đơn hàng (NoTK)</a></li>
                     </ul>
                 </li>
 
                 <!-- GIỎ HÀNG -->
                 <li>
                     <a href="index.php?quanly=giohang">
-                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        <i class="fa fa-shopping-basket" aria-hidden="true" style="font-size: x-large; color: #123f39"></i>
 
                         <!-- Số lượng sản phẩm trong giỏ-->
                         <?php
@@ -85,6 +92,16 @@ if (isset($_GET['dangxuat']) && $_GET['dangxuat'] == 1) {
 
                         ?>
                     </a>
+                </li>
+
+                <!-- LỊCH SỬ ĐƠN HÀNG -->
+                <li>
+                    <a href="index.php?quanly=lichsudonhang"><i class="fa fa-truck" aria-hidden="true" style="font-size: x-large; color: #123f39"></i><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+                    <ul>
+                        <li><a href="index.php?quanly=lichsudonhang">Lịch sử đơn hàng (TK)</a></li>
+                        <li><a href="index.php?quanly=lichsudonhangoff">Lịch sử đơn hàng (NoTK)</a></li>
+                        </a>
+                    </ul>
                 </li>
             </ul>
         </div>

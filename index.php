@@ -28,11 +28,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
 
-    <script scr="js/xac_nhan.js"></script>
-
-    <!-- <script scr="js/index.js"></script> -->
-
-
     <title>PetStore</title>
 </head>
 
@@ -43,6 +38,7 @@
         session_start();
         // unset($_SESSION['dangky']);
         // session_destroy();
+        // unset ($_SESSION['muangay']);
         include "admincp/config/config.php";
         ?>
 

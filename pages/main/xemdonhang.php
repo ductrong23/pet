@@ -13,8 +13,8 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
 
 
 <h1 class="xem-don-hang" style="text-align: center; font-size: 32px; color: #123f39; font-family: Montserrat, sans-serif;">XEM ĐƠN HÀNG</h1>
-<div class="bang-xem-don-hang">
-    <table class="bang-gio-hang" style="width:100%" border="1" style="border-collapse:collapse; font-family: Montserrat, sans-serif;">
+<div class="bang-xem-don-hang" >
+    <table class="bang-gio-hang" style="width:90%; margin: 0 auto" border="1" style="border-collapse:collapse; font-family: Montserrat, sans-serif;">
         <tr>
             <!-- <th>ID</th> -->
             <th>Mã đơn hàng</th>

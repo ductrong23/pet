@@ -172,20 +172,22 @@ input.them-gio-hang:hover {
 }
 
 input.mua-hang {
-  border: 1px solid #836fff;
+  border: 1px solid #123f39;
   padding: 15px;
   background-color: white;
-  color: #836fff;
+  color: 123f39;
   border-radius: 30px;
   font-family: cursive;
   font-size: medium;
-  margin-left: 50px;
   width: 150px;
+  margin-left: 50px;
   font-family: Lato, sans-serif;
+  animation: fadeInLeft 1.4s ease-out;
+  transition: 0.5s;
 }
 
 input.mua-hang:hover {
-  background-color: #836fff;
+  background-color: #123f39;
   color: white;
   cursor: pointer;
   font-weight: bold;

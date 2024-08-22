@@ -57,6 +57,6 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© Bản quyền thuộc về <a href="index.php"><strong>PetStore</strong></a> | Cung cấp bởi DUCTRONG.PHAM & NHUNGOC.TRANHUYNH</p>
+        <p>© 2024 Bản quyền thuộc về <a href="index.php"><strong>PetStore</strong></a> | Cung cấp bởi <span><strong> DUCTRONG.PHAM & NHUNGOC.TRANHUYNH</strong></span></p>
     </div>
 </footer>

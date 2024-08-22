@@ -8,7 +8,34 @@ require "../../carbon/autoload.php";
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 
-include "../../cart_functions.php";  // Thêm dòng này
+include "../../cart_functions.php";
+
+
+// Kiểm tra thời gian hết hạn trước khi thực hiện mua hàng
+function kiemTraMuaNgayHetHan()
+{
+    if (isset($_SESSION['muangay_time'])) {
+        $hienTai = time();
+        $thoiGianTao = $_SESSION['muangay_time'];
+        $thoiHan = 90;
+
+        if (($hienTai - $thoiGianTao) > $thoiHan) {
+            unset($_SESSION['muangay']);
+            unset($_SESSION['muangay_time']);
+            return false;
+        }
+    }
+    return true;
+}
+
+// Kiểm tra trạng thái mua ngay
+if (!kiemTraMuaNgayHetHan()) {
+    // Thông báo hết thời gian
+    echo '<script>alert("Thời gian mua hàng đã hết, vui lòng thêm sản phẩm lại.")</script>';
+    header('Location: ../../index.php');
+    exit();
+}
+
 
 $id_khachhang = $_SESSION['id_khachhang'];
 $code_order = rand(0, 9999);
@@ -32,8 +59,13 @@ VALUE('" . $id_khachhang . "', '" . $code_order . "', 0,'" . $cart_payment . "',
 $cart_query = mysqli_query($mysqli, $insert_cart);
 
 if ($cart_query) {
+
+    // Xác định giỏ hàng để xử lý
+    $cart_to_process = isset($_SESSION['muangay']) ? $_SESSION['muangay'] : $_SESSION['cart'];
+
     //  Thêm giỏ hàng chi tiết tbl_cart_details
-    foreach ($_SESSION['cart'] as $key => $value) {
+    // foreach ($_SESSION['cart'] as $key => $value) {
+    foreach ($cart_to_process as $key => $value) {
         $id_sanpham = $value['id'];
         $soluong = $value['soluong']; //    Số lượng sản phẩm mua
         $insert_order_details = "INSERT INTO tbl_cart_details(id_sanpham, code_cart, soluongmua) VALUE('" . $id_sanpham . "', '" . $code_order . "', '" . $soluong . "')";
@@ -59,19 +91,29 @@ if ($cart_query) {
     $noidung = '<p> MÃ ĐƠN HÀNG CỦA BẠN: ' . $code_order . '</p>';
     $noidung .= "<h4> ĐƠN HÀNG ĐÃ ĐẶT BAO GỒM: </h4>";
     foreach ($_SESSION['cart'] as $key => $val) {
-        $noidung .= "<ul style='border: 1px solid black; margin: 10px;'>
+        $noidung .= "<ul style='border: 1px solid black; margin: 10px;>
         <li> Tên sản phẩm:  " . $val['tensanpham'] . "</li>
         <li> Mã sản phẩm: " . $val['masp'] . "</li>
         <li> Giá sản phẩm: " . number_format($val['giasp'], 0, ',', '.') . " đ</li>
         <li> Số lượng: " . $val['soluong'] . "</li>
         </ul>";
     }
+    $noidung .= "<p> CẢM ƠN QUÝ KHÁCH </p>";
+    $noidung .= "<p> TIẾP TỤC MUA HÀNG TẠI <a href='index.php'>PETSTORE</a> </p>";
     $maildathang = $_SESSION['email'];
     $mail = new Mailer();
     $mail->dathangmail($tieude, $noidung, $maildathang);
 }
 // Lưu giỏ hàng trống vào cơ sở dữ liệu
 saveUserCart($id_khachhang, array());
-unset($_SESSION['cart']); //    Xoá giỏ hàng khi đã mua
+
+// Kiểm tra nguồn gốc đặt hàng và thực hiện unset tương ứng
+if (isset($_SESSION['muangay'])) {
+    unset($_SESSION['muangay']);
+} else {
+    unset($_SESSION['cart']); // Xóa giỏ hàng khi đã mua từ giỏ hàng
+}
+// unset($_SESSION['cart']); //    Xoá giỏ hàng khi đã mua
+// unset($_SESSION['muangay']);
 header('Location: ../../index.php?quanly=camon');
 ?>

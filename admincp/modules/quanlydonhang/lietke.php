@@ -12,7 +12,7 @@ $sql_lietke_dh = "SELECT tbl_cart.*, tbl_dangky.tenkhachhang, tbl_dangky.email,
 
 $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
 ?>
-<h1 class="title-liet-ke">LIỆT KÊ ĐƠN HÀNG</h1>
+<h1 class="title-liet-ke">LIỆT KÊ ĐƠN HÀNG ĐĂNG NHẬP</h1>
 <table class="bang-liet-ke" style="width:100%" border="1" style="border-collapse:collapse">
     <tr>
         <th>ID</th>
@@ -102,5 +102,4 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
         color: white
     }
 
-    
 </style>

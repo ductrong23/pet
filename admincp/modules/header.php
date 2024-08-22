@@ -25,8 +25,8 @@
                 <div class="dropdown">
                     <button class="dropbtn">▼</button>
                     <div class="dropdown-content">
-                        <a href="profile.php">Hồ sơ cá nhân</a>
-                        <a href="settings.php">Cài đặt</a>
+                        <!-- <a href="profile.php">Hồ sơ cá nhân</a>
+                        <a href="settings.php">Cài đặt</a> -->
                         <a href="index.php?dangxuat=1">ĐĂNG XUẤT <?php if (isset($_SESSION['dangnhap'])) {
                                                                         echo "[" . $_SESSION['dangnhap'] . "]";
                                                                     } ?></a>
