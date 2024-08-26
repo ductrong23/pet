@@ -30,11 +30,11 @@ $query_timkiem_tt = mysqli_query($mysqli, $sql_timkiem_tt);
 
 
 <!-- <?php
-$sql_lietke_bv = "SELECT * FROM tbl_tintuc, tbl_danhmuctintuc 
+        $sql_lietke_bv = "SELECT * FROM tbl_tintuc, tbl_danhmuctintuc 
 WHERE tbl_tintuc.id_danhmuc=tbl_danhmuctintuc.id_baiviet 
 ORDER BY tbl_tintuc.id_danhmuc DESC";
-$query_lietke_bv = mysqli_query($mysqli, $sql_lietke_bv);
-?> -->
+        $query_lietke_bv = mysqli_query($mysqli, $sql_lietke_bv);
+        ?> -->
 <h1 class="title-liet-ke">LIỆT KÊ TIN TỨC</h1>
 <table class="bang-liet-ke" style="width:100%" border="1" style="border-collapse:collapse">
     <tr>
@@ -50,7 +50,7 @@ $query_lietke_bv = mysqli_query($mysqli, $sql_lietke_bv);
     <?php
     $i = 0;
     // while ($row = mysqli_fetch_array($query_lietke_bv)) {
-        while ($row = mysqli_fetch_array($query_timkiem_tt)) {
+    while ($row = mysqli_fetch_array($query_timkiem_tt)) {
         $i++;
     ?>
         <tr>
@@ -67,9 +67,13 @@ $query_lietke_bv = mysqli_query($mysqli, $sql_lietke_bv);
                 }
                 ?></td>
             <td>
-            <a href="?action=quanlytintuc&query=sua&idbaiviet=<?php echo $row['id'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
-                <a href="modules/quanlytintuc/xuly.php?idbaiviet=<?php echo $row['id'] ?>"  onclick="return confirm('Bạn có chắc chắn muốn xóa tin tức này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
+                <a href="?action=quanlytintuc&query=sua&idbaiviet=<?php echo $row['id'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                <!-- <a href="modules/quanlytintuc/xuly.php?idbaiviet=<?php echo $row['id'] ?>"  onclick="return confirm('Bạn có chắc chắn muốn xóa tin tức này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+                <a href="#"
+                    data-url="modules/quanlytintuc/xuly.php?idbaiviet=<?php echo $row['id'] ?>"
+                    onclick="handleDelete(event, this);">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
             </td>
         </tr>
     <?php
@@ -77,7 +81,18 @@ $query_lietke_bv = mysqli_query($mysqli, $sql_lietke_bv);
     ?>
 </table>
 
+<!-- Modal HTML -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popupMessage"></p>
+        <button id="confirmButton" class="confirm-btn">Xác nhận</button>
+        <button id="cancelButton" class="cancel-btn">Hủy</button>
+    </div>
+</div>
 
+<!-- Include JavaScript for popup -->
+<script src="js/xemdonhang.js"></script>
 
 <style>
     .tim-kiem {

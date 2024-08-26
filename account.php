@@ -1,8 +1,18 @@
+<link rel="stylesheet" href="css/account.css">
+<!-- Modal -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popupMessage"></p>
+    </div>
+</div>
+<script src="js/checkaccount.js"></script>
 <!-- ĐĂNG KÝ -->
 <?php
 session_start();
 include "admincp/config/config.php";
 include_once "cart_functions.php";
+
 
 if (isset($_POST['dangky'])) {
     $tenkhachhang = $_POST['hovaten'];
@@ -10,62 +20,6 @@ if (isset($_POST['dangky'])) {
     $dienthoai = $_POST['dienthoai'];
     $matkhau = md5($_POST['matkhau']);
     $diachi = $_POST['diachi'];
-
-    // =============================
-    // if (isset($_POST['dangky'])) {
-    //     $tenkhachhang = $_POST['hovaten'];
-    //     $email = $_POST['email'];
-    //     $dienthoai = $_POST['dienthoai'];
-    //     $matkhau = md5($_POST['matkhau']);
-    //     $diachi = $_POST['diachi'];
-
-    //     // Xóa ký tự đặc biệt để tránh SQL Injection
-    //     $tenkhachhang = mysqli_real_escape_string($mysqli, $tenkhachhang);
-    //     $email = mysqli_real_escape_string($mysqli, $email);
-    //     $dienthoai = mysqli_real_escape_string($mysqli, $dienthoai);
-    //     $matkhau = mysqli_real_escape_string($mysqli, $matkhau);
-    //     $diachi = mysqli_real_escape_string($mysqli, $diachi);
-
-    //     // Kiểm tra xem email đã tồn tại chưa
-    //     $sql_check_email = "SELECT * FROM tbl_dangky WHERE email = '$email'";
-    //     $result_check = mysqli_query($mysqli, $sql_check_email);
-
-    //     if (mysqli_num_rows($result_check) > 0) {
-    //         // Nếu email đã tồn tại
-    //         echo '<script>alert("Email đã được sử dụng. Vui lòng chọn email khác.");</script>';
-    //     } else {
-    //         // Nếu email chưa tồn tại, thực hiện đăng ký
-    //         $sql_dangky = "INSERT INTO tbl_dangky (tenkhachhang, email, diachi, matkhau, dienthoai) 
-    //                        VALUES ('$tenkhachhang', '$email', '$diachi', '$matkhau', '$dienthoai')";
-    //         $result_dangky = mysqli_query($mysqli, $sql_dangky);
-
-    //         if ($result_dangky) {
-    //             echo '<script>alert("Đăng ký tài khoản thành công");</script>';
-
-    //             $_SESSION['dangky'] = $tenkhachhang;
-    //             $_SESSION['email'] = $email;
-    //             $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
-
-    //             // Khởi tạo giỏ hàng trống cho người dùng mới
-    //             $_SESSION['cart'] = array();
-    //             saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
-
-    //             // Lấy giá trị của redirect_url từ GET (nếu có)
-    //             $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : 'index.php?quanly=dangnhap';
-
-    //             // Chuyển hướng đến trang đăng nhập với redirect_url
-    //             header('Location: account.php?redirect_url=' . urlencode($redirect_url));
-    //             exit();
-    //         } else {
-    //             echo '<script>alert("Đăng ký tài khoản không thành công. Vui lòng thử lại.");</script>';
-    //         }
-    //     }
-
-    //     // Đóng kết nối
-    //     mysqli_free_result($result_check);
-    // }
-    //   ====================================== 
-
 
     // Kiểm tra xem email đã tồn tại chưa
     $sql_check_email = "SELECT * FROM tbl_dangky WHERE email = ?";
@@ -76,7 +30,9 @@ if (isset($_POST['dangky'])) {
 
     if ($stmt_check->num_rows > 0) {
         // Nếu email đã tồn tại
-        echo '<script>alert("Email đã được sử dụng. Vui lòng chọn email khác.");</script>';
+        // echo '<script>alert("Email đã được sử dụng. Vui lòng chọn email khác.");</script>';
+        $popupMessage = 'Email đã được sử dụng. Vui lòng chọn email khác.';
+        echo '<script>showPopup("' . $popupMessage . '");</script>';
     } else {
         // Nếu email chưa tồn tại, thực hiện đăng ký
         $sql_dangky = "INSERT INTO tbl_dangky (tenkhachhang, email, diachi, matkhau, dienthoai) 
@@ -85,32 +41,34 @@ if (isset($_POST['dangky'])) {
         $stmt_dangky->bind_param('sssss', $tenkhachhang, $email, $diachi, $matkhau, $dienthoai);
 
         if ($stmt_dangky->execute()) {
-            echo '<script>alert("Đăng ký tài khoản thành công");</script>';
 
             $_SESSION['dangky'] = $tenkhachhang;
             $_SESSION['email'] = $email;
             $_SESSION['id_khachhang'] = $mysqli->insert_id;
 
+            // echo '<script>alert("Đăng ký tài khoản thành công. Vui lòng đăng nhập");</script>';
 
             // Khởi tạo giỏ hàng trống cho người dùng mới
             $_SESSION['cart'] = array();
             saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
 
-            // header('Location: index.php?quanly=dangnhap');
-            // exit();
-
-
             // Lấy giá trị của redirect_url từ GET (nếu có)
             $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : 'index.php?quanly=dangnhap';
 
             // Chuyển hướng đến trang đăng nhập với redirect_url
-            header('Location: account.php?redirect_url=' . urlencode($redirect_url));
+            // header('Location: account.php?redirect_url=' . urlencode($redirect_url));
+            $popupMessage = 'Đăng ký tài khoản thành công. Vui lòng đăng nhập';
+            echo '<script>
+                showPopup("' . $popupMessage . '");
+                setTimeout(function() { 
+                    window.location.href = "account.php?redirect_url=' . urlencode($redirect_url) . '"; 
+                }, 3000);
+            </script>';
             exit();
         }
     }
 }
 ?>
-
 
 <!-- ĐĂNG NHẬP -->
 <?php
@@ -153,26 +111,29 @@ if (isset($_POST['dangnhap'])) {
             // Ghép lại đường dẫn và query string
             $path_and_query = $path . (isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '');
             // Điều hướng đến đường dẫn mới
-            header("Location: " . $path_and_query);
+            // header("Location: " . $path_and_query);
+            echo '<script>showPopup("Đăng nhập thành công"); setTimeout(function() { window.location.href = "' . $path_and_query . '"; }, 1000);</script>';
             exit();
         }
 
         // Mặc định điều hướng đến trang giới thiệu
-        header('Location: index.php?quanly=gioithieu');
+        // echo '<script>alert("Đăng nhập thành công");</script>';
+        // header('Location: index.php?quanly=gioithieu');
+        echo '<script>showPopup("Đăng nhập thành công"); setTimeout(function() { window.location.href = "index.php?quanly=gioithieu"; }, 1000);</script>';
         exit();
     } else {
-        echo '<script>alert("Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!");</script>';
+        // echo '<script>alert("Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!");</script>';
+        echo '<script>showPopup("Tài khoản hoặc mật khẩu không đúng. Vui lòng đăng nhập lại");</script>';
     }
 }
 
 ?>
 
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/grid.css">
-<link rel="stylesheet" href="css/account.css">
+
 <title>PetStore - Đăng nhập | Đăng ký</title>
 
 
@@ -311,6 +272,61 @@ if (isset($_POST['dangnhap'])) {
 <!-- Ẩn Hiện eye -->
 <script src="js/kiemtraaccount.js"></script>
 
-<!-- Kiểm tra lỗi trên form đăng nhập, đăng ký -->
-<script src="js/checkaccount.js"></script>
 
+
+<?php
+// =============KIỂM TRA EMAIL TỒN TẠI================
+// if (isset($_POST['dangky'])) {
+//     $tenkhachhang = $_POST['hovaten'];
+//     $email = $_POST['email'];
+//     $dienthoai = $_POST['dienthoai'];
+//     $matkhau = md5($_POST['matkhau']);
+//     $diachi = $_POST['diachi'];
+
+//     // Xóa ký tự đặc biệt để tránh SQL Injection
+//     $tenkhachhang = mysqli_real_escape_string($mysqli, $tenkhachhang);
+//     $email = mysqli_real_escape_string($mysqli, $email);
+//     $dienthoai = mysqli_real_escape_string($mysqli, $dienthoai);
+//     $matkhau = mysqli_real_escape_string($mysqli, $matkhau);
+//     $diachi = mysqli_real_escape_string($mysqli, $diachi);
+
+//     // Kiểm tra xem email đã tồn tại chưa
+//     $sql_check_email = "SELECT * FROM tbl_dangky WHERE email = '$email'";
+//     $result_check = mysqli_query($mysqli, $sql_check_email);
+
+//     if (mysqli_num_rows($result_check) > 0) {
+//         // Nếu email đã tồn tại
+//         echo '<script>alert("Email đã được sử dụng. Vui lòng chọn email khác.");</script>';
+//     } else {
+//         // Nếu email chưa tồn tại, thực hiện đăng ký
+//         $sql_dangky = "INSERT INTO tbl_dangky (tenkhachhang, email, diachi, matkhau, dienthoai) 
+//                        VALUES ('$tenkhachhang', '$email', '$diachi', '$matkhau', '$dienthoai')";
+//         $result_dangky = mysqli_query($mysqli, $sql_dangky);
+
+//         if ($result_dangky) {
+//             echo '<script>alert("Đăng ký tài khoản thành công");</script>';
+
+//             $_SESSION['dangky'] = $tenkhachhang;
+//             $_SESSION['email'] = $email;
+//             $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
+
+//             // Khởi tạo giỏ hàng trống cho người dùng mới
+//             $_SESSION['cart'] = array();
+//             saveUserCart($_SESSION['id_khachhang'], $_SESSION['cart']);
+
+//             // Lấy giá trị của redirect_url từ GET (nếu có)
+//             $redirect_url = isset($_GET['redirect_url']) ? $_GET['redirect_url'] : 'index.php?quanly=dangnhap';
+
+//             // Chuyển hướng đến trang đăng nhập với redirect_url
+//             header('Location: account.php?redirect_url=' . urlencode($redirect_url));
+//             exit();
+//         } else {
+//             echo '<script>alert("Đăng ký tài khoản không thành công. Vui lòng thử lại.");</script>';
+//         }
+//     }
+
+//     // Đóng kết nối
+//     mysqli_free_result($result_check);
+// }
+//   ====================================== 
+?>

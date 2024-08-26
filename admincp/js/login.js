@@ -35,8 +35,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Nếu không hợp lệ, hiển thị thông báo lỗi và ngăn không cho gửi form
     if (!isValid) {
-      alert(errorMessage.trim());
+      showPopup(errorMessage.trim());
       event.preventDefault();
     }
   });
+
+  // Hàm để hiển thị modal
+  function showPopup(message) {
+    const modal = document.getElementById("popupModal");
+    const popupMessage = document.getElementById("popupMessage");
+    const closeBtn = document.querySelector(".close");
+
+    popupMessage.textContent = message;
+    modal.style.display = "block";
+
+    // Khi người dùng nhấp vào dấu x, ẩn modal
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // Khi người dùng nhấp ra ngoài modal, ẩn modal
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+
 });

@@ -53,11 +53,21 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                 <p>Giá: <span style="color:green"><?php echo number_format($row_chitiet['giasp'], 0, ',', '.') . ' đ' ?></span></p>
                 <!-- <p>Số lượng sản phẩm: <?php echo $row_chitiet['soluong'] ?></p> -->
                 <p>Danh mục sản phẩm: <span style="color:green"><?php echo $row_chitiet['tendanhmuc'] ?></span></p>
-                <p>Số lượng sản phẩm: <span style="color:green"><?php echo $row_chitiet['soluong'] ?></span></p>
+                <!-- <p>Số lượng sản phẩm: <span style="color:green"><?php echo $row_chitiet['soluong'] ?></span></p>
                 <div class="nut">
                     <p><input type="submit" class="them-gio-hang" name="themgiohang" value="Thêm vào giỏ"></p>
                     <p><input type="submit" class="mua-hang" name="muangay" value="Mua ngay"></p>
-                </div>
+                </div> -->
+                <?php if ($row_chitiet['soluong'] > 0) { ?>
+                    <p>Số lượng sản phẩm: <span style="color:green"><?php echo $row_chitiet['soluong'] ?></span></p>
+                    <p>Tình trạng: <span style="color: green">Còn hàng</span></p>
+                    <div class="nut">
+                        <p><input type="submit" class="them-gio-hang" name="themgiohang" value="Thêm vào giỏ"></p>
+                        <p><input type="submit" class="mua-hang" name="muangay" value="Mua ngay"></p>
+                    </div>
+                <?php } else { ?>
+                    <p>Tình trạng: <span style="color: red">Hết hàng</span></p>
+                <?php } ?>
 
 
             </div>

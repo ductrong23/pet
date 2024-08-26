@@ -18,11 +18,29 @@ $query_lietke_danhmucbv = mysqli_query($mysqli, $sql_lietke_danhmucbv);
             <td><?php echo $i ?></td>
             <td><?php echo $row['tendanhmuc_baiviet'] ?></td>
             <td>
-                <a href="?action=quanlydanhmuctintuc&query=sua&idbaiviet=<?php echo $row['id_baiviet'] ?>" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
-                <a href="modules/quanlydanhmuctintuc/xuly.php?idbaiviet=<?php echo $row['id_baiviet'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục tin tức này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                <a href="?action=quanlydanhmuctintuc&query=sua&idbaiviet=<?php echo $row['id_baiviet'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                <!-- <a href="modules/quanlydanhmuctintuc/xuly.php?idbaiviet=<?php echo $row['id_baiviet'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục tin tức này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+                <a href="#"
+                    data-url="modules/quanlydanhmuctintuc/xuly.php?idbaiviet=<?php echo $row['id_baiviet'] ?>"
+                    onclick="handleDelete(event, this);">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
             </td>
         </tr>
     <?php
     }
     ?>
 </table>
+
+<!-- Modal HTML -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popupMessage"></p>
+        <button id="confirmButton" class="confirm-btn">Xác nhận</button>
+        <button id="cancelButton" class="cancel-btn">Hủy</button>
+    </div>
+</div>
+
+<!-- Include JavaScript for popup -->
+<script src="js/xemdonhang.js"></script>

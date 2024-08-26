@@ -39,6 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (address.length < 6) {
         showError("address", "(*)Địa chỉ phải có ít nhất 6 ký tự.");
         isValid = false;
+      } else if (!isValidAddress(address)) {
+        showError(
+          "address",
+          "(*)Địa chỉ không được chỉ toàn số."
+        );
+        isValid = false;
       }
 
       // Nếu không hợp lệ, ngăn không cho gửi form
@@ -66,5 +72,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const re = /^0\d{9}$/;
     return re.test(phoneNumber);
   }
-});
 
+  // Hàm kiểm tra địa chỉ có hợp lệ hay không
+  function isValidAddress(address) {
+    // Kiểm tra nếu địa chỉ chứa ít nhất một chữ cái
+    const containsLetter = /[a-zA-Z]/.test(address);
+    // Kiểm tra nếu địa chỉ chỉ toàn số
+    const isOnlyDigits = /^\d+$/.test(address);
+    // Địa chỉ hợp lệ nếu chứa ít nhất một chữ cái và không phải chỉ toàn số
+    return containsLetter && !isOnlyDigits;
+  }
+});

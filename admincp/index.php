@@ -24,6 +24,7 @@ if (!isset($_SESSION['dangnhap'])) {
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <!-- <link rel="stylesheet" type="text/css" href="css/login.css"> -->
     <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
 
     <!-- CKEDITOR -->
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css" />

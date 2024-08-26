@@ -86,6 +86,18 @@ if (isset($_GET['cong'])) {
     }
     $_SESSION['cart'] = $product;
 
+    // Kiểm tra và tăng số lượng cho sản phẩm trong $_SESSION['muangay']
+    if (isset($_SESSION['muangay'])) {
+        foreach ($_SESSION['muangay'] as &$cart_item) {
+            if ($cart_item['id'] == $id) {
+                if ($cart_item['soluong'] < 10) {
+                    $cart_item['soluong'] += 1;
+                }
+                break;
+            }
+        }
+    }
+    
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }
@@ -122,7 +134,7 @@ if (isset($_SESSION['cart']) && isset($_GET['xoa'])) {
         }
     }
     $_SESSION['cart'] = $product;
- 
+
     header('Location: ../../index.php?quanly=giohang');
     exit();
 }

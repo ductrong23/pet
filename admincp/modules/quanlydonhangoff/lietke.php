@@ -52,7 +52,12 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 <td>
                     <a href="index.php?action=donhang&query=xemdonhangoff&code=<?php echo $row['code_cart'] ?>"><i class="fa fa-eye" aria-hidden="true"></i></a> |
                     <a href="modules/quanlydonhangoff/indonhang.php?code=<?php echo $row['code_cart'] ?>"><i class="fa fa-print" aria-hidden="true"></i></a> |
-                    <a href="modules/quanlydonhangoff/xuly.php?action=delete&code=<?php echo $row['code_cart'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <!-- <a href="modules/quanlydonhangoff/xuly.php?action=delete&code=<?php echo $row['code_cart'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+                    <a href="#"
+                    data-url="modules/quanlydonhangoff/xuly.php?action=delete&code=<?php echo $row['code_cart'] ?>"
+                    onclick="handleDelete(event, this);">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
                 </td>
             </tr>
         <?php
@@ -100,3 +105,15 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
         color: white
     }
 </style>
+<!-- Modal HTML -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popupMessage"></p>
+        <button id="confirmButton" class="confirm-btn">Xác nhận</button>
+        <button id="cancelButton" class="cancel-btn">Hủy</button>
+    </div>
+</div>
+
+<!-- Include JavaScript for popup -->
+<script src="js/xemdonhang.js"></script>

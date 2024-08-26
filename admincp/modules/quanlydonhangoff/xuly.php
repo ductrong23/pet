@@ -1,3 +1,14 @@
+<link rel="stylesheet" type="text/css" href="../../css/popup.css">
+<!-- Popup Xác Nhận Xóa Đơn Hàng -->
+<div id="confirmOrderModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeOrderModal">&times;</span>
+        <p id="orderConfirmationMessage"></p>
+        <button id="confirmOrderButton" class="confirm-btn">Xóa Đơn</button>
+        <button id="cancelOrderButton" class="cancel-btn">Hủy</button>
+    </div>
+</div>
+<script src="../../js/xulydonhang.js"></script>
 <?php
 
 //  XỬ LÝ TÌNH TRẠNG ĐƠN HÀNG
@@ -80,16 +91,24 @@ elseif (isset($_GET['action']) && trim($_GET['action']) == 'delete_product' && i
         // $sql_delete_cart = "DELETE FROM tbl_cartoff WHERE code_cart='" . $code_cart . "'";
         // mysqli_query($mysqli, $sql_delete_cart);
         // header('Location: ../../index.php?action=quanlydonhangoff&query=lietke');
-        echo "<script>
-        if (confirm('Đơn hàng hiện tại không còn sản phẩm. Bạn có muốn xóa đơn hàng này không?')) {
-            window.location.href = 'xuly.php?action=delete&code=" . $code_cart . "';
-            // window.location.href = 'modules/quanlydonhangoff/xuly.php?action=delete&code=". $code_cart . "';
-        } else {
-            window.location.href = '../../index.php?action=donhang&query=xemdonhangoff&code=" . $code_cart . "';
-        }
-    </script>";
+        
+            echo "<script>
+            if (confirm('Đơn hàng hiện tại không còn sản phẩm. Bạn có muốn xóa đơn hàng này không?')) {
+                window.location.href = 'xuly.php?action=delete&code=" . $code_cart . "';
+                // window.location.href = 'modules/quanlydonhangoff/xuly.php?action=delete&code=". $code_cart . "';
+            } else {
+                window.location.href = '../../index.php?action=donhang&query=xemdonhangoff&code=" . $code_cart . "';
+            }
+        </script>";
+
+    //     echo "<script>
+    //     showProductModal('Sản phẩm đã được xóa. Đơn hàng hiện tại không còn sản phẩm. Bạn có muốn xóa đơn hàng này không?', 
+    //     function() {
+    //         window.location.href = 'xuly.php?action=delete&code=" . $code_cart . "';
+    //     });
+    // </script>";
+    
     } else {
         header('Location: ../../index.php?action=donhang&query=xemdonhangoff&code=' . $code_cart);
     }
 }
-

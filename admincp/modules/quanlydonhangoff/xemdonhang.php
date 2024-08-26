@@ -46,15 +46,26 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
                 <td><?php echo number_format($row['giasp'], 0, ',', '.') . " đ" ?></td>
                 <td><?php echo number_format($thanhtien, 0, ',', '.') . " đ" ?></td>
                 <td><?php echo $row['cart_payment'] ?></td>
-                <td>
-                <a href="modules/quanlydonhangoff/xuly.php?action=delete_product
+                <!-- <td>
+                    <a href="modules/quanlydonhangoff/xuly.php?action=delete_product
                 &code=<?php echo $row['code_cart'] ?>
                 &id_cart_detailsoff=<?php echo $row['id_cart_detailsoff'] ?>
                 &id_sanpham=<?php echo $row['id_sanpham'] ?>
                 &soluongmua=<?php echo $row['soluongmua'] ?>"
-                    onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi đơn hàng?');"><i class="fa fa-trash-o" aria-hidden="true"></i>
-                </a>
-            </td>
+                        onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi đơn hàng?');"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                </td> -->
+                <td>
+                    <a href="#"
+                        data-url="modules/quanlydonhangoff/xuly.php?action=delete_product
+                         &code=<?php echo $row['code_cart'] ?>
+                &id_cart_detailsoff=<?php echo $row['id_cart_detailsoff'] ?>
+                &id_sanpham=<?php echo $row['id_sanpham'] ?>
+                &soluongmua=<?php echo $row['soluongmua'] ?>"
+                        onclick="handleDelete(event, this);">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                </td>
             </tr>
         <?php
         }
@@ -90,3 +101,15 @@ $query_lietke_dh = mysqli_query($mysqli, $sql_lietke_dh);
         scale: 1.06;
     }
 </style>
+<!-- Modal HTML -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popupMessage"></p>
+        <button id="confirmButton" class="confirm-btn">Xác nhận</button>
+        <button id="cancelButton" class="cancel-btn">Hủy</button>
+    </div>
+</div>
+
+<!-- Include JavaScript for popup -->
+<script src="js/xemdonhang.js"></script>

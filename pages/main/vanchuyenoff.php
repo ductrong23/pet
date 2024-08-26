@@ -1,3 +1,5 @@
+<!-- Kiểm tra nhập đầy đủ yêu cầu thì được chuyển trang -->
+<script src="js/checkvanchuyenoff.js"></script>
 <?php
 // Kiểm tra thời gian hết hạn trước khi thực hiện mua hàng
 function kiemTraMuaNgayHetHan()
@@ -48,6 +50,7 @@ if (isset($_SESSION['muangay'])) {
 <?php endif; ?>
 
 <?php
+$popupMessage = '';
 if (isset($_POST['themvanchuyen']) || isset($_POST['capnhatvanchuyen'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
@@ -59,18 +62,22 @@ if (isset($_POST['themvanchuyen']) || isset($_POST['capnhatvanchuyen'])) {
         $sql_them_vanchuyen = mysqli_query($mysqli, "INSERT INTO tbl_shippingoff(name, phone, address, note) VALUES('$name','$phone','$address','$note')");
         if ($sql_them_vanchuyen) {
             $_SESSION['shippingoff_id'] = mysqli_insert_id($mysqli);
-            echo '<script>alert("Thêm thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán")</script>';
+            $popupMessage = "Thêm thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán";
+            // echo '<script>alert("Thêm thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán")</script>';
         } else {
-            echo '<script>alert("Thêm thông tin vận chuyển thất bại")</script>';
+            $popupMessage = "Thêm thông tin vận chuyển thất bại";
+            // echo '<script>alert("Thêm thông tin vận chuyển thất bại")</script>';
         }
     } elseif (isset($_POST['capnhatvanchuyen']) && isset($_SESSION['shippingoff_id'])) {
         // Nếu cập nhật thông tin vận chuyển
         $shippingoff_id = $_SESSION['shippingoff_id'];
         $sql_update_vanchuyen = mysqli_query($mysqli, "UPDATE tbl_shippingoff SET name='$name', phone='$phone', address='$address', note='$note' WHERE id_shippingoff='$shippingoff_id'");
         if ($sql_update_vanchuyen) {
-            echo '<script>alert("Cập nhật thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán")</script>';
+            $popupMessage = "Cập nhật thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán";
+            // echo '<script>alert("Cập nhật thông tin vận chuyển thành công. Vui lòng cập nhật thông tin thanh toán")</script>';
         } else {
-            echo '<script>alert("Cập nhật thông tin vận chuyển thất bại")</script>';
+            $popupMessage = "Cập nhật thông tin vận chuyển thất bại";
+            // echo '<script>alert("Cập nhật thông tin vận chuyển thất bại")</script>';
         }
     }
 }
@@ -137,8 +144,9 @@ if (isset($_POST['themvanchuyen']) || isset($_POST['capnhatvanchuyen'])) {
     </form>
 </div>
 
+<!-- Kiểm tra dữ liệu vận chuyển nhập trên form -->
 <script src="js/vanchuyen.js"></script>
-<script src="js/checkvanchuyenoff.js"></script>
+
 
 <!-- ================================================ -->
 <div class="bang-gio-hang-thanh-toan">
@@ -227,4 +235,12 @@ if (isset($_POST['themvanchuyen']) || isset($_POST['capnhatvanchuyen'])) {
             <h4>QUAY LẠI CỬA HÀNG</h4>
         </span>
     </a>
+</div>
+
+
+<div id="popupModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="popupMessage"><?php echo isset($popupMessage) ? $popupMessage : ''; ?></p>
+  </div>
 </div>

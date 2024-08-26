@@ -1,3 +1,4 @@
+
 <?php
 
 //  XỬ LÝ TÌNH TRẠNG ĐƠN HÀNG
@@ -76,20 +77,17 @@ elseif (isset($_GET['action']) && $_GET['action'] == 'delete_product' && isset($
     $row_check_cart = mysqli_fetch_array($query_check_cart);
 
     if ($row_check_cart['count'] == 0) {
-        // // Nếu không còn sản phẩm, xóa luôn đơn hàng
-        // $sql_delete_cart = "DELETE FROM tbl_cart WHERE code_cart='" . $code_cart . "'";
-        // mysqli_query($mysqli, $sql_delete_cart);
-        // header('Location: ../../index.php?action=quanlydonhang&query=lietke');
 
         echo "<script>
-        if (confirm('Đơn hàng hiện tại không còn sản phẩm. Bạn có muốn xóa đơn hàng này không?')) {
-            window.location.href = 'xuly.php?action=delete&code=" . $code_cart . "';
-        } else {
-            window.location.href = '../../index.php?action=donhang&query=xemdonhang&code=" . $code_cart . "';
-        }
-    </script>";
+            if (confirm('Đơn hàng hiện tại không còn sản phẩm. Bạn có muốn xóa đơn hàng này không?')) {
+                window.location.href = 'xuly.php?action=delete&code=" . $code_cart . "';
+            } else {
+                window.location.href = '../../index.php?action=donhang&query=xemdonhang&code=" . $code_cart . "';
+            }
+        </script>";
     } else {
 
         header('Location: ../../index.php?action=donhang&query=xemdonhang&code=' . $code_cart);
     }
 }
+?>

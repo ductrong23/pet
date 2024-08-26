@@ -12,7 +12,7 @@ if (isset($_POST['dangnhap'])) {
     $_SESSION['dangnhap'] = $taikhoan;
     header("Location: index.php?action=quanlydonhang&query=lietke");
   } else {
-    $_SESSION['login_error'] = "Tài khoản hoặc mật khẩu không đúng !! Vui lòng đăng nhập lại !!";
+    $_SESSION['login_error'] = "Tài khoản hoặc mật khẩu không đúng. Vui lòng đăng nhập lại";
     header('Location: login.php');
     exit();
   }
@@ -63,6 +63,14 @@ if (isset($_POST['dangnhap'])) {
   </div>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Modal -->
+  <div id="popupModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="popupMessage"></p>
+    </div>
+  </div>
+
 </body>
 
 </html>
@@ -153,14 +161,68 @@ if (isset($_POST['dangnhap'])) {
     margin-top: 5px;
     display: none;
   }
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    width: 50%;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #popupMessage {
+  font-family: Montserrat, sans-serif;
+  text-align: center;
+  color: #123f39;
+  font-weight: bold;
+}
+
 </style>
 
-<script src="js/login.js">
+<!-- <script src="js/login.js">
      // Kiểm tra xem có thông báo lỗi từ PHP không
      <?php if (isset($_SESSION['login_error'])): ?>
       alert("<?php echo $_SESSION['login_error']; ?>");
       <?php unset($_SESSION['login_error']); // Xóa thông báo lỗi sau khi hiển thị 
       ?>
     <?php endif; ?>
+</script> -->
 
+<script src="js/login.js">
+  // Kiểm tra xem có thông báo lỗi từ PHP không
+  <?php if (isset($_SESSION['login_error'])): ?>
+    showPopup("<?php echo $_SESSION['login_error']; ?>");
+    <?php unset($_SESSION['login_error']); // Xóa thông báo lỗi sau khi hiển thị 
+    ?>
+  <?php endif; ?>
 </script>

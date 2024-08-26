@@ -1,4 +1,12 @@
-<h1>THANH TOÁN</h1>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popupMessage"></p>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="../../css/vanchuyen.css">
+<script src="../../js/xulythanhtoanoff.js"></script>
+
 <?php
 session_start();
 include "../../admincp/config/config.php";
@@ -31,8 +39,9 @@ function kiemTraMuaNgayHetHan()
 // Kiểm tra trạng thái mua ngay
 if (!kiemTraMuaNgayHetHan()) {
     // Thông báo hết thời gian
-    echo '<script>alert("Thời gian mua hàng đã hết, vui lòng thêm sản phẩm lại.")</script>';
-    header('Location: ../../index.php');
+    echo '<script>showPopup("Thời gian mua hàng đã hết, vui lòng thêm sản phẩm lại.")</script>';
+    // header('Location: ../../index.php');
+    echo "'../../index.php'";
     exit();
 }
 
@@ -53,15 +62,40 @@ $now = Carbon::now('Asia/Ho_Chi_Minh');
 // =====
 $namedathang = $row_get_vanchuyen['name'];
 
+// Xác định giỏ hàng để xử lý
+$cart_to_process = isset($_SESSION['muangay']) ? $_SESSION['muangay'] : $_SESSION['cart'];
+
+
+// Kiểm tra số lượng hàng trong kho trước khi xử lý đặt hàng
+foreach ($cart_to_process as $key => $value) {
+    $id_sanpham = $value['id'];
+    $soluong = $value['soluong'];
+
+    $sql_chitiet = "SELECT * FROM tbl_sanpham WHERE tbl_sanpham.id_sanpham='$id_sanpham' LIMIT 1";
+    $query_chitiet = mysqli_query($mysqli, $sql_chitiet);
+    $row_chitiet = mysqli_fetch_array($query_chitiet);
+
+
+    if ($soluong > $row_chitiet['soluong']) {
+        echo '<script>
+        showPopup("<p>Sản phẩm ' . $value['tensanpham'] . '</p> <p> Hiện còn ' . $row_chitiet['soluong'] . ' sản phẩm<p>Không đủ đáp ứng đơn hàng. Vui lòng giảm số lượng hoặc chọn sản phẩm khác</p>", ';
+        if (isset($_SESSION['id_khachhang'])) {
+            echo "'../../index.php?quanly=vanchuyen'";
+        } else {
+            echo "'../../index.php?quanly=vanchuyenoff'";
+        }
+        echo ');
+    </script>';
+        return;
+    }
+}
+
 //  INSERT vào database
 $insert_cart = "INSERT INTO tbl_cart(id_khachhang, code_cart, cart_status, cart_payment, cart_shipping, shipping_address, cart_date, namedathang) 
 VALUE('" . $id_khachhang . "', '" . $code_order . "', 0,'" . $cart_payment . "','" . $id_shipping . "', '" . $shipping_address . "', '" . $now . "', '" . $namedathang . "')";
 $cart_query = mysqli_query($mysqli, $insert_cart);
 
 if ($cart_query) {
-
-    // Xác định giỏ hàng để xử lý
-    $cart_to_process = isset($_SESSION['muangay']) ? $_SESSION['muangay'] : $_SESSION['cart'];
 
     //  Thêm giỏ hàng chi tiết tbl_cart_details
     // foreach ($_SESSION['cart'] as $key => $value) {
@@ -71,14 +105,17 @@ if ($cart_query) {
         $insert_order_details = "INSERT INTO tbl_cart_details(id_sanpham, code_cart, soluongmua) VALUE('" . $id_sanpham . "', '" . $code_order . "', '" . $soluong . "')";
         mysqli_query($mysqli, $insert_order_details);
 
-        //  Quản lý số lượng sản phẩm trong kho
-        $sql_chitiet = "SELECT * FROM tbl_sanpham WHERE tbl_sanpham.id_sanpham='$id_sanpham' LIMIT 1";
-        $query_chitiet = mysqli_query($mysqli, $sql_chitiet);
+        // //  Quản lý số lượng sản phẩm trong kho
+        // $sql_chitiet = "SELECT * FROM tbl_sanpham WHERE tbl_sanpham.id_sanpham='$id_sanpham' LIMIT 1";
+        // $query_chitiet = mysqli_query($mysqli, $sql_chitiet);
 
-        while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
-            $soluongtong = $row_chitiet['soluong'];
-            $soluongcon = $row_chitiet['soluong'] - $soluong;
-        }
+        // while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
+        //     $soluongtong = $row_chitiet['soluong'];
+        //     $soluongcon = $row_chitiet['soluong'] - $soluong;
+        // }
+
+        $soluongcon = $row_chitiet['soluong'] - $soluong;
+
         //  UPDATE lại số lượng
         $sql_update_soluong = "UPDATE tbl_sanpham SET soluong='" . $soluongcon . "'
          WHERE id_sanpham='$id_sanpham'";

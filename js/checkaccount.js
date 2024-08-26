@@ -1,3 +1,5 @@
+
+// ===============KIỂM TRA LỖI NHẬP DỮ LIỆU======================
 document.addEventListener("DOMContentLoaded", function () {
   // Xử lý form đăng nhập
   const formLogin = document.getElementById("form-login");
@@ -73,11 +75,15 @@ document.addEventListener("DOMContentLoaded", function () {
         isValid = false;
       }
 
+      // Kiểm tra địa chỉ
       if (address === "") {
         showError("address", "(*)Vui lòng nhập địa chỉ.");
         isValid = false;
       } else if (address.length < 6) {
         showError("address", "(*)Địa chỉ phải có ít nhất 6 ký tự.");
+        isValid = false;
+      } else if (!isValidAddress(address)) {
+        showError("address", "(*)Địa chỉ không được chỉ toàn số.");
         isValid = false;
       }
 
@@ -145,4 +151,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const re = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?=.{8,})/;
     return re.test(password);
   }
+
+  // Hàm kiểm tra địa chỉ có hợp lệ hay không
+  function isValidAddress(address) {
+    // Kiểm tra nếu địa chỉ chứa ít nhất một chữ cái
+    const containsLetter = /[a-zA-Z]/.test(address);
+    // Kiểm tra nếu địa chỉ chỉ toàn số
+    const isOnlyDigits = /^\d+$/.test(address);
+    // Địa chỉ hợp lệ nếu chứa ít nhất một chữ cái và không phải chỉ toàn số
+    return containsLetter && !isOnlyDigits;
+  }
 });
+
+
+// =============POP UP===============
+
+  // Hiển thị modal với thông báo
+  function showPopup(message) {
+    document.getElementById("popupMessage").innerText = message;
+    var modal = document.getElementById("popupModal");
+    modal.style.display = "block";
+  }
+
+  // Đóng modal khi nhấn vào nút đóng
+  document.querySelector(".close").onclick = function () {
+    document.getElementById("popupModal").style.display = "none";
+  };
+
+  // Đóng modal khi nhấn ra ngoài modal
+  window.onclick = function (event) {
+    var modal = document.getElementById("popupModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+  window.showPopup = showPopup;
+

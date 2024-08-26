@@ -62,13 +62,31 @@ $query_timkiem_sp = mysqli_query($mysqli, $sql_timkiem_sp);
             <td><?php echo $row['tendanhmuc'] ?></td>
             <td>
                 <a href="?action=quanlysanpham&query=sua&idsanpham=<?php echo $row['id_sanpham'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
-                <a href="modules/quanlysanpham/xuly.php?idsanpham=<?php echo $row['id_sanpham'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                <!-- <a href="modules/quanlysanpham/xuly.php?idsanpham=<?php echo $row['id_sanpham'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+                <a href="#"
+                    data-url="modules/quanlysanpham/xuly.php?idsanpham=<?php echo $row['id_sanpham'] ?>"
+                    onclick="handleDelete(event, this);">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
             </td>
         </tr>
     <?php
     }
     ?>
 </table>
+
+<!-- Modal HTML -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popupMessage"></p>
+        <button id="confirmButton" class="confirm-btn">Xác nhận</button>
+        <button id="cancelButton" class="cancel-btn">Hủy</button>
+    </div>
+</div>
+
+<!-- Include JavaScript for popup -->
+<script src="js/xemdonhang.js"></script>
 
 <!--    LIỆT KÊ SẢN PHẨM -->
 
